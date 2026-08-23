@@ -1,0 +1,9 @@
+# No announcements yet. During a "refresh", paste in or describe new Moodle/Outlook
+# announcements and Claude will add entries here in this shape:
+# - id: <slug>
+#   class_id: <class id>
+#   date: "YYYY-MM-DD"
+#   title: ""
+#   body: ""
+#   source: manual   # manual | Moodle | Outlook
+[]

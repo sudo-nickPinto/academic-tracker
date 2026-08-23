@@ -1,0 +1,43 @@
+# date_added is when the entry was added to the dashboard, not necessarily when the school posted it.
+
+- id: cs391-syllabus
+  class_id: cs391
+  title: "Syllabus"
+  type: syllabus
+  link: ""
+  date_added: "2026-08-23"
+
+- id: cs391-text-security
+  class_id: cs391
+  title: "Computer Systems: Planning for Success (Ryan Tolboom)"
+  type: reading
+  link: "https://web.njit.edu/~rt494/security/"
+  date_added: "2026-08-23"
+
+- id: cs391-text-crypto
+  class_id: cs391
+  title: "The Joy of Cryptography (Mike Rosulek)"
+  type: reading
+  link: "https://joyofcryptography.com/"
+  date_added: "2026-08-23"
+
+- id: cs391-text-networks
+  class_id: cs391
+  title: "Introduction to Computer Networks (Peter L. Dordal)"
+  type: reading
+  link: "https://intronetworks.cs.luc.edu/current2/html/"
+  date_added: "2026-08-23"
+
+- id: eng216-syllabus
+  class_id: eng216
+  title: "Syllabus"
+  type: syllabus
+  link: ""
+  date_added: "2026-08-23"
+
+- id: eng216-required-text
+  class_id: eng216
+  title: "Robin Hood and Other Outlaw Tales (Knight, Ohlgren, Kelly, eds.)"
+  type: reading
+  link: "https://metseditions.org/editions/0pA5QGajC2P8qU3LrhVA5RIRGyYR6aMq"
+  date_added: "2026-08-23"

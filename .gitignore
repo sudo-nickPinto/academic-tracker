@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+.env
+
+# Raw source syllabi (may contain personal contact info) — kept local only.
+# Extracted, sanitized data lives in src/_data/*.yaml, which IS committed.
+/cs391/
+/eng216/
+/cs360/
+/cs440/
+/*cs440/

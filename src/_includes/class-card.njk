@@ -1,0 +1,6 @@
+<a class="class-card" href="{{ ('/classes/' + c.id + '/') | url }}" style="border-top-color: {{ c.color }}">
+  <h3>{{ c.code }}</h3>
+  <p class="class-name">{{ c.name }}</p>
+  {% if c.instructor %}<p class="class-meta">{{ c.instructor }}</p>{% endif %}
+  {% if c.meeting_times %}<p class="class-meta">{{ c.meeting_times }}</p>{% endif %}
+</a>

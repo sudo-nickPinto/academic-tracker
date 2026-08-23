@@ -1,0 +1,55 @@
+---
+layout: base.njk
+eleventyComputed:
+  title: "{{ site.title }}"
+---
+<section class="hero">
+  <h1>{{ site.title }}</h1>
+  <p class="subtitle">{{ site.current_term }}</p>
+</section>
+
+<section>
+  <h2>Today's Reminders</h2>
+  {% set todays = reminders | todaysReminders %}
+  <ul class="reminder-list">
+  {% for r in todays %}
+    <li>{{ r.title }}{% if r.note %} &mdash; {{ r.note }}{% endif %}</li>
+  {% endfor %}
+  </ul>
+  {% if todays.length == 0 %}<p class="empty">Nothing due today.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Upcoming Deadlines</h2>
+  {% set upcoming = deadlines | notDone | sortByDate("due_date") %}
+  <div class="deadline-list">
+  {% for d in upcoming | limit(8) %}
+    {% include "deadline-row.njk" %}
+  {% endfor %}
+  {% if upcoming.length == 0 %}<p class="empty">No upcoming deadlines.</p>{% endif %}
+  </div>
+  <p><a href="{{ '/deadlines/' | url }}">See all deadlines &rarr;</a></p>
+</section>
+
+<section>
+  <h2>Your Classes</h2>
+  <div class="class-grid">
+  {% for c in classes %}
+    {% include "class-card.njk" %}
+  {% endfor %}
+  </div>
+</section>
+
+<section>
+  <h2>Recent Announcements</h2>
+  {% set recentAnn = announcements | sortByDate("date") | reverse | limit(5) %}
+  {% for a in recentAnn %}
+    {% set annCls = classes | classById(a.class_id) %}
+    <div class="announcement">
+      <p class="announcement-date">{{ a.date | formatDate }} &middot; {{ annCls.code or a.class_id }}</p>
+      <h3>{{ a.title }}</h3>
+      <p>{{ a.body }}</p>
+    </div>
+  {% endfor %}
+  {% if recentAnn.length == 0 %}<p class="empty">No announcements yet. Add some during a "refresh".</p>{% endif %}
+</section>

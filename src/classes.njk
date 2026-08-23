@@ -1,0 +1,55 @@
+---
+layout: base.njk
+pagination:
+  data: classes
+  size: 1
+  alias: class
+permalink: "/classes/{{ class.id }}/"
+eleventyComputed:
+  title: "{{ class.code }} — {{ class.name }}"
+---
+<h1>{{ class.code }} &mdash; {{ class.name }}</h1>
+<p class="class-meta">
+  {% if class.instructor %}{{ class.instructor }} &middot; {% endif %}
+  {% if class.meeting_times %}{{ class.meeting_times }} &middot; {% endif %}
+  {{ class.term }}
+</p>
+{% if class.materials_link %}<p><a href="{{ class.materials_link }}">Course site &rarr;</a></p>{% endif %}
+
+<section>
+  <h2>Materials</h2>
+  {% set classMaterials = materials | byClass(class.id) %}
+  <ul>
+  {% for m in classMaterials %}
+    <li>
+      {% if m.link %}<a href="{{ m.link }}">{{ m.title }}</a>{% else %}{{ m.title }}{% endif %}
+      <span class="tag">{{ m.type }}</span>
+    </li>
+  {% endfor %}
+  </ul>
+  {% if classMaterials.length == 0 %}<p class="empty">No materials added yet.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Deadlines</h2>
+  {% set classDeadlines = deadlines | byClass(class.id) | sortByDate("due_date") %}
+  <div class="deadline-list">
+  {% for d in classDeadlines %}
+    {% include "deadline-row.njk" %}
+  {% endfor %}
+  </div>
+  {% if classDeadlines.length == 0 %}<p class="empty">No deadlines added yet.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Announcements</h2>
+  {% set classAnn = announcements | byClass(class.id) | sortByDate("date") | reverse %}
+  {% for a in classAnn %}
+    <div class="announcement">
+      <p class="announcement-date">{{ a.date | formatDate }}</p>
+      <h3>{{ a.title }}</h3>
+      <p>{{ a.body }}</p>
+    </div>
+  {% endfor %}
+  {% if classAnn.length == 0 %}<p class="empty">No announcements yet.</p>{% endif %}
+</section>

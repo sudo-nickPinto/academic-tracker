@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or site.title }}</title>
+  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="{{ '/' | url }}">{{ site.title }}</a>
+    <nav>
+      <a href="{{ '/' | url }}">Home</a>
+      <a href="{{ '/deadlines/' | url }}">All Deadlines</a>
+    </nav>
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer class="site-footer">
+    <p>{{ site.current_term }} &middot; Last refreshed {{ site.last_refreshed | formatDate }}</p>
+  </footer>
+</body>
+</html>

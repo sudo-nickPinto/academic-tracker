@@ -1,0 +1,52 @@
+---
+layout: base.njk
+title: "All Deadlines"
+permalink: "/deadlines/"
+---
+<h1>All Deadlines</h1>
+
+{% set active = deadlines | notDone | sortByDate("due_date") %}
+
+<section>
+  <h2>Overdue</h2>
+  {% set overdueList = active | overdue %}
+  <div class="deadline-list">
+  {% for d in overdueList %}
+    {% include "deadline-row.njk" %}
+  {% endfor %}
+  </div>
+  {% if overdueList.length == 0 %}<p class="empty">Nothing overdue.</p>{% endif %}
+</section>
+
+<section>
+  <h2>This Week</h2>
+  {% set weekList = active | dueThisWeek %}
+  <div class="deadline-list">
+  {% for d in weekList %}
+    {% include "deadline-row.njk" %}
+  {% endfor %}
+  </div>
+  {% if weekList.length == 0 %}<p class="empty">Nothing due this week.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Later</h2>
+  {% set laterList = active | dueLater %}
+  <div class="deadline-list">
+  {% for d in laterList %}
+    {% include "deadline-row.njk" %}
+  {% endfor %}
+  </div>
+  {% if laterList.length == 0 %}<p class="empty">Nothing further out.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Done</h2>
+  {% set doneList = deadlines | doneOnly | sortByDate("due_date") %}
+  <div class="deadline-list">
+  {% for d in doneList %}
+    {% include "deadline-row.njk" %}
+  {% endfor %}
+  </div>
+  {% if doneList.length == 0 %}<p class="empty">Nothing completed yet.</p>{% endif %}
+</section>
