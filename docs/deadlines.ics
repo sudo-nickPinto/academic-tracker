@@ -5,91 +5,91 @@ CALSCALE:GREGORIAN
 X-WR-CALNAME:My Academic Dashboard Deadlines
 BEGIN:VEVENT
 UID:cs391-test1@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20260929T143500
 SUMMARY:CS 391: Test 1
 DESCRIPTION:exam
 END:VEVENT
 BEGIN:VEVENT
 UID:cs391-test2@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261103T143500
 SUMMARY:CS 391: Test 2
 DESCRIPTION:exam
 END:VEVENT
 BEGIN:VEVENT
 UID:cs391-final@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261208T083000
 SUMMARY:CS 391: Final Exam
 DESCRIPTION:exam — Cumulative. 8:30–11:30am\, proctored in the classroom.
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-accommodation-deadline@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261001T235900
 SUMMARY:ENG 216: Deadline to request accommodation for Outlaw Expedition
 DESCRIPTION:other — Confer privately with the instructor by this date if you need an alternative to the 10/30 field trip.
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-report1@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261002T110000
 SUMMARY:ENG 216: Merry Band of Outlaws Activity Report 1
 DESCRIPTION:assignment
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-report2@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261016T110000
 SUMMARY:ENG 216: Merry Band of Outlaws Activity Report 2
 DESCRIPTION:assignment
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-field-trip@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261030T150000
 SUMMARY:ENG 216: Outlaw Expedition & Campfire Saga Sing-a-long (field trip)
 DESCRIPTION:other — Late afternoon field trip\, ~20 miles off campus.
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-midterm@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261102T110000
 SUMMARY:ENG 216: Midterm Exam
 DESCRIPTION:exam
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-report3@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261113T110000
 SUMMARY:ENG 216: Merry Band of Outlaws Activity Report 3
 DESCRIPTION:assignment
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-collage-project@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261120T110000
 SUMMARY:ENG 216: Re-envisioning Robin Collage Poster Project
 DESCRIPTION:project — Due and presented in class during Week 13 — syllabus doesn't specify the exact day\; confirm with instructor.
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-report4@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261123T110000
 SUMMARY:ENG 216: Merry Band of Outlaws Activity Report 4
 DESCRIPTION:assignment
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-multimedia-review@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261123T110000
 SUMMARY:ENG 216: Robin Reinterpreted Multimedia Review
 DESCRIPTION:project — Due and presented in class during Week 14.
 END:VEVENT
 BEGIN:VEVENT
 UID:eng216-sherwood-chronicles@academic-tracker
-DTSTAMP:20260824T172620Z
+DTSTAMP:20260824T173255Z
 DTSTART;TZID=America/New_York:20261123T110000
 SUMMARY:ENG 216: Sherwood Chronicles
 DESCRIPTION:assignment — Syllabus says 'due Friday' but that Friday (11/27) is Thanksgiving break — confirm the actual due date with the instructor.
