@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: "Materials"
+permalink: "/materials/"
+---
+<h1>Materials</h1>
+
+{% set anyMaterials = materials.length > 0 %}
+{% if not anyMaterials %}
+  <p class="empty">No materials added yet. Add some from a class page, or during a "refresh".</p>
+{% else %}
+  {% for c in classes %}
+    {% set classMaterials = materials | byClass(c.id) %}
+    {% if classMaterials.length > 0 %}
+      <section>
+        <h2 style="border-bottom-color: {{ c.color }}"><a href="{{ ('/classes/' + c.id + '/') | url }}" style="color: {{ c.color }}">{{ c.code }}</a></h2>
+        <ul class="materials-list">
+        {% for m in classMaterials %}
+          <li>
+            {% if m.link %}<a href="{{ m.link }}">{{ m.title }}</a>{% else %}{{ m.title }}{% endif %}
+            <span class="tag">{{ m.type }}</span>
+          </li>
+        {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endfor %}
+{% endif %}

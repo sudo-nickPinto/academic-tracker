@@ -55,31 +55,46 @@ async function commitOrder(list) {
   }
 }
 
-function wireReorderList(list) {
-  let dragEl = null;
+// Keyed by list element rather than a wireReorderList-local closure variable,
+// so addReorderItem (used by the optimistic-preview feature to drop a new
+// <li> into an already-wired list) can bind that one item's drag listeners
+// without re-wiring — and double-binding — everything else in the list.
+const dragState = new WeakMap();
 
-  list.querySelectorAll("li[draggable='true']").forEach((li) => {
-    li.addEventListener("dragstart", () => {
-      dragEl = li;
-      li.classList.add("dragging");
-    });
-    li.addEventListener("dragend", () => {
-      li.classList.remove("dragging");
-      dragEl = null;
-      commitOrder(list);
-    });
+function wireItemDrag(li, list) {
+  li.addEventListener("dragstart", () => {
+    dragState.set(list, { dragEl: li });
+    li.classList.add("dragging");
   });
+  li.addEventListener("dragend", () => {
+    li.classList.remove("dragging");
+    dragState.delete(list);
+    commitOrder(list);
+  });
+}
+
+function wireReorderList(list) {
+  dragState.set(list, { dragEl: null });
+
+  list.querySelectorAll("li[draggable='true']").forEach((li) => wireItemDrag(li, list));
 
   list.addEventListener("dragover", (e) => {
     e.preventDefault();
-    if (!dragEl) return;
+    const state = dragState.get(list);
+    if (!state || !state.dragEl) return;
     const after = getDragAfterElement(list, e.clientY);
     if (after == null) {
-      list.appendChild(dragEl);
+      list.appendChild(state.dragEl);
     } else {
-      list.insertBefore(dragEl, after);
+      list.insertBefore(state.dragEl, after);
     }
   });
+}
+
+/** Appends `li` to `list` and wires just that item's drag listeners, for a list already wired by wireReorderList. */
+export function addReorderItem(list, li) {
+  list.appendChild(li);
+  wireItemDrag(li, list);
 }
 
 document.querySelectorAll("[data-reorder-list]").forEach(wireReorderList);

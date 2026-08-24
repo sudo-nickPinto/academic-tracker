@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("academic-tracker:theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <title>Manage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,10 +25,13 @@
       <a href="/academic-tracker/deadlines/" >Deadlines</a>
       <a href="/academic-tracker/reminders/" >Reminders</a>
       <a href="/academic-tracker/notes/" >Notes</a>
+      <a href="/academic-tracker/materials/" >Materials</a>
       <a href="/academic-tracker/analytics/" >Analytics</a>
       <a href="/academic-tracker/manage/" >Manage</a>
       <a href="/academic-tracker/deadlines.ics">Subscribe</a>
       <a href="/academic-tracker/settings/" >Settings</a>
+      <button type="button" class="cmdk-trigger" data-cmdk-trigger aria-label="Quick jump (Cmd+K)">⌘K</button>
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme"></button>
     </nav>
   </header>
   <main>
@@ -68,7 +79,10 @@
       rebuildWorkflow: "nightly-rebuild.yml",
       pathPrefix: "/academic-tracker/"
     };
+    window.CLASSES = [{"id":"cs391","name":"Selected Topics: Security","code":"CS 391","term":"Fall 2026","instructor":"Dr. Clifton Presser","meeting_times":"Tue/Thu 2:35–3:50pm, Glatfelter 213","color":"#2b6cb0","materials_link":"","status":"active","grade_categories":[]},{"id":"eng216","name":"The Thief with a Heart of Gold: The Fact & Fiction of Robin Hood and the Myth of the Outlaw Hero","code":"ENG 216","term":"Fall 2026","instructor":"C. Fee","meeting_times":"Mon/Wed/Fri 11:00–11:50am, Breidenbaugh 312","color":"#9c4221","materials_link":"","status":"active","grade_categories":[]},{"id":"cs360","name":"CS 360","code":"CS 360","term":"Fall 2026","instructor":"TBD","meeting_times":"TBD","color":"#2f855a","materials_link":"","status":"active","grade_categories":[]},{"id":"cs440","name":"CS 440","code":"CS 440","term":"Fall 2026","instructor":"TBD","meeting_times":"TBD","color":"#6b46c1","materials_link":"","status":"active","grade_categories":[]}];
   </script>
   <script type="module" src="/academic-tracker/js/actions.js"></script>
+  <script type="module" src="/academic-tracker/js/theme-toggle.js"></script>
+  <script type="module" src="/academic-tracker/js/command-palette.js"></script>
 </body>
 </html>

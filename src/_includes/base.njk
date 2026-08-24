@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("academic-tracker:theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <title>{{ title or site.title }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,10 +25,13 @@
       <a href="{{ '/deadlines/' | url }}" {% if page.url == ('/deadlines/' | url) %}aria-current="page"{% endif %}>Deadlines</a>
       <a href="{{ '/reminders/' | url }}" {% if page.url == ('/reminders/' | url) %}aria-current="page"{% endif %}>Reminders</a>
       <a href="{{ '/notes/' | url }}" {% if page.url == ('/notes/' | url) %}aria-current="page"{% endif %}>Notes</a>
+      <a href="{{ '/materials/' | url }}" {% if page.url == ('/materials/' | url) %}aria-current="page"{% endif %}>Materials</a>
       <a href="{{ '/analytics/' | url }}" {% if page.url == ('/analytics/' | url) %}aria-current="page"{% endif %}>Analytics</a>
       <a href="{{ '/manage/' | url }}" {% if page.url == ('/manage/' | url) %}aria-current="page"{% endif %}>Manage</a>
       <a href="{{ '/deadlines.ics' | url }}">Subscribe</a>
       <a href="{{ '/settings/' | url }}" {% if page.url == ('/settings/' | url) %}aria-current="page"{% endif %}>Settings</a>
+      <button type="button" class="cmdk-trigger" data-cmdk-trigger aria-label="Quick jump (Cmd+K)">⌘K</button>
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme"></button>
     </nav>
   </header>
   <main>
@@ -35,7 +46,10 @@
       rebuildWorkflow: {{ site.rebuild_workflow | dump | safe }},
       pathPrefix: {{ ('/' | url) | dump | safe }}
     };
+    window.CLASSES = {{ classes | dump | safe }};
   </script>
   <script type="module" src="{{ '/js/actions.js' | url }}"></script>
+  <script type="module" src="{{ '/js/theme-toggle.js' | url }}"></script>
+  <script type="module" src="{{ '/js/command-palette.js' | url }}"></script>
 </body>
 </html>

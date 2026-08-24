@@ -19,20 +19,22 @@ eleventyComputed:
 <section>
   <h2>Materials</h2>
   {% set classMaterials = materials | byClass(class.id) %}
-  <ul data-reorder-list data-file="materials.yaml">
-  {% for m in classMaterials %}
-    <li draggable="true" data-id="{{ m.id }}">
-      <span class="drag-handle" aria-hidden="true">⠿</span>
-      {% if m.link %}<a href="{{ m.link }}">{{ m.title }}</a>{% else %}{{ m.title }}{% endif %}
-      <span class="tag">{{ m.type }}</span>
-    </li>
-  {% endfor %}
-  </ul>
-  {% if classMaterials.length == 0 %}
-    <p class="empty">No materials added yet.</p>
-  {% elif classMaterials.length > 1 %}
-    <p class="hint" data-reorder-status="materials.yaml">Drag to reorder.</p>
-  {% endif %}
+  <div data-list="materials">
+    <ul data-reorder-list data-file="materials.yaml">
+    {% for m in classMaterials %}
+      <li draggable="true" data-id="{{ m.id }}">
+        <span class="drag-handle" aria-hidden="true">⠿</span>
+        {% if m.link %}<a href="{{ m.link }}">{{ m.title }}</a>{% else %}{{ m.title }}{% endif %}
+        <span class="tag">{{ m.type }}</span>
+      </li>
+    {% endfor %}
+    </ul>
+    {% if classMaterials.length == 0 %}
+      <p class="empty">No materials added yet.</p>
+    {% elif classMaterials.length > 1 %}
+      <p class="hint" data-reorder-status="materials.yaml">Drag to reorder.</p>
+    {% endif %}
+  </div>
 
   <details class="inline-manage">
     <summary>Add Material</summary>
@@ -62,12 +64,12 @@ eleventyComputed:
 <section>
   <h2>Deadlines</h2>
   {% set classDeadlines = deadlines | byClass(class.id) | sortByDate("due_date") %}
-  <div class="deadline-list">
+  <div class="deadline-list" data-list="deadlines">
   {% for d in classDeadlines %}
     {% include "deadline-row.njk" %}
   {% endfor %}
-  </div>
   {% if classDeadlines.length == 0 %}<p class="empty">No deadlines added yet.</p>{% endif %}
+  </div>
 
   <details class="inline-manage">
     <summary>Add Deadline</summary>
@@ -133,6 +135,7 @@ eleventyComputed:
 <section>
   <h2>Notes</h2>
   {% set classNotes = notes | byClass(class.id) | sortByDate("date") | reverse %}
+  <div data-list="notes">
   {% for n in classNotes %}
     <div class="note">
       <p class="note-date">{{ n.date | formatDate }}</p>
@@ -142,6 +145,7 @@ eleventyComputed:
     </div>
   {% endfor %}
   {% if classNotes.length == 0 %}<p class="empty">No notes yet.</p>{% endif %}
+  </div>
 
   <details class="inline-manage">
     <summary>Add Note</summary>
@@ -162,6 +166,7 @@ eleventyComputed:
 <section>
   <h2>Announcements</h2>
   {% set classAnn = announcements | byClass(class.id) | sortByDate("date") | reverse %}
+  <div data-list="announcements">
   {% for a in classAnn %}
     <div class="announcement">
       <p class="announcement-date">{{ a.date | formatDate }}</p>
@@ -170,6 +175,7 @@ eleventyComputed:
     </div>
   {% endfor %}
   {% if classAnn.length == 0 %}<p class="empty">No announcements yet.</p>{% endif %}
+  </div>
 
   <details class="inline-manage">
     <summary>Add Announcement</summary>

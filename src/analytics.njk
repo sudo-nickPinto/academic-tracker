@@ -40,6 +40,15 @@ permalink: "/analytics/"
         </div>
       {% endfor %}
       </div>
+      <div class="heatmap-legend" aria-hidden="true">
+        <span>Less</span>
+        <span class="heatmap-cell" data-level="0" title="No deadlines done"></span>
+        <span class="heatmap-cell" data-level="1" title="Lightest day"></span>
+        <span class="heatmap-cell" data-level="2" title="Light-moderate day"></span>
+        <span class="heatmap-cell" data-level="3" title="Moderate-heavy day"></span>
+        <span class="heatmap-cell" data-level="4" title="Busiest day in range"></span>
+        <span>More</span>
+      </div>
     </div>
     <p class="hint">Colored by due date, not completion date — marking an old deadline done later will brighten its original cell after the next rebuild.</p>
   {% endif %}
