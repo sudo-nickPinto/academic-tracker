@@ -6,7 +6,3 @@
   note: "University-wide date, noted in the CS 391 syllabus."
   done: false
 
-- id: smoke-test-reminder-1
-  title: Smoke test reminder
-  note: Created by Claude Code to verify the process-submission Action works end-to-end. Safe to delete/ignore.
-  done: false
