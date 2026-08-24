@@ -15,9 +15,12 @@
     <nav>
       <a href="/academic-tracker/">Home</a>
       <a href="/academic-tracker/deadlines/">Deadlines</a>
+      <a href="/academic-tracker/reminders/">Reminders</a>
       <a href="/academic-tracker/notes/">Notes</a>
       <a href="/academic-tracker/analytics/">Analytics</a>
+      <a href="/academic-tracker/manage/">Manage</a>
       <a href="/academic-tracker/deadlines.ics">Subscribe</a>
+      <a href="/academic-tracker/settings/">Settings</a>
     </nav>
   </header>
   <main>
@@ -31,5 +34,13 @@
   <footer class="site-footer">
     <p>Fall 2026 &middot; Last refreshed Sun, Aug 23, 2026</p>
   </footer>
+  <script>
+    window.SITE_CONFIG = {
+      repo: "sudo-nickPinto/academic-tracker",
+      rebuildWorkflow: "nightly-rebuild.yml",
+      pathPrefix: "/academic-tracker/"
+    };
+  </script>
+  <script type="module" src="/academic-tracker/js/actions.js"></script>
 </body>
 </html>

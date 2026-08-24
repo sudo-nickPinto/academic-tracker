@@ -151,13 +151,97 @@ section h2 {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.reminder-list li {
+.reminder-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
   padding: 0.55rem 0.85rem;
   background: var(--bg-alt);
   border-radius: var(--radius);
-  margin-bottom: 0.5rem;
+}
+
+.reminder-row.reminder-done {
+  opacity: 0.6;
+}
+
+.reminder-title {
+  flex: 1;
+  min-width: 8rem;
+}
+
+.reminder-note {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.reminder-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.toggle-btn {
+  margin-left: auto;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.toggle-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.toggle-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+h3.subsection {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 1.1rem 0 0.6rem;
+}
+
+h3.subsection:first-child {
+  margin-top: 0;
+}
+
+.stat-box-danger .stat-value {
+  color: var(--danger);
+}
+
+.agenda-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.agenda-day > .deadline-list,
+.agenda-day > .reminder-list {
+  margin-bottom: 0.4rem;
+}
+
+.agenda-date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 0.4rem;
 }
 
 .deadline-list {
@@ -465,6 +549,95 @@ section h2 {
   font-size: 0.75rem;
   color: var(--text-muted);
   text-transform: capitalize;
+}
+
+.manage-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 480px;
+}
+
+.manage-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.manage-form input,
+.manage-form select,
+.manage-form textarea,
+#token-input {
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 480px;
+}
+
+.manage-form input[type="color"] {
+  padding: 0.15rem;
+  height: 2.4rem;
+  width: 4.5rem;
+}
+
+.manage-form textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+.manage-form button,
+.settings-actions button {
+  align-self: flex-start;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.55rem 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.manage-form button:disabled,
+.settings-actions button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.settings-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+}
+
+.button-danger {
+  background: var(--danger) !important;
+}
+
+.form-status {
+  font-size: 0.85rem;
+  min-height: 1.2em;
+  margin: 0.5rem 0 0;
+}
+
+.form-status-error {
+  color: var(--danger);
+}
+
+.form-status-success {
+  color: var(--accent);
+}
+
+.form-status-pending {
+  color: var(--text-muted);
 }
 
 .site-footer {

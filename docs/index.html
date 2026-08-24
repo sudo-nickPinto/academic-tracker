@@ -15,9 +15,12 @@
     <nav>
       <a href="/academic-tracker/">Home</a>
       <a href="/academic-tracker/deadlines/">Deadlines</a>
+      <a href="/academic-tracker/reminders/">Reminders</a>
       <a href="/academic-tracker/notes/">Notes</a>
       <a href="/academic-tracker/analytics/">Analytics</a>
+      <a href="/academic-tracker/manage/">Manage</a>
       <a href="/academic-tracker/deadlines.ics">Subscribe</a>
+      <a href="/academic-tracker/settings/">Settings</a>
     </nav>
   </header>
   <main>
@@ -26,143 +29,75 @@
   <p class="subtitle">Fall 2026</p>
 </section>
 
+
+
+
+
+
+
+
 <section>
-  <h2>Today's Reminders</h2>
-  
-  <ul class="reminder-list">
-  
-  </ul>
-  <p class="empty">Nothing due today.</p>
+  <h2>This Term at a Glance</h2>
+  <div class="stat-grid">
+    <div class="stat-box">
+      <span class="stat-value">0</span>
+      <span class="stat-label">Current streak</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">0</span>
+      <span class="stat-label">Longest streak</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">—</span>
+      <span class="stat-label">Done rate</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">—</span>
+      <span class="stat-label">Overall grade</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">0</span>
+      <span class="stat-label">Overdue</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">0</span>
+      <span class="stat-label">Due this week</span>
+    </div>
+  </div>
+  <p><a href="/academic-tracker/analytics/">Full analytics &rarr;</a></p>
 </section>
 
 <section>
-  <h2>Upcoming Deadlines</h2>
-  
-  <div class="deadline-list">
+  <h2>Needs Your Attention</h2>
   
     
+    
+    
+      <h3 class="subsection">Reminders</h3>
+      <ul class="reminder-list">
+      <li class="reminder-row">
+  <span class="reminder-title">Last day to withdraw from Fall 2026 courses</span>
+  <span class="reminder-note">University-wide date, noted in the CS 391 syllabus.</span>
+  <span class="reminder-date">Nov 5</span>
+  <button type="button" class="toggle-btn" data-toggle-btn
+    data-id="withdraw-deadline" data-file="reminders.yaml" data-field="done"
+    data-value-true="true" data-value-false="false"
+    data-current="false"
+    data-label="Mark done">Mark done</button>
+</li>
 
-<div class="deadline-row" style="border-left-color: #2b6cb0">
-  <span class="deadline-date">Sep 29</span>
-  <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
-  <span class="deadline-title">Test 1</span>
-  <span class="deadline-type">exam</span>
-  
+      </ul>
     
   
-  
-  
-</div>
+</section>
 
-  
-    
-
-<div class="deadline-row" style="border-left-color: #9c4221">
-  <span class="deadline-date">Oct 1</span>
-  <span class="deadline-class" style="color: #9c4221">ENG 216</span>
-  <span class="deadline-title">Deadline to request accommodation for Outlaw Expedition</span>
-  <span class="deadline-type">other</span>
-  
-    
+<section>
+  <h2>This Week</h2>
   
   
+    <p class="empty">Nothing on the calendar for the next 7 days.</p>
   
-</div>
-
-  
-    
-
-<div class="deadline-row" style="border-left-color: #9c4221">
-  <span class="deadline-date">Oct 2</span>
-  <span class="deadline-class" style="color: #9c4221">ENG 216</span>
-  <span class="deadline-title">Merry Band of Outlaws Activity Report 1</span>
-  <span class="deadline-type">assignment</span>
-  
-    
-  
-  
-  
-</div>
-
-  
-    
-
-<div class="deadline-row" style="border-left-color: #9c4221">
-  <span class="deadline-date">Oct 16</span>
-  <span class="deadline-class" style="color: #9c4221">ENG 216</span>
-  <span class="deadline-title">Merry Band of Outlaws Activity Report 2</span>
-  <span class="deadline-type">assignment</span>
-  
-    
-  
-  
-  
-</div>
-
-  
-    
-
-<div class="deadline-row" style="border-left-color: #9c4221">
-  <span class="deadline-date">Oct 30</span>
-  <span class="deadline-class" style="color: #9c4221">ENG 216</span>
-  <span class="deadline-title">Outlaw Expedition &amp; Campfire Saga Sing-a-long (field trip)</span>
-  <span class="deadline-type">other</span>
-  
-    
-  
-  
-  
-</div>
-
-  
-    
-
-<div class="deadline-row" style="border-left-color: #9c4221">
-  <span class="deadline-date">Nov 2</span>
-  <span class="deadline-class" style="color: #9c4221">ENG 216</span>
-  <span class="deadline-title">Midterm Exam</span>
-  <span class="deadline-type">exam</span>
-  
-    
-  
-  
-  
-</div>
-
-  
-    
-
-<div class="deadline-row" style="border-left-color: #2b6cb0">
-  <span class="deadline-date">Nov 3</span>
-  <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
-  <span class="deadline-title">Test 2</span>
-  <span class="deadline-type">exam</span>
-  
-    
-  
-  
-  
-</div>
-
-  
-    
-
-<div class="deadline-row" style="border-left-color: #9c4221">
-  <span class="deadline-date">Nov 13</span>
-  <span class="deadline-class" style="color: #9c4221">ENG 216</span>
-  <span class="deadline-title">Merry Band of Outlaws Activity Report 3</span>
-  <span class="deadline-type">assignment</span>
-  
-    
-  
-  
-  
-</div>
-
-  
-  
-  </div>
-  <p><a href="/academic-tracker/deadlines/">See all deadlines &rarr;</a></p>
+  <p><a href="/academic-tracker/deadlines.ics">Subscribe to calendar (.ics) &rarr;</a> &middot; <a href="/academic-tracker/deadlines/">See all deadlines &rarr;</a></p>
 </section>
 
 <section>
@@ -208,12 +143,20 @@
   <h2>Recent Announcements</h2>
   
   
-  <p class="empty">No announcements yet. Add some during a "refresh".</p>
+  <p class="empty">No announcements yet. Add some on the <a href="/academic-tracker/manage/">Manage</a> page.</p>
 </section>
 
   </main>
   <footer class="site-footer">
     <p>Fall 2026 &middot; Last refreshed Sun, Aug 23, 2026</p>
   </footer>
+  <script>
+    window.SITE_CONFIG = {
+      repo: "sudo-nickPinto/academic-tracker",
+      rebuildWorkflow: "nightly-rebuild.yml",
+      pathPrefix: "/academic-tracker/"
+    };
+  </script>
+  <script type="module" src="/academic-tracker/js/actions.js"></script>
 </body>
 </html>

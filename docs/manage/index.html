@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/academic-tracker/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="/academic-tracker/">My Academic Dashboard</a>
+    <nav>
+      <a href="/academic-tracker/">Home</a>
+      <a href="/academic-tracker/deadlines/">Deadlines</a>
+      <a href="/academic-tracker/reminders/">Reminders</a>
+      <a href="/academic-tracker/notes/">Notes</a>
+      <a href="/academic-tracker/analytics/">Analytics</a>
+      <a href="/academic-tracker/manage/">Manage</a>
+      <a href="/academic-tracker/deadlines.ics">Subscribe</a>
+      <a href="/academic-tracker/settings/">Settings</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Manage</h1>
+<p class="subtitle">Add content straight from the browser — each form commits directly to this repo's data files and triggers a rebuild. Needs a GitHub token first: set one up on <a href="/academic-tracker/settings/">Settings</a>.</p>
+<p class="hint">Prefer email or the GitHub mobile app instead? The <a href="https://github.com/sudo-nickPinto/academic-tracker/issues/new/choose">Issue Forms</a> still work exactly as before — this page is an additional, faster path, not a replacement.</p>
+
+<section>
+  <h2>Add Deadline</h2>
+  <form id="form-deadline" class="manage-form">
+    <label>Class
+      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
+    </label>
+    <label>Title<input type="text" name="title" placeholder="Homework 3" required></label>
+    <label>Type
+      <select name="type" required>
+        <option value="assignment">assignment</option>
+        <option value="exam">exam</option>
+        <option value="reading">reading</option>
+        <option value="project">project</option>
+        <option value="other">other</option>
+      </select>
+    </label>
+    <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" placeholder="2026-09-29T14:35" required></label>
+    <label>Link (optional)<input type="url" name="link"></label>
+    <label>Notes (optional)<textarea name="notes" placeholder="Flag anything inferred or guessed here."></textarea></label>
+    <button type="submit">Add Deadline</button>
+    <p class="form-status"></p>
+  </form>
+</section>
+
+<section>
+  <h2>Add Note</h2>
+  <form id="form-note" class="manage-form">
+    <label>Class
+      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
+    </label>
+    <label>Title<input type="text" name="title" required></label>
+    <label>Date (optional, defaults to today)<input type="date" name="date"></label>
+    <label>Body (Markdown supported)<textarea name="body" required></textarea></label>
+    <button type="submit">Add Note</button>
+    <p class="form-status"></p>
+  </form>
+</section>
+
+<section>
+  <h2>Add Grade</h2>
+  <form id="form-grade" class="manage-form">
+    <label>Class
+      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
+    </label>
+    <label>Item<input type="text" name="item" placeholder="Test 1" required></label>
+    <label>Category<input type="text" name="category" placeholder="Matches a grade_categories name, if the class has one"></label>
+    <label>Score<input type="number" step="any" name="score" required></label>
+    <label>Max<input type="number" step="any" name="max" required></label>
+    <label>Date (optional)<input type="date" name="date"></label>
+    <button type="submit">Add Grade</button>
+    <p class="form-status"></p>
+  </form>
+</section>
+
+<section>
+  <h2>Add Announcement</h2>
+  <form id="form-announcement" class="manage-form">
+    <label>Class
+      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
+    </label>
+    <label>Title<input type="text" name="title" required></label>
+    <label>Date (optional, defaults to today)<input type="date" name="date"></label>
+    <label>Body<textarea name="body" required></textarea></label>
+    <button type="submit">Add Announcement</button>
+    <p class="form-status"></p>
+  </form>
+</section>
+
+<section>
+  <h2>Add Material</h2>
+  <form id="form-material" class="manage-form">
+    <label>Class
+      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
+    </label>
+    <label>Title<input type="text" name="title" required></label>
+    <label>Type
+      <select name="type" required>
+        <option value="syllabus">syllabus</option>
+        <option value="slides">slides</option>
+        <option value="reading">reading</option>
+        <option value="recording">recording</option>
+        <option value="link">link</option>
+        <option value="other">other</option>
+      </select>
+    </label>
+    <label>Link (optional)<input type="url" name="link"></label>
+    <button type="submit">Add Material</button>
+    <p class="form-status"></p>
+  </form>
+</section>
+
+<section>
+  <h2>Add Reminder</h2>
+  <form id="form-reminder" class="manage-form">
+    <label>Title<input type="text" name="title" required></label>
+    <label>Date (optional — omit for a standing reminder)<input type="date" name="date"></label>
+    <label>Note (optional)<input type="text" name="note"></label>
+    <button type="submit">Add Reminder</button>
+    <p class="form-status"></p>
+  </form>
+</section>
+
+<section>
+  <h2>Add Class</h2>
+  <form id="form-class" class="manage-form">
+    <label>Code<input type="text" name="code" placeholder="CS 420" required></label>
+    <label>ID (slug — optional, derived from the code if left blank)<input type="text" name="id" placeholder="cs420"></label>
+    <label>Name<input type="text" name="name" placeholder="Full course title" required></label>
+    <label>Term<input type="text" name="term" value="Fall 2026"></label>
+    <label>Instructor<input type="text" name="instructor"></label>
+    <label>Meeting times<input type="text" name="meeting_times" placeholder="Tue/Thu 2:35–3:50pm, Room 213"></label>
+    <label>Color<input type="color" name="color" value="#2b6cb0"></label>
+    <label>Course site link (optional)<input type="url" name="materials_link"></label>
+    <button type="submit">Add Class</button>
+    <p class="form-status"></p>
+  </form>
+  <p class="hint">A newly added class won't appear in this page's own dropdowns until the site rebuilds — reload this page after a minute.</p>
+</section>
+
+<script>window.CLASSES = [{"id":"cs391","name":"Selected Topics: Security","code":"CS 391","term":"Fall 2026","instructor":"Dr. Clifton Presser","meeting_times":"Tue/Thu 2:35–3:50pm, Glatfelter 213","color":"#2b6cb0","materials_link":"","status":"active","grade_categories":[]},{"id":"eng216","name":"The Thief with a Heart of Gold: The Fact & Fiction of Robin Hood and the Myth of the Outlaw Hero","code":"ENG 216","term":"Fall 2026","instructor":"C. Fee","meeting_times":"Mon/Wed/Fri 11:00–11:50am, Breidenbaugh 312","color":"#9c4221","materials_link":"","status":"active","grade_categories":[]},{"id":"cs360","name":"CS 360","code":"CS 360","term":"Fall 2026","instructor":"TBD","meeting_times":"TBD","color":"#2f855a","materials_link":"","status":"active","grade_categories":[]},{"id":"cs440","name":"CS 440","code":"CS 440","term":"Fall 2026","instructor":"TBD","meeting_times":"TBD","color":"#6b46c1","materials_link":"","status":"active","grade_categories":[]}];</script>
+<script type="module" src="/academic-tracker/js/manage.js"></script>
+
+  </main>
+  <footer class="site-footer">
+    <p>Fall 2026 &middot; Last refreshed Sun, Aug 23, 2026</p>
+  </footer>
+  <script>
+    window.SITE_CONFIG = {
+      repo: "sudo-nickPinto/academic-tracker",
+      rebuildWorkflow: "nightly-rebuild.yml",
+      pathPrefix: "/academic-tracker/"
+    };
+  </script>
+  <script type="module" src="/academic-tracker/js/actions.js"></script>
+</body>
+</html>

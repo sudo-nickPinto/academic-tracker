@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/academic-tracker/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="/academic-tracker/">My Academic Dashboard</a>
+    <nav>
+      <a href="/academic-tracker/">Home</a>
+      <a href="/academic-tracker/deadlines/">Deadlines</a>
+      <a href="/academic-tracker/reminders/">Reminders</a>
+      <a href="/academic-tracker/notes/">Notes</a>
+      <a href="/academic-tracker/analytics/">Analytics</a>
+      <a href="/academic-tracker/manage/">Manage</a>
+      <a href="/academic-tracker/deadlines.ics">Subscribe</a>
+      <a href="/academic-tracker/settings/">Settings</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Settings</h1>
+<p class="subtitle">Connect a GitHub token so the <a href="/academic-tracker/manage/">Manage</a> page and the "Mark done" buttons can commit directly to this repo from your browser.</p>
+
+<section>
+  <h2>GitHub Token</h2>
+  <p>Create a <strong>fine-grained personal access token</strong> at
+    <a href="https://github.com/settings/personal-access-tokens/new">github.com/settings/personal-access-tokens/new</a>,
+    scoped to just this one repository (<code>sudo-nickPinto/academic-tracker</code>), with these repository permissions:</p>
+  <ul>
+    <li><strong>Contents:</strong> Read and write</li>
+    <li><strong>Actions:</strong> Read and write <span class="hint">— lets it trigger a rebuild right after a commit</span></li>
+    <li><strong>Metadata:</strong> Read-only <span class="hint">— required by GitHub for every fine-grained token</span></li>
+  </ul>
+  <p class="hint">The token is stored only in this browser's local storage. It's never written to any file in the repo, and never leaves this browser except in requests sent directly to GitHub's API. Clearing it here (or clearing this site's browser data) removes it completely. It won't sync to your other devices — set it up again on each one.</p>
+
+  <label>Token<input type="password" id="token-input" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
+  <div class="settings-actions">
+    <button type="button" id="token-save">Save</button>
+    <button type="button" id="token-test">Test connection</button>
+    <button type="button" id="token-clear" class="button-danger">Clear</button>
+  </div>
+  <p class="form-status" id="token-status"></p>
+</section>
+
+<script type="module" src="/academic-tracker/js/settings.js"></script>
+
+  </main>
+  <footer class="site-footer">
+    <p>Fall 2026 &middot; Last refreshed Sun, Aug 23, 2026</p>
+  </footer>
+  <script>
+    window.SITE_CONFIG = {
+      repo: "sudo-nickPinto/academic-tracker",
+      rebuildWorkflow: "nightly-rebuild.yml",
+      pathPrefix: "/academic-tracker/"
+    };
+  </script>
+  <script type="module" src="/academic-tracker/js/actions.js"></script>
+</body>
+</html>

@@ -15,9 +15,12 @@
     <nav>
       <a href="{{ '/' | url }}">Home</a>
       <a href="{{ '/deadlines/' | url }}">Deadlines</a>
+      <a href="{{ '/reminders/' | url }}">Reminders</a>
       <a href="{{ '/notes/' | url }}">Notes</a>
       <a href="{{ '/analytics/' | url }}">Analytics</a>
+      <a href="{{ '/manage/' | url }}">Manage</a>
       <a href="{{ '/deadlines.ics' | url }}">Subscribe</a>
+      <a href="{{ '/settings/' | url }}">Settings</a>
     </nav>
   </header>
   <main>
@@ -26,5 +29,13 @@
   <footer class="site-footer">
     <p>{{ site.current_term }} &middot; Last refreshed {{ site.last_refreshed | formatDate }}</p>
   </footer>
+  <script>
+    window.SITE_CONFIG = {
+      repo: {{ site.repo | dump | safe }},
+      rebuildWorkflow: {{ site.rebuild_workflow | dump | safe }},
+      pathPrefix: {{ ('/' | url) | dump | safe }}
+    };
+  </script>
+  <script type="module" src="{{ '/js/actions.js' | url }}"></script>
 </body>
 </html>

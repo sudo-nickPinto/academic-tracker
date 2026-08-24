@@ -11,6 +11,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/js");
 
   eleventyConfig.addFilter("formatDate", (dateStr) => {
     const d = parseDate(dateStr);
@@ -73,6 +74,14 @@ module.exports = function (eleventyConfig) {
     (items || []).filter((i) => i.status === "done")
   );
 
+  eleventyConfig.addFilter("pendingReminders", (items) =>
+    (items || []).filter((r) => !r.done)
+  );
+
+  eleventyConfig.addFilter("doneReminders", (items) =>
+    (items || []).filter((r) => r.done)
+  );
+
   eleventyConfig.addFilter("todaysReminders", (items) => {
     const isToday = (dateStr) => {
       const d = parseDate(dateStr);
@@ -117,7 +126,7 @@ module.exports = function (eleventyConfig) {
   // Groups a class's grades by the category weights defined on the class
   // (cls.grade_categories). Entries whose `category` doesn't match a known
   // category land in an "Other" bucket that's shown but not weighted.
-  eleventyConfig.addFilter("gradeBreakdown", (grades, cls) => {
+  function gradeBreakdownOf(grades, cls) {
     const list = grades || [];
     const categories = (cls && cls.grade_categories) || [];
 
@@ -137,9 +146,9 @@ module.exports = function (eleventyConfig) {
     }
 
     return buckets;
-  });
+  }
 
-  eleventyConfig.addFilter("weightedOverall", (breakdown) => {
+  function weightedOverallOf(breakdown) {
     const list = breakdown || [];
     const weighted = list.filter((b) => typeof b.weight === "number" && b.average !== null);
 
@@ -154,6 +163,22 @@ module.exports = function (eleventyConfig) {
     }
 
     return simpleAverage(list.flatMap((b) => b.entries));
+  }
+
+  eleventyConfig.addFilter("gradeBreakdown", gradeBreakdownOf);
+  eleventyConfig.addFilter("weightedOverall", weightedOverallOf);
+
+  // Mean of each class's weighted-overall (classes with no grades yet are
+  // excluded rather than dragging the average toward zero).
+  eleventyConfig.addFilter("overallAverage", (classesList, grades) => {
+    const vals = (classesList || [])
+      .map((c) => {
+        const classGrades = (grades || []).filter((g) => g.class_id === c.id);
+        return weightedOverallOf(gradeBreakdownOf(classGrades, c));
+      })
+      .filter((v) => v !== null);
+    if (vals.length === 0) return null;
+    return Math.round((vals.reduce((a, b) => a + b, 0) / vals.length) * 10) / 10;
   });
 
   // Past deadlines only (real due dates, not "TBD", not in the future).
@@ -239,6 +264,37 @@ module.exports = function (eleventyConfig) {
         return { cls, count: classNotes.length, lastDate };
       })
       .sort((a, b) => b.count - a.count);
+  });
+
+  // Groups not-done deadlines (real due dates) and dated, not-done reminders
+  // that fall within the next `days` days (default 7) into per-day buckets,
+  // for a compact "this week" agenda view. Today counts as day 0.
+  eleventyConfig.addFilter("agendaByDay", (deadlines, reminders, days) => {
+    const horizon = typeof days === "number" ? days : 7;
+    const byDate = new Map();
+    const dayKey = (d) => d.toISOString().slice(0, 10);
+
+    function bucketFor(d) {
+      const key = dayKey(d);
+      if (!byDate.has(key)) byDate.set(key, { date: d, deadlines: [], reminders: [] });
+      return byDate.get(key);
+    }
+
+    (deadlines || []).forEach((dl) => {
+      if (dl.status === "done" || !dl.due_date || dl.due_date === "TBD") return;
+      const n = daysUntilOf(dl.due_date);
+      if (n < 0 || n > horizon) return;
+      bucketFor(parseDate(dl.due_date)).deadlines.push(dl);
+    });
+
+    (reminders || []).forEach((r) => {
+      if (r.done || !r.date) return;
+      const n = daysUntilOf(r.date);
+      if (n < 0 || n > horizon) return;
+      bucketFor(parseDate(r.date)).reminders.push(r);
+    });
+
+    return [...byDate.values()].sort((a, b) => a.date - b.date);
   });
 
   return {
