@@ -22,6 +22,30 @@ permalink: "/analytics/"
 </section>
 
 <section>
+  <h2>Deadline Activity</h2>
+  {% set heatmap = deadlines | deadlineHeatmap %}
+  {% if heatmap.weeks.length == 0 %}
+    <p class="empty">Nothing to chart yet.</p>
+  {% else %}
+    <div class="heatmap" role="img" aria-label="Deadlines completed by due date">
+      <div class="heatmap-months">
+      {% for m in heatmap.monthLabels %}<span style="flex: {{ m.weekSpan }}">{{ m.label }}</span>{% endfor %}
+      </div>
+      <div class="heatmap-grid">
+      {% for week in heatmap.weeks %}
+        <div class="heatmap-week">
+        {% for day in week.days %}
+          <div class="heatmap-cell{{ ' heatmap-cell-empty' if not day.inRange }}" data-level="{{ day.level }}" title="{{ day.count }} of {{ day.total }} due {{ day.isoDate }}"></div>
+        {% endfor %}
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+    <p class="hint">Colored by due date, not completion date — marking an old deadline done later will brighten its original cell after the next rebuild.</p>
+  {% endif %}
+</section>
+
+<section>
   <h2>Upcoming Workload</h2>
   {% set weeks = deadlines | weeklyWorkload %}
   {% if weeks.length == 0 %}

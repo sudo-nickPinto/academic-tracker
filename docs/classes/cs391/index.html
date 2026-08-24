@@ -12,15 +12,15 @@
 <body>
   <header class="site-header">
     <a class="site-title" href="/academic-tracker/">My Academic Dashboard</a>
-    <nav>
-      <a href="/academic-tracker/">Home</a>
-      <a href="/academic-tracker/deadlines/">Deadlines</a>
-      <a href="/academic-tracker/reminders/">Reminders</a>
-      <a href="/academic-tracker/notes/">Notes</a>
-      <a href="/academic-tracker/analytics/">Analytics</a>
-      <a href="/academic-tracker/manage/">Manage</a>
+    <nav class="site-nav">
+      <a href="/academic-tracker/" >Home</a>
+      <a href="/academic-tracker/deadlines/" >Deadlines</a>
+      <a href="/academic-tracker/reminders/" >Reminders</a>
+      <a href="/academic-tracker/notes/" >Notes</a>
+      <a href="/academic-tracker/analytics/" >Analytics</a>
+      <a href="/academic-tracker/manage/" >Manage</a>
       <a href="/academic-tracker/deadlines.ics">Subscribe</a>
-      <a href="/academic-tracker/settings/">Settings</a>
+      <a href="/academic-tracker/settings/" >Settings</a>
     </nav>
   </header>
   <main>
@@ -35,30 +35,60 @@
 <section>
   <h2>Materials</h2>
   
-  <ul>
+  <ul data-reorder-list data-file="materials.yaml">
   
-    <li>
+    <li draggable="true" data-id="cs391-syllabus">
+      <span class="drag-handle" aria-hidden="true">⠿</span>
       Syllabus
       <span class="tag">syllabus</span>
     </li>
   
-    <li>
+    <li draggable="true" data-id="cs391-text-security">
+      <span class="drag-handle" aria-hidden="true">⠿</span>
       <a href="https://web.njit.edu/~rt494/security/">Computer Systems: Planning for Success (Ryan Tolboom)</a>
       <span class="tag">reading</span>
     </li>
   
-    <li>
+    <li draggable="true" data-id="cs391-text-crypto">
+      <span class="drag-handle" aria-hidden="true">⠿</span>
       <a href="https://joyofcryptography.com/">The Joy of Cryptography (Mike Rosulek)</a>
       <span class="tag">reading</span>
     </li>
   
-    <li>
+    <li draggable="true" data-id="cs391-text-networks">
+      <span class="drag-handle" aria-hidden="true">⠿</span>
       <a href="https://intronetworks.cs.luc.edu/current2/html/">Introduction to Computer Networks (Peter L. Dordal)</a>
       <span class="tag">reading</span>
     </li>
   
   </ul>
   
+    <p class="hint" data-reorder-status="materials.yaml">Drag to reorder.</p>
+  
+
+  <details class="inline-manage">
+    <summary>Add Material</summary>
+    <form id="form-material" class="manage-form">
+      <label>Title<input type="text" name="title" required></label>
+      <label>Type
+        <select name="type" required>
+          <option value="syllabus">syllabus</option>
+          <option value="slides">slides</option>
+          <option value="reading">reading</option>
+          <option value="recording">recording</option>
+          <option value="link">link</option>
+          <option value="other">other</option>
+        </select>
+      </label>
+      <label>Link (optional, ignored if you attach a file below)<input type="url" name="link"></label>
+      <div class="drop-zone" data-drop-zone>
+        <label>Attach a file (optional, max 5 MB)<input type="file" name="file"></label>
+        <p class="drop-zone-hint">Drag a file here, or click to browse.</p>
+      </div>
+      <button type="submit">Add Material</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
 </section>
 
 <section>
@@ -128,6 +158,27 @@
   
   </div>
   
+
+  <details class="inline-manage">
+    <summary>Add Deadline</summary>
+    <form id="form-deadline" class="manage-form">
+      <label>Title<input type="text" name="title" placeholder="Homework 3" required></label>
+      <label>Type
+        <select name="type" required>
+          <option value="assignment">assignment</option>
+          <option value="exam">exam</option>
+          <option value="reading">reading</option>
+          <option value="project">project</option>
+          <option value="other">other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" placeholder="2026-09-29T14:35" required></label>
+      <label>Link (optional)<input type="url" name="link"></label>
+      <label>Notes (optional)<textarea name="notes" placeholder="Flag anything inferred or guessed here."></textarea></label>
+      <button type="submit">Add Deadline</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
 </section>
 
 <section>
@@ -140,6 +191,19 @@
     
   
   <p class="empty">No grades recorded yet.</p>
+
+  <details class="inline-manage">
+    <summary>Add Grade</summary>
+    <form id="form-grade" class="manage-form">
+      <label>Item<input type="text" name="item" placeholder="Test 1" required></label>
+      <label>Category<input type="text" name="category" placeholder="Matches a grade_categories name, if the class has one"></label>
+      <label>Score<input type="number" step="any" name="score" required></label>
+      <label>Max<input type="number" step="any" name="max" required></label>
+      <label>Date (optional)<input type="date" name="date"></label>
+      <button type="submit">Add Grade</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
 </section>
 
 <section>
@@ -147,6 +211,21 @@
   
   
   <p class="empty">No notes yet.</p>
+
+  <details class="inline-manage">
+    <summary>Add Note</summary>
+    <form id="form-note" class="manage-form">
+      <label>Title<input type="text" name="title" required></label>
+      <label>Date (optional, defaults to today)<input type="date" name="date"></label>
+      <label>Body (Markdown supported)<textarea name="body" required></textarea></label>
+      <div class="drop-zone" data-drop-zone>
+        <label>Attach a file (optional, max 5 MB)<input type="file" name="file"></label>
+        <p class="drop-zone-hint">Drag a file here, or click to browse.</p>
+      </div>
+      <button type="submit">Add Note</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
 </section>
 
 <section>
@@ -154,7 +233,24 @@
   
   
   <p class="empty">No announcements yet.</p>
+
+  <details class="inline-manage">
+    <summary>Add Announcement</summary>
+    <form id="form-announcement" class="manage-form">
+      <label>Title<input type="text" name="title" required></label>
+      <label>Date (optional, defaults to today)<input type="date" name="date"></label>
+      <label>Body<textarea name="body" required></textarea></label>
+      <button type="submit">Add Announcement</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
 </section>
+
+<p class="hint">Need a GitHub token first? Set one up on <a href="/academic-tracker/settings/">Settings</a>.</p>
+
+<script>window.CLASS_ID = "cs391";</script>
+<script type="module" src="/academic-tracker/js/class-manage.js"></script>
+<script type="module" src="/academic-tracker/js/reorder.js"></script>
 
   </main>
   <footer class="site-footer">

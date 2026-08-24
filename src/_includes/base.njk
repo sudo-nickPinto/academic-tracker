@@ -12,15 +12,15 @@
 <body>
   <header class="site-header">
     <a class="site-title" href="{{ '/' | url }}">{{ site.title }}</a>
-    <nav>
-      <a href="{{ '/' | url }}">Home</a>
-      <a href="{{ '/deadlines/' | url }}">Deadlines</a>
-      <a href="{{ '/reminders/' | url }}">Reminders</a>
-      <a href="{{ '/notes/' | url }}">Notes</a>
-      <a href="{{ '/analytics/' | url }}">Analytics</a>
-      <a href="{{ '/manage/' | url }}">Manage</a>
+    <nav class="site-nav">
+      <a href="{{ '/' | url }}" {% if page.url == ('/' | url) %}aria-current="page"{% endif %}>Home</a>
+      <a href="{{ '/deadlines/' | url }}" {% if page.url == ('/deadlines/' | url) %}aria-current="page"{% endif %}>Deadlines</a>
+      <a href="{{ '/reminders/' | url }}" {% if page.url == ('/reminders/' | url) %}aria-current="page"{% endif %}>Reminders</a>
+      <a href="{{ '/notes/' | url }}" {% if page.url == ('/notes/' | url) %}aria-current="page"{% endif %}>Notes</a>
+      <a href="{{ '/analytics/' | url }}" {% if page.url == ('/analytics/' | url) %}aria-current="page"{% endif %}>Analytics</a>
+      <a href="{{ '/manage/' | url }}" {% if page.url == ('/manage/' | url) %}aria-current="page"{% endif %}>Manage</a>
       <a href="{{ '/deadlines.ics' | url }}">Subscribe</a>
-      <a href="{{ '/settings/' | url }}">Settings</a>
+      <a href="{{ '/settings/' | url }}" {% if page.url == ('/settings/' | url) %}aria-current="page"{% endif %}>Settings</a>
     </nav>
   </header>
   <main>

@@ -12,6 +12,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy("src/uploads");
 
   eleventyConfig.addFilter("formatDate", (dateStr) => {
     const d = parseDate(dateStr);
@@ -295,6 +296,78 @@ module.exports = function (eleventyConfig) {
     });
 
     return [...byDate.values()].sort((a, b) => a.date - b.date);
+  });
+
+  function startOfDay(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  // Buckets deadlines with real due dates into a GitHub-contribution-style
+  // week/day grid. Colored by due date (not completion date, since the
+  // schema has no completion timestamp): `count` is done-that-day,
+  // `total` is all deadlines due that day, `level` 0-4 scales `count`
+  // against the busiest single day in range.
+  eleventyConfig.addFilter("deadlineHeatmap", (deadlines) => {
+    const real = (deadlines || []).filter((d) => d.due_date && d.due_date !== "TBD" && parseDate(d.due_date));
+    if (real.length === 0) return { weeks: [], monthLabels: [] };
+
+    const dates = real.map((d) => startOfDay(parseDate(d.due_date)));
+    const minDate = new Date(Math.min(...dates));
+    const maxDate = new Date(Math.max(...dates));
+
+    const rangeStart = new Date(minDate);
+    rangeStart.setDate(rangeStart.getDate() - rangeStart.getDay());
+    const rangeEnd = new Date(maxDate);
+    rangeEnd.setDate(rangeEnd.getDate() + (6 - rangeEnd.getDay()));
+
+    const dayKey = (d) => d.toISOString().slice(0, 10);
+
+    const byDay = new Map();
+    real.forEach((d) => {
+      const key = dayKey(startOfDay(parseDate(d.due_date)));
+      if (!byDay.has(key)) byDay.set(key, { count: 0, total: 0 });
+      const bucket = byDay.get(key);
+      bucket.total += 1;
+      if (d.status === "done") bucket.count += 1;
+    });
+
+    let maxCount = 0;
+    byDay.forEach((b) => {
+      if (b.count > maxCount) maxCount = b.count;
+    });
+
+    const weeks = [];
+    const monthLabels = [];
+    let week = [];
+    let currentMonthLabel = null;
+    const cursor = new Date(rangeStart);
+
+    while (cursor <= rangeEnd) {
+      if (cursor.getDay() === 0) {
+        if (week.length > 0) {
+          weeks.push({ days: week });
+          week = [];
+        }
+        const label = cursor.toLocaleDateString("en-US", { month: "short" });
+        if (label !== currentMonthLabel) {
+          currentMonthLabel = label;
+          monthLabels.push({ label, weekSpan: 1 });
+        } else if (monthLabels.length > 0) {
+          monthLabels[monthLabels.length - 1].weekSpan += 1;
+        }
+      }
+
+      const key = dayKey(cursor);
+      const bucket = byDay.get(key) || { count: 0, total: 0 };
+      const level = bucket.count === 0 ? 0 : Math.min(4, Math.ceil((bucket.count / maxCount) * 4));
+      const inRange = cursor >= minDate && cursor <= maxDate;
+
+      week.push({ date: new Date(cursor), isoDate: key, count: bucket.count, total: bucket.total, level, inRange });
+      cursor.setDate(cursor.getDate() + 1);
+    }
+    if (week.length > 0) weeks.push({ days: week });
+
+    return { weeks, monthLabels };
   });
 
   return {

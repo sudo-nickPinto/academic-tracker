@@ -5,98 +5,7 @@ permalink: "/manage/"
 ---
 <h1>Manage</h1>
 <p class="subtitle">Add content straight from the browser — each form commits directly to this repo's data files and triggers a rebuild. Needs a GitHub token first: set one up on <a href="{{ '/settings/' | url }}">Settings</a>.</p>
-<p class="hint">Prefer email or the GitHub mobile app instead? The <a href="https://github.com/{{ site.repo }}/issues/new/choose">Issue Forms</a> still work exactly as before — this page is an additional, faster path, not a replacement.</p>
-
-<section>
-  <h2>Add Deadline</h2>
-  <form id="form-deadline" class="manage-form">
-    <label>Class
-      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
-    </label>
-    <label>Title<input type="text" name="title" placeholder="Homework 3" required></label>
-    <label>Type
-      <select name="type" required>
-        <option value="assignment">assignment</option>
-        <option value="exam">exam</option>
-        <option value="reading">reading</option>
-        <option value="project">project</option>
-        <option value="other">other</option>
-      </select>
-    </label>
-    <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" placeholder="2026-09-29T14:35" required></label>
-    <label>Link (optional)<input type="url" name="link"></label>
-    <label>Notes (optional)<textarea name="notes" placeholder="Flag anything inferred or guessed here."></textarea></label>
-    <button type="submit">Add Deadline</button>
-    <p class="form-status"></p>
-  </form>
-</section>
-
-<section>
-  <h2>Add Note</h2>
-  <form id="form-note" class="manage-form">
-    <label>Class
-      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
-    </label>
-    <label>Title<input type="text" name="title" required></label>
-    <label>Date (optional, defaults to today)<input type="date" name="date"></label>
-    <label>Body (Markdown supported)<textarea name="body" required></textarea></label>
-    <button type="submit">Add Note</button>
-    <p class="form-status"></p>
-  </form>
-</section>
-
-<section>
-  <h2>Add Grade</h2>
-  <form id="form-grade" class="manage-form">
-    <label>Class
-      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
-    </label>
-    <label>Item<input type="text" name="item" placeholder="Test 1" required></label>
-    <label>Category<input type="text" name="category" placeholder="Matches a grade_categories name, if the class has one"></label>
-    <label>Score<input type="number" step="any" name="score" required></label>
-    <label>Max<input type="number" step="any" name="max" required></label>
-    <label>Date (optional)<input type="date" name="date"></label>
-    <button type="submit">Add Grade</button>
-    <p class="form-status"></p>
-  </form>
-</section>
-
-<section>
-  <h2>Add Announcement</h2>
-  <form id="form-announcement" class="manage-form">
-    <label>Class
-      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
-    </label>
-    <label>Title<input type="text" name="title" required></label>
-    <label>Date (optional, defaults to today)<input type="date" name="date"></label>
-    <label>Body<textarea name="body" required></textarea></label>
-    <button type="submit">Add Announcement</button>
-    <p class="form-status"></p>
-  </form>
-</section>
-
-<section>
-  <h2>Add Material</h2>
-  <form id="form-material" class="manage-form">
-    <label>Class
-      <select name="class_id" data-class-select required><option value="">Select a class…</option></select>
-    </label>
-    <label>Title<input type="text" name="title" required></label>
-    <label>Type
-      <select name="type" required>
-        <option value="syllabus">syllabus</option>
-        <option value="slides">slides</option>
-        <option value="reading">reading</option>
-        <option value="recording">recording</option>
-        <option value="link">link</option>
-        <option value="other">other</option>
-      </select>
-    </label>
-    <label>Link (optional)<input type="url" name="link"></label>
-    <button type="submit">Add Material</button>
-    <p class="form-status"></p>
-  </form>
-</section>
+<p class="hint">Deadlines, notes, grades, materials, and announcements are scoped to a class now — add them from that class's own page instead. This page is only for things that aren't: a new reminder, or a whole new class. Prefer email or the GitHub mobile app instead? The <a href="https://github.com/{{ site.repo }}/issues/new/choose">Issue Forms</a> still work exactly as before — these forms are an additional, faster path, not a replacement.</p>
 
 <section>
   <h2>Add Reminder</h2>
@@ -123,8 +32,7 @@ permalink: "/manage/"
     <button type="submit">Add Class</button>
     <p class="form-status"></p>
   </form>
-  <p class="hint">A newly added class won't appear in this page's own dropdowns until the site rebuilds — reload this page after a minute.</p>
+  <p class="hint">Once this rebuilds, go to the new class's own page to add its deadlines, notes, grades, materials, and announcements.</p>
 </section>
 
-<script>window.CLASSES = {{ classes | dump | safe }};</script>
 <script type="module" src="{{ '/js/manage.js' | url }}"></script>

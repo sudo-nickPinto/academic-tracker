@@ -87,3 +87,55 @@ export function makeId(prefix, title) {
   const short = Date.now().toString(36).slice(-5);
   return [prefix, slug, short].filter(Boolean).join("-");
 }
+
+/**
+ * Makes an uploaded file's original name safe to use as a repo path segment,
+ * and prefixes a short timestamp so two people (or two drops) dropping
+ * "syllabus.pdf" on the same day don't collide.
+ */
+export function sanitizeFilename(name) {
+  const clean = String(name || "file")
+    .toLowerCase()
+    .replace(/[^a-z0-9.]+/g, "-")
+    .replace(/(^-+|-+$)/g, "")
+    .slice(0, 60);
+  const short = Date.now().toString(36).slice(-6);
+  return `${short}-${clean || "file"}`;
+}
+
+/**
+ * Reassembles a data file's entries in `orderedIds` order, preserving the
+ * header (schema comments) above the first entry untouched. Any id present
+ * in the file but missing from `orderedIds` (e.g. a concurrent edit added an
+ * entry this reorder didn't know about) is appended at the end rather than
+ * dropped.
+ */
+export function reorderEntries(fileText, orderedIds) {
+  const firstIdx = fileText.search(/^- id: /m);
+  if (firstIdx === -1) return fileText;
+  const header = fileText.slice(0, firstIdx);
+
+  const blocks = new Map();
+  let cursor = firstIdx;
+  while (cursor < fileText.length) {
+    const lineEnd = fileText.indexOf("\n", cursor);
+    const idLine = fileText.slice(cursor, lineEnd === -1 ? fileText.length : lineEnd);
+    const idMatch = /^- id: "?([^"\n]+)"?$/.exec(idLine);
+    const nextEntryAt = fileText.indexOf("\n- id: ", cursor + 1);
+    const blockEnd = nextEntryAt === -1 ? fileText.length : nextEntryAt + 1;
+    const block = fileText.slice(cursor, blockEnd);
+    if (idMatch) blocks.set(idMatch[1], block);
+    cursor = blockEnd;
+  }
+
+  const ordered = [];
+  orderedIds.forEach((id) => {
+    if (blocks.has(id)) {
+      ordered.push(blocks.get(id));
+      blocks.delete(id);
+    }
+  });
+  blocks.forEach((block) => ordered.push(block));
+
+  return header + ordered.join("");
+}

@@ -83,6 +83,38 @@ async function putFile(repo, path, text, sha, message) {
   });
 }
 
+// Binary-safe base64, unlike b64EncodeUtf8 above (which assumes text).
+// Chunked to avoid blowing the call stack on String.fromCharCode(...bytes)
+// for larger files.
+function arrayBufferToBase64(buffer) {
+  const bytes = new Uint8Array(buffer);
+  const chunkSize = 0x8000;
+  let binary = "";
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+  }
+  return btoa(binary);
+}
+
+/**
+ * Commits a new binary file (e.g. a dropped upload) at `path`. No prior sha
+ * (a new file has none) and no 409-retry — a conflict here means the path
+ * was already taken, which the caller's naming convention is meant to avoid,
+ * so it's surfaced as a hard error rather than silently retried.
+ */
+export async function uploadFile(repo, path, arrayBuffer, message) {
+  const res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+    method: "PUT",
+    headers: { ...apiHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify({ message, content: arrayBufferToBase64(arrayBuffer), branch: "main" }),
+  });
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new GHError(friendlyError(res.status, body.message || `Upload failed (${res.status}).`), res.status);
+  }
+  return res.json();
+}
+
 /**
  * Reads a data file, runs `mutate(text) -> newText`, and commits the result.
  * Retries once on a sha conflict (409) by re-reading and re-applying `mutate`
