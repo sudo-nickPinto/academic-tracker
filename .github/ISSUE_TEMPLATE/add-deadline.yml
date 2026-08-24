@@ -1,0 +1,55 @@
+name: Add Deadline
+description: Add a deadline for a class
+title: "[Deadline] "
+labels: ["add-deadline"]
+body:
+  - type: dropdown
+    id: class_id
+    attributes:
+      label: Class
+      options:
+        - cs391
+        - eng216
+        - cs360
+        - cs440
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      placeholder: "Homework 3"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - assignment
+        - exam
+        - reading
+        - project
+        - other
+    validations:
+      required: true
+  - type: input
+    id: due_date
+    attributes:
+      label: "Due date (ISO, e.g. 2026-09-29T14:35, or TBD)"
+      placeholder: "2026-09-29T14:35"
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: "Link (optional)"
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Notes (optional)"
+      description: Use this to flag any date you're inferring/guessing rather than stated explicitly.
+    validations:
+      required: false

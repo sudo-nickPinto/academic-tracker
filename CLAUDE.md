@@ -14,6 +14,7 @@ This repo is a static academic dashboard (Eleventy + YAML data files → GitHub 
 - `color` — hex color used for this class's tags/badges across the site
 - `materials_link` — optional course website URL
 - `status` — `active` | `archived`
+- `grade_categories` — optional list of `{ name, weight }` (`weight` = percent of final grade, e.g. `20`). Entries in `grades.yaml` reference a category by `name`. Leave `[]` until the real breakdown is known.
 
 ### `deadlines.yaml` (list)
 - `id`, `class_id` (FK into classes), `title`
@@ -40,7 +41,7 @@ This repo is a static academic dashboard (Eleventy + YAML data files → GitHub 
 
 ### `grades.yaml` (list)
 - `id`, `class_id`, `item` (e.g. "Test 1"), `score`, `max` (both numeric)
-- `weight` — optional percent of final grade (e.g. `20`). If any entry for a class has a `weight`, that class's displayed average is weighted; otherwise it's a simple mean.
+- `category` — should match a `name` in that class's `grade_categories` (see `classes.yaml`) so it counts toward the weighted average. Anything else (or any class with no `grade_categories` defined) falls back to a simple mean, shown as an "Other" bucket when some categories are defined and others aren't.
 - `date` — optional ISO date
 
 ### `site.yaml` (singleton)
@@ -50,6 +51,8 @@ This repo is a static academic dashboard (Eleventy + YAML data files → GitHub 
 
 - **`/deadlines.ics`** — an auto-generated calendar feed built from `deadlines.yaml` (`src/deadlines.11ty.js`). Entries with `due_date: "TBD"` are skipped since there's nothing to schedule yet. Event times are emitted as floating local time with `TZID=America/New_York` (not converted through `Date`/UTC) so the feed is correct regardless of what timezone the machine running `npm run build` is in — this matters because the nightly Action below builds on a UTC runner. If a class ever meets in a different timezone, that will need to become per-event instead of a single constant.
 - **Nightly rebuild** — `.github/workflows/nightly-rebuild.yml` runs `npm run build` daily and pushes `docs/` if it changed, so date-relative sections (Overdue/This Week, the deadlines feed) stay accurate without a manual `refresh`. It does **not** touch `src/_data/`, so `last_refreshed` in `site.yaml` still reflects the last real data edit. This workflow needs the repo's Settings → Actions → General → Workflow permissions set to "Read and write permissions" for the default `GITHUB_TOKEN` to be able to push.
+- **`/analytics/`** (`src/analytics.njk`) — deadline-completion streaks, upcoming workload by week, per-class grade standing, and notes activity. All computed by pure-JS filters in `eleventy.config.js` (`deadlineStreaks`, `weeklyWorkload`, `notesActivity`, plus `gradeBreakdown`/`weightedOverall` reused from the class pages). Streaks only look at *past* deadlines (`due_date` in the past, not `"TBD"`): `status: done` is a hit, past-due `status: upcoming` is a miss — it's a completion-rate metric, not a true "submitted on time" metric, since the schema doesn't track submission timestamps. Charts are plain CSS bars (`width: X%` computed server-side), no JS or charting library.
+- **Self-serve submissions via GitHub Issue Forms** — five issue templates under `.github/ISSUE_TEMPLATE/` (`add-note.yml`, `add-grade.yml`, `add-deadline.yml`, `add-reminder.yml`, `add-announcement.yml`) let the user add content from the GitHub UI or mobile app without a Claude Code session. Opening, editing, or reopening one of these issues triggers `.github/workflows/process-submission.yml`, which runs `scripts/process-issue.js`: it skips silently if the issue is already closed (so stray edits to old, already-processed issues are a no-op), otherwise parses the issue body's `### <Label>\n\n<value>` blocks, validates required fields (commenting the specific problem and leaving the issue open on failure — editing the issue's fields re-triggers a retry automatically), generates an id as `<slug>-<issue number>`, **appends** the new entry as text to the matching `src/_data/*.yaml` file (via `yaml.dump` of just that one entry, not a full load/dump round-trip — this preserves the hand-written schema-comment headers, which `js-yaml`'s `dump()` would otherwise strip), rebuilds, commits `src/_data/` + `docs/` together, pushes to `main`, then comments a confirmation with a live-page link and closes the issue. **This auto-commits directly to `main` with no review step** — same trust model as the nightly rebuild, appropriate for a single-owner repo. The `class_id` dropdown options in each issue template are static and need a manual one-line edit whenever `classes.yaml`'s class list changes (new term, dropped/added class) — a "refresh" session should check for this drift when classes change. A `refresh` session should be aware this pipeline exists and not duplicate entries it already added.
 
 ## The "refresh" workflow
 

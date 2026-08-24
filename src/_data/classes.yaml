@@ -1,5 +1,7 @@
 # One entry per class. `id` is a slug used in URLs — keep it lowercase, no spaces.
 # Classes with unknown details (no syllabus added yet) use "TBD" placeholders — replace when known.
+# grade_categories: optional list of { name, weight } (weight = percent of final grade, e.g. 20).
+# Grade entries in grades.yaml reference a category by name; leave [] until you know the real breakdown.
 
 - id: cs391
   name: "Selected Topics: Security"
@@ -10,6 +12,7 @@
   color: "#2b6cb0"
   materials_link: ""
   status: active
+  grade_categories: []
 
 - id: eng216
   name: "The Thief with a Heart of Gold: The Fact & Fiction of Robin Hood and the Myth of the Outlaw Hero"
@@ -20,6 +23,7 @@
   color: "#9c4221"
   materials_link: ""
   status: active
+  grade_categories: []
 
 - id: cs360
   name: "CS 360"
@@ -30,6 +34,7 @@
   color: "#2f855a"
   materials_link: ""
   status: active
+  grade_categories: []
 
 - id: cs440
   name: "CS 440"
@@ -40,3 +45,4 @@
   color: "#6b46c1"
   materials_link: ""
   status: active
+  grade_categories: []

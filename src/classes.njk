@@ -44,17 +44,26 @@ eleventyComputed:
 <section>
   <h2>Grades</h2>
   {% set classGrades = grades | byClass(class.id) %}
-  {% set avg = classGrades | gradeAverage %}
-  {% if avg != null %}<p class="grade-average">{{ avg }}%</p>{% endif %}
-  <ul class="grade-list">
-  {% for g in classGrades %}
-    <li>
-      <span class="grade-item">{{ g.item }}</span>
-      {% if g.score != null and g.max != null %}<span class="grade-score">{{ g.score }}/{{ g.max }}</span>{% endif %}
-      {% if g.weight %}<span class="grade-weight">{{ g.weight }}%</span>{% endif %}
-    </li>
+  {% set breakdown = classGrades | gradeBreakdown(class) %}
+  {% set overall = breakdown | weightedOverall %}
+  {% if overall != null %}<p class="grade-average">{{ overall }}%</p>{% endif %}
+  {% for cat in breakdown %}
+    {% if cat.entries.length > 0 %}
+      <div class="grade-category">
+        {% if cat.name %}
+          <p class="grade-category-name">{{ cat.name }}{% if cat.weight %} <span class="grade-weight">{{ cat.weight }}%</span>{% endif %}{% if cat.average != null %} &middot; {{ cat.average }}%{% endif %}</p>
+        {% endif %}
+        <ul class="grade-list">
+        {% for g in cat.entries %}
+          <li>
+            <span class="grade-item">{{ g.item }}</span>
+            {% if g.score != null and g.max != null %}<span class="grade-score">{{ g.score }}/{{ g.max }}</span>{% endif %}
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
   {% endfor %}
-  </ul>
   {% if classGrades.length == 0 %}<p class="empty">No grades recorded yet.</p>{% endif %}
 </section>
 

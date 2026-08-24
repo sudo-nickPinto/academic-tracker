@@ -1,10 +1,11 @@
-# Grade entries per class. `weight` is optional (percent of final grade, e.g. 20 for a 20%-weighted item).
-# If any entry for a class has a weight, the class average is weighted; otherwise entries are averaged equally.
+# Grade entries per class. `category` should match a name in that class's
+# `grade_categories` (see classes.yaml) so it counts toward the weighted average —
+# anything else lands in an "Other" bucket that's shown but not weighted in.
 # - id: <slug>
 #   class_id: <class id>
 #   item: "Test 1"
+#   category: "Exams"
 #   score: 87
 #   max: 100
-#   weight: 20        # optional
 #   date: "YYYY-MM-DD" # optional
 []

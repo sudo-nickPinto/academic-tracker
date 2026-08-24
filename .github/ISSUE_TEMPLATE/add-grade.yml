@@ -1,0 +1,52 @@
+name: Add Grade
+description: Record a graded item for a class
+title: "[Grade] "
+labels: ["add-grade"]
+body:
+  - type: dropdown
+    id: class_id
+    attributes:
+      label: Class
+      options:
+        - cs391
+        - eng216
+        - cs360
+        - cs440
+    validations:
+      required: true
+  - type: input
+    id: item
+    attributes:
+      label: Item
+      placeholder: "Test 1"
+    validations:
+      required: true
+  - type: input
+    id: category
+    attributes:
+      label: Category
+      description: Should match one of the class's grade_categories names, or it'll show up as "Other" and not count toward the weighted average.
+      placeholder: "Exams"
+    validations:
+      required: true
+  - type: input
+    id: score
+    attributes:
+      label: Score
+      placeholder: "87"
+    validations:
+      required: true
+  - type: input
+    id: max
+    attributes:
+      label: Max
+      placeholder: "100"
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: "Date (YYYY-MM-DD, optional)"
+      placeholder: "2026-09-29"
+    validations:
+      required: false

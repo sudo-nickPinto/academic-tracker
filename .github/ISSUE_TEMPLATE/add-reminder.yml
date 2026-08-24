@@ -1,0 +1,26 @@
+name: Add Reminder
+description: Add a personal reminder (not tied to a specific class)
+title: "[Reminder] "
+labels: ["add-reminder"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      placeholder: "Last day to withdraw from Spring 2027 courses"
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: "Date (YYYY-MM-DD, optional)"
+      description: Leave blank for a standing reminder with no specific date.
+      placeholder: "2027-02-01"
+    validations:
+      required: false
+  - type: textarea
+    id: note
+    attributes:
+      label: "Note (optional)"
+    validations:
+      required: false

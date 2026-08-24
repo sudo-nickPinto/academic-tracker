@@ -1,0 +1,78 @@
+---
+layout: base.njk
+title: "Analytics"
+permalink: "/analytics/"
+---
+<h1>Analytics</h1>
+<p class="subtitle">A few numbers about how the term's actually going.</p>
+
+<section>
+  <h2>Deadline Streaks</h2>
+  {% set streaks = deadlines | deadlineStreaks %}
+  {% if streaks.doneCount + streaks.missedCount == 0 %}
+    <p class="empty">No completed history yet — this fills in once a deadline's due date has passed.</p>
+  {% else %}
+    <div class="stat-grid">
+      <div class="stat-box"><span class="stat-value">{{ streaks.current }}</span><span class="stat-label">Current streak</span></div>
+      <div class="stat-box"><span class="stat-value">{{ streaks.longest }}</span><span class="stat-label">Longest streak</span></div>
+      <div class="stat-box"><span class="stat-value">{{ streaks.onTimeRate }}%</span><span class="stat-label">Done rate</span></div>
+    </div>
+    <p class="hint">Streak = consecutive past deadlines marked done, most recent first. {{ streaks.doneCount }} done, {{ streaks.missedCount }} overdue and not marked done, out of {{ streaks.doneCount + streaks.missedCount }} past deadlines.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Upcoming Workload</h2>
+  {% set weeks = deadlines | weeklyWorkload %}
+  {% if weeks.length == 0 %}
+    <p class="empty">Nothing upcoming to chart.</p>
+  {% else %}
+    <div class="bar-chart">
+    {% for w in weeks %}
+      <div class="bar-row">
+        <span class="bar-label">{{ w.start | formatDateShort }}</span>
+        <span class="bar-track"><span class="bar-fill" style="width: {{ w.pct }}%"></span></span>
+        <span class="bar-count">{{ w.count }}</span>
+      </div>
+    {% endfor %}
+    </div>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Grade Standing</h2>
+  {% if grades.length == 0 %}
+    <p class="empty">No grades recorded yet. Add some via the "Add Grade" issue form or a refresh.</p>
+  {% else %}
+    <div class="bar-chart">
+    {% for c in classes %}
+      {% set cBreakdown = grades | byClass(c.id) | gradeBreakdown(c) %}
+      {% set cOverall = cBreakdown | weightedOverall %}
+      {% if cOverall != null %}
+        <div class="bar-row">
+          <span class="bar-label" style="color: {{ c.color }}">{{ c.code }}</span>
+          <span class="bar-track"><span class="bar-fill" style="width: {{ cOverall }}%; background: {{ c.color }}"></span></span>
+          <span class="bar-count">{{ cOverall }}%</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+    <p class="hint">A real trend line needs more than one graded item per category — for now this is current standing per class.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Notes Activity</h2>
+  {% if notes.length == 0 %}
+    <p class="empty">No notes yet.</p>
+  {% else %}
+    {% set activity = notes | notesActivity(classes) %}
+    <ul class="activity-list">
+    {% for a in activity %}
+      {% if a.count > 0 %}
+        <li><span style="color: {{ a.cls.color }}">{{ a.cls.code }}</span> &middot; {{ a.count }} note{{ "s" if a.count != 1 else "" }}{% if a.lastDate %} &middot; last {{ a.lastDate | formatDateShort }}{% endif %}</li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  {% endif %}
+</section>
