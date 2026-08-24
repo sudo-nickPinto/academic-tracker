@@ -1,9 +1,16 @@
 {% set cls = classes | classById(d.class_id) %}
+{% set daysLeft = d.due_date | daysUntil %}
 <div class="deadline-row" style="border-left-color: {{ cls.color or '#888' }}">
   <span class="deadline-date">{{ d.due_date | formatDateShort }}</span>
   <span class="deadline-class" style="color: {{ cls.color or '#888' }}">{{ cls.code or d.class_id }}</span>
   <span class="deadline-title">{{ d.title }}</span>
   <span class="deadline-type">{{ d.type }}</span>
+  {% if d.status != "done" %}
+    {% if daysLeft < 0 %}<span class="badge-urgency badge-overdue">Overdue</span>
+    {% elif daysLeft == 0 %}<span class="badge-urgency badge-today">Today</span>
+    {% elif daysLeft <= 7 %}<span class="badge-urgency badge-soon">{{ daysLeft }}d</span>
+    {% endif %}
+  {% endif %}
   {% if d.status == "done" %}<span class="badge-done">Done</span>{% endif %}
   {% if d.link %}<a href="{{ d.link }}" class="deadline-link">Link</a>{% endif %}
 </div>

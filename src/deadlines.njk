@@ -4,6 +4,7 @@ title: "All Deadlines"
 permalink: "/deadlines/"
 ---
 <h1>All Deadlines</h1>
+<p><a href="{{ '/deadlines.ics' | url }}">Add to Calendar (.ics) &rarr;</a></p>
 
 {% set active = deadlines | notDone | sortByDate("due_date") %}
 

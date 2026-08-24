@@ -1,0 +1,10 @@
+# Notes per class — lecture notes, study guides, or anything worth keeping close at hand.
+# `body` supports Markdown (headers, lists, links, bold/italic).
+# Add entries here any time, or during a "refresh":
+# - id: <slug>
+#   class_id: <class id>
+#   date: "YYYY-MM-DD"
+#   title: ""
+#   body: |
+#     Markdown content here.
+[]

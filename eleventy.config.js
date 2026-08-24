@@ -1,4 +1,5 @@
 const yaml = require("js-yaml");
+const md = require("markdown-it")({ html: false, linkify: true, breaks: true });
 
 function parseDate(str) {
   if (!str) return null;
@@ -97,6 +98,35 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("dueLater", (items) =>
     (items || []).filter((i) => daysUntilOf(i.due_date) > 7)
   );
+
+  eleventyConfig.addFilter("markdown", (content) => md.render(content || ""));
+
+  eleventyConfig.addFilter("gradeAverage", (items) => {
+    const list = items || [];
+    const hasWeights = list.some((i) => typeof i.weight === "number");
+
+    if (hasWeights) {
+      let totalWeight = 0;
+      let weightedSum = 0;
+      list.forEach((i) => {
+        if (typeof i.weight === "number" && typeof i.score === "number" && typeof i.max === "number") {
+          weightedSum += (i.score / i.max) * 100 * i.weight;
+          totalWeight += i.weight;
+        }
+      });
+      return totalWeight > 0 ? Math.round((weightedSum / totalWeight) * 10) / 10 : null;
+    }
+
+    let sum = 0;
+    let count = 0;
+    list.forEach((i) => {
+      if (typeof i.score === "number" && typeof i.max === "number") {
+        sum += (i.score / i.max) * 100;
+        count += 1;
+      }
+    });
+    return count > 0 ? Math.round((sum / count) * 10) / 10 : null;
+  });
 
   return {
     dir: {

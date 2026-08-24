@@ -34,8 +34,22 @@ This repo is a static academic dashboard (Eleventy + YAML data files → GitHub 
 ### `reminders.yaml` (list)
 - `id`, `title`, `date` (optional ISO date — omit for a standing/undated reminder), `note`, `done`
 
+### `notes.yaml` (list)
+- `id`, `class_id`, `date` (ISO), `title`
+- `body` — Markdown (rendered on the class page and the `/notes/` page via the `markdown` filter)
+
+### `grades.yaml` (list)
+- `id`, `class_id`, `item` (e.g. "Test 1"), `score`, `max` (both numeric)
+- `weight` — optional percent of final grade (e.g. `20`). If any entry for a class has a `weight`, that class's displayed average is weighted; otherwise it's a simple mean.
+- `date` — optional ISO date
+
 ### `site.yaml` (singleton)
 - `title`, `current_term`, `last_refreshed` (ISO datetime) — keep free of personal identifiers, this file (like all data files) is public.
+
+## Generated extras
+
+- **`/deadlines.ics`** — an auto-generated calendar feed built from `deadlines.yaml` (`src/deadlines.11ty.js`). Entries with `due_date: "TBD"` are skipped since there's nothing to schedule yet. Event times are emitted as floating local time with `TZID=America/New_York` (not converted through `Date`/UTC) so the feed is correct regardless of what timezone the machine running `npm run build` is in — this matters because the nightly Action below builds on a UTC runner. If a class ever meets in a different timezone, that will need to become per-event instead of a single constant.
+- **Nightly rebuild** — `.github/workflows/nightly-rebuild.yml` runs `npm run build` daily and pushes `docs/` if it changed, so date-relative sections (Overdue/This Week, the deadlines feed) stay accurate without a manual `refresh`. It does **not** touch `src/_data/`, so `last_refreshed` in `site.yaml` still reflects the last real data edit. This workflow needs the repo's Settings → Actions → General → Workflow permissions set to "Read and write permissions" for the default `GITHUB_TOKEN` to be able to push.
 
 ## The "refresh" workflow
 

@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: "Notes"
+permalink: "/notes/"
+---
+<h1>Notes</h1>
+
+{% set allNotes = notes | sortByDate("date") | reverse %}
+{% for n in allNotes %}
+  {% set cls = classes | classById(n.class_id) %}
+  <div class="note">
+    <p class="note-date">{{ n.date | formatDate }} &middot; <span style="color: {{ cls.color or '#888' }}">{{ cls.code or n.class_id }}</span></p>
+    <h3><a href="{{ ('/classes/' + n.class_id + '/') | url }}">{{ n.title }}</a></h3>
+    <div class="note-body">{{ n.body | markdown | safe }}</div>
+  </div>
+{% endfor %}
+{% if allNotes.length == 0 %}<p class="empty">No notes yet. Add some any time, or during a "refresh".</p>{% endif %}

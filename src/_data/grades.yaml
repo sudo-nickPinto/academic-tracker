@@ -1,0 +1,10 @@
+# Grade entries per class. `weight` is optional (percent of final grade, e.g. 20 for a 20%-weighted item).
+# If any entry for a class has a weight, the class average is weighted; otherwise entries are averaged equally.
+# - id: <slug>
+#   class_id: <class id>
+#   item: "Test 1"
+#   score: 87
+#   max: 100
+#   weight: 20        # optional
+#   date: "YYYY-MM-DD" # optional
+[]

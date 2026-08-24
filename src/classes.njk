@@ -42,6 +42,36 @@ eleventyComputed:
 </section>
 
 <section>
+  <h2>Grades</h2>
+  {% set classGrades = grades | byClass(class.id) %}
+  {% set avg = classGrades | gradeAverage %}
+  {% if avg != null %}<p class="grade-average">{{ avg }}%</p>{% endif %}
+  <ul class="grade-list">
+  {% for g in classGrades %}
+    <li>
+      <span class="grade-item">{{ g.item }}</span>
+      {% if g.score != null and g.max != null %}<span class="grade-score">{{ g.score }}/{{ g.max }}</span>{% endif %}
+      {% if g.weight %}<span class="grade-weight">{{ g.weight }}%</span>{% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+  {% if classGrades.length == 0 %}<p class="empty">No grades recorded yet.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Notes</h2>
+  {% set classNotes = notes | byClass(class.id) | sortByDate("date") | reverse %}
+  {% for n in classNotes %}
+    <div class="note">
+      <p class="note-date">{{ n.date | formatDate }}</p>
+      <h3>{{ n.title }}</h3>
+      <div class="note-body">{{ n.body | markdown | safe }}</div>
+    </div>
+  {% endfor %}
+  {% if classNotes.length == 0 %}<p class="empty">No notes yet.</p>{% endif %}
+</section>
+
+<section>
   <h2>Announcements</h2>
   {% set classAnn = announcements | byClass(class.id) | sortByDate("date") | reverse %}
   {% for a in classAnn %}
