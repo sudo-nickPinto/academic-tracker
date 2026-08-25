@@ -1,19 +1,22 @@
 ---
 layout: base.njk
-title: "All Deadlines"
+title: "Up Next"
 permalink: "/deadlines/"
 ---
-<h1>All Deadlines</h1>
+<h1>Up Next</h1>
+<p class="subtitle">Everything on your plate — assignments, exams, projects, and reminders — in one chronological list.</p>
 <p><a href="{{ '/deadlines.ics' | url }}">Add to Calendar (.ics) &rarr;</a></p>
 
-{% set active = deadlines | notDone | sortByDate("due_date") %}
+{% set combined = deadlines | combinedAgenda(reminders) %}
+{% set active = combined | notDone | sortByDate("due_date") %}
 
 <section>
   <h2>Overdue</h2>
   {% set overdueList = active | overdue %}
   <div class="deadline-list">
-  {% for d in overdueList %}
-    {% include "deadline-row.njk" %}
+  {% for item in overdueList %}
+    {% if item.kind == "deadline" %}{% set d = item.entry %}{% include "deadline-row.njk" %}
+    {% else %}{% set r = item.entry %}{% include "reminder-row.njk" %}{% endif %}
   {% endfor %}
   </div>
   {% if overdueList.length == 0 %}<p class="empty">Nothing overdue.</p>{% endif %}
@@ -23,8 +26,9 @@ permalink: "/deadlines/"
   <h2>This Week</h2>
   {% set weekList = active | dueThisWeek %}
   <div class="deadline-list">
-  {% for d in weekList %}
-    {% include "deadline-row.njk" %}
+  {% for item in weekList %}
+    {% if item.kind == "deadline" %}{% set d = item.entry %}{% include "deadline-row.njk" %}
+    {% else %}{% set r = item.entry %}{% include "reminder-row.njk" %}{% endif %}
   {% endfor %}
   </div>
   {% if weekList.length == 0 %}<p class="empty">Nothing due this week.</p>{% endif %}
@@ -34,8 +38,9 @@ permalink: "/deadlines/"
   <h2>Later</h2>
   {% set laterList = active | dueLater %}
   <div class="deadline-list">
-  {% for d in laterList %}
-    {% include "deadline-row.njk" %}
+  {% for item in laterList %}
+    {% if item.kind == "deadline" %}{% set d = item.entry %}{% include "deadline-row.njk" %}
+    {% else %}{% set r = item.entry %}{% include "reminder-row.njk" %}{% endif %}
   {% endfor %}
   </div>
   {% if laterList.length == 0 %}<p class="empty">Nothing further out.</p>{% endif %}
@@ -43,10 +48,11 @@ permalink: "/deadlines/"
 
 <section>
   <h2>Done</h2>
-  {% set doneList = deadlines | doneOnly | sortByDate("due_date") %}
+  {% set doneList = combined | doneOnly | sortByDate("due_date") %}
   <div class="deadline-list">
-  {% for d in doneList %}
-    {% include "deadline-row.njk" %}
+  {% for item in doneList %}
+    {% if item.kind == "deadline" %}{% set d = item.entry %}{% include "deadline-row.njk" %}
+    {% else %}{% set r = item.entry %}{% include "reminder-row.njk" %}{% endif %}
   {% endfor %}
   </div>
   {% if doneList.length == 0 %}<p class="empty">Nothing completed yet.</p>{% endif %}

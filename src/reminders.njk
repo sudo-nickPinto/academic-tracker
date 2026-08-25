@@ -10,16 +10,16 @@ permalink: "/reminders/"
 
 <section>
   <h2>Pending</h2>
-  <ul class="reminder-list">
+  <div class="reminder-list">
   {% for r in pending %}{% include "reminder-row.njk" %}{% endfor %}
-  </ul>
+  </div>
   {% if pending.length == 0 %}<p class="empty">Nothing pending.</p>{% endif %}
 </section>
 
 <section>
   <h2>Done</h2>
-  <ul class="reminder-list">
+  <div class="reminder-list">
   {% for r in done %}{% include "reminder-row.njk" %}{% endfor %}
-  </ul>
+  </div>
   {% if done.length == 0 %}<p class="empty">Nothing marked done yet.</p>{% endif %}
 </section>

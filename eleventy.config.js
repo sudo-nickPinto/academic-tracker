@@ -116,6 +116,23 @@ module.exports = function (eleventyConfig) {
     (items || []).filter((i) => daysUntilOf(i.due_date) > 7)
   );
 
+  // Merges deadlines and reminders into one list of "things to do" — HW,
+  // exams, and meetings/personal reminders alike — for the /deadlines/ ("Up
+  // Next") page. Each wrapper carries `due_date`/`status` shaped the same
+  // way a deadline is, so it can flow straight through the existing
+  // notDone/doneOnly/overdue/dueThisWeek/dueLater/sortByDate("due_date")
+  // filters above with no separate reminder-shaped copies of each.
+  eleventyConfig.addFilter("combinedAgenda", (deadlinesList, remindersList) => {
+    const items = [];
+    (deadlinesList || []).forEach((d) =>
+      items.push({ kind: "deadline", entry: d, due_date: d.due_date, status: d.status })
+    );
+    (remindersList || []).forEach((r) =>
+      items.push({ kind: "reminder", entry: r, due_date: r.date || "TBD", status: r.done ? "done" : "upcoming" })
+    );
+    return items;
+  });
+
   eleventyConfig.addFilter("markdown", (content) => md.render(content || ""));
 
   function pctOf(g) {

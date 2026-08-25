@@ -102,6 +102,16 @@ export async function handleAddForm(form, { file, buildEntry, describe, link, pr
   }
 }
 
+/** Reads every named field in a form into a plain object, coercing number inputs. */
+export function collectFieldValues(form) {
+  const values = {};
+  form.querySelectorAll("[name]").forEach((el) => {
+    if (!el.name) return;
+    values[el.name] = el.type === "number" ? Number(el.value) : el.value.trim();
+  });
+  return values;
+}
+
 export function wireForm(id, opts) {
   const form = document.getElementById(id);
   if (!form) return;

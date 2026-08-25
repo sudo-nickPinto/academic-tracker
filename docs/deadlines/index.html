@@ -11,7 +11,7 @@
       } catch (e) {}
     })();
   </script>
-  <title>All Deadlines</title>
+  <title>Up Next</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
     <a class="site-title" href="/academic-tracker/">My Academic Dashboard</a>
     <nav class="site-nav">
       <a href="/academic-tracker/" >Home</a>
-      <a href="/academic-tracker/deadlines/" >Deadlines</a>
+      <a href="/academic-tracker/deadlines/" >Up Next</a>
       <a href="/academic-tracker/reminders/" >Reminders</a>
       <a href="/academic-tracker/notes/" >Notes</a>
       <a href="/academic-tracker/materials/" >Materials</a>
@@ -35,8 +35,10 @@
     </nav>
   </header>
   <main>
-    <h1>All Deadlines</h1>
+    <h1>Up Next</h1>
+<p class="subtitle">Everything on your plate — assignments, exams, projects, and reminders — in one chronological list.</p>
 <p><a href="/academic-tracker/deadlines.ics">Add to Calendar (.ics) &rarr;</a></p>
+
 
 
 
@@ -65,7 +67,7 @@
   
     
 
-<div class="deadline-row" style="border-left-color: #2b6cb0">
+<div class="deadline-row" data-row style="border-left-color: #2b6cb0">
   <span class="deadline-date">Sep 29</span>
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Test 1</span>
@@ -80,12 +82,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs391-test1" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Test 1" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-09-29T14:35" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs391-test1" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Oct 1</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Deadline to request accommodation for Outlaw Expedition</span>
@@ -100,12 +125,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-accommodation-deadline" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Deadline to request accommodation for Outlaw Expedition" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-10-01T23:59" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Confer privately with the instructor by this date if you need an alternative to the 10/30 field trip.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-accommodation-deadline" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Oct 2</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Merry Band of Outlaws Activity Report 1</span>
@@ -120,12 +168,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-report1" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Merry Band of Outlaws Activity Report 1" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-10-02T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-report1" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Oct 16</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Merry Band of Outlaws Activity Report 2</span>
@@ -140,12 +211,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-report2" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Merry Band of Outlaws Activity Report 2" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-10-16T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-report2" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Oct 30</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Outlaw Expedition &amp; Campfire Saga Sing-a-long (field trip)</span>
@@ -160,12 +254,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-field-trip" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Outlaw Expedition &amp; Campfire Saga Sing-a-long (field trip)" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-10-30T15:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Late afternoon field trip, ~20 miles off campus.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-field-trip" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 2</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Midterm Exam</span>
@@ -180,12 +297,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-midterm" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Midterm Exam" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-02T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-midterm" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2b6cb0">
+<div class="deadline-row" data-row style="border-left-color: #2b6cb0">
   <span class="deadline-date">Nov 3</span>
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Test 2</span>
@@ -200,12 +340,60 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs391-test2" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Test 2" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-03T14:35" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs391-test2" data-file="deadlines.yaml" data-label="deadline">Delete</button>
+</div>
+
+    
+  
+    <div class="reminder-row" data-row>
+  <span class="reminder-title">Last day to withdraw from Fall 2026 courses</span>
+  <span class="deadline-type">reminder</span>
+  <span class="reminder-note">University-wide date, noted in the CS 391 syllabus.</span>
+  <span class="reminder-date">Nov 6</span>
+  <button type="button" class="toggle-btn" data-toggle-btn
+    data-id="withdraw-deadline" data-file="reminders.yaml" data-field="done"
+    data-value-true="true" data-value-false="false"
+    data-current="false"
+    data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="withdraw-deadline" data-file="reminders.yaml">
+      <label>Title<input type="text" name="title" value="Last day to withdraw from Fall 2026 courses" required></label>
+      <label>Date (optional)<input type="date" name="date" value="2026-11-06"></label>
+      <label>Note (optional)<input type="text" name="note" value="University-wide date, noted in the CS 391 syllabus."></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="withdraw-deadline" data-file="reminders.yaml" data-label="reminder">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 13</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Merry Band of Outlaws Activity Report 3</span>
@@ -220,12 +408,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-report3" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Merry Band of Outlaws Activity Report 3" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-13T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-report3" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 20</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Re-envisioning Robin Collage Poster Project</span>
@@ -240,12 +451,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-collage-project" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Re-envisioning Robin Collage Poster Project" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" selected>project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-20T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Due and presented in class during Week 13 — syllabus doesn&#39;t specify the exact day; confirm with instructor.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-collage-project" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 23</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Merry Band of Outlaws Activity Report 4</span>
@@ -260,12 +494,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-report4" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Merry Band of Outlaws Activity Report 4" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-23T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-report4" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 23</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Robin Reinterpreted Multimedia Review</span>
@@ -280,12 +537,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-multimedia-review" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Robin Reinterpreted Multimedia Review" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" selected>project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-23T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Due and presented in class during Week 14.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-multimedia-review" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 23</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Sherwood Chronicles</span>
@@ -300,12 +580,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-sherwood-chronicles" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Sherwood Chronicles" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-23T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Syllabus says &#39;due Friday&#39; but that Friday (11/27) is Thanksgiving break — confirm the actual due date with the instructor.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-sherwood-chronicles" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">Dec 7</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Final Project Submission</span>
@@ -320,12 +623,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-final-project" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Final Project Submission" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" selected>project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-12-07T23:59" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Web-based database application (HTML/CSS/JS/PHP/MySQL) satisfying the course&#39;s fourth credit hour.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-final-project" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2b6cb0">
+<div class="deadline-row" data-row style="border-left-color: #2b6cb0">
   <span class="deadline-date">Dec 8</span>
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Final Exam</span>
@@ -340,12 +666,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs391-final" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Final Exam" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-12-08T08:30" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Cumulative. 8:30–11:30am, proctored in the classroom.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs391-final" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2b6cb0">
+<div class="deadline-row" data-row style="border-left-color: #2b6cb0">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Attend 2 CS Colloquia</span>
@@ -360,12 +709,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs391-colloquia" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Attend 2 CS Colloquia" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Each student must attend at least 2 Computer Science Colloquia this semester (talk to the instructor if scheduling is a problem). Specific colloquium dates aren&#39;t in the syllabus.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs391-colloquia" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Final Exam</span>
@@ -380,12 +752,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-final" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Final Exam" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Date set by the registrar during finals week — not yet in the syllabus.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-final" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">hw0</span>
@@ -400,12 +795,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-hw0" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="hw0" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 2 (of Aug-31) on the course schedule. Syllabus says assignments are due by midnight on the date given in the schedule, but the schedule only lists a week, not a specific day — confirm exact due date with instructor.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-hw0" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">hw1</span>
@@ -420,12 +838,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-hw1" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="hw1" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 3 (of Sep-07) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-hw1" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Project Group Formation</span>
@@ -440,12 +881,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-project-group-formation" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Project Group Formation" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Noted in the topics for Week 3 (of Sep-07) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-project-group-formation" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">hw2</span>
@@ -460,12 +924,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-hw2" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="hw2" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 4 (of Sep-14) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-hw2" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Exam 1</span>
@@ -480,12 +967,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-exam1" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Exam 1" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Scheduled during Week 5 (of Sep-21) on the course schedule; whether it falls on the Tuesday or Thursday class isn&#39;t specified — confirm with instructor.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-exam1" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">hw3</span>
@@ -500,12 +1010,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-hw3" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="hw3" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 6 (of Sep-28) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-hw3" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Project ERD, table setup w/ sample data</span>
@@ -520,12 +1053,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-project-erd" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Project ERD, table setup w/ sample data" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" selected>project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 6 (of Sep-28) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-project-erd" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">hw4</span>
@@ -540,12 +1096,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-hw4" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="hw4" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 7 (of Oct-05) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-hw4" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Project Status Meeting 1</span>
@@ -560,12 +1139,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-project-status1" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Project Status Meeting 1" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 7 (of Oct-05) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-project-status1" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">hw5</span>
@@ -580,12 +1182,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-hw5" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="hw5" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 9 (of Oct-19) on the course schedule — exact day within the week not specified. Week 8 (Oct-12) is Fall Break, no class Tuesday.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-hw5" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Project Status Meeting 2</span>
@@ -600,12 +1225,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-project-status2" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Project Status Meeting 2" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 9 (of Oct-19) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-project-status2" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Exam 2</span>
@@ -620,12 +1268,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-exam2" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Exam 2" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Scheduled during Week 10 (of Oct-26) on the course schedule; whether it falls on the Tuesday or Thursday class isn&#39;t specified — confirm with instructor.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-exam2" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">hw6</span>
@@ -640,12 +1311,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-hw6" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="hw6" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 11 (of Nov-02) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-hw6" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">hw7</span>
@@ -660,12 +1354,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-hw7" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="hw7" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 12 (of Nov-09) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-hw7" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Project Status Meeting 3</span>
@@ -680,12 +1397,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-project-status3" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Project Status Meeting 3" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 12 (of Nov-09) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-project-status3" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">hw8</span>
@@ -700,12 +1440,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-hw8" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="hw8" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Listed under Week 13 (of Nov-16) on the course schedule — exact day within the week not specified.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-hw8" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Exam 3</span>
@@ -720,12 +1483,35 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-exam3" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Exam 3" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Scheduled during Week 15 (of Nov-30) on the course schedule; whether it falls on the Tuesday or Thursday class isn&#39;t specified — confirm with instructor. Week 14 (Nov-23) is Thanksgiving Break, no class Thursday.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-exam3" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
     
 
-<div class="deadline-row" style="border-left-color: #2f855a">
+<div class="deadline-row" data-row style="border-left-color: #2f855a">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2f855a">CS 360</span>
   <span class="deadline-title">Fully Engaged Colloquium Attendance</span>
@@ -740,8 +1526,31 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs360-colloquium" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Fully Engaged Colloquium Attendance" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Must attend at least 1 internship talk, 1 capstone talk, and 1 ACM event this semester (3% of final grade). No specific dates given in the syllabus.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs360-colloquium" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
+    
   
   </div>
   
@@ -752,8 +1561,33 @@
   
   <div class="deadline-list">
   
+    <div class="reminder-row reminder-done" data-row>
+  <span class="reminder-title">Test</span>
+  <span class="deadline-type">reminder</span>
+  <span class="reminder-note">Test to delete</span>
+  <span class="reminder-date">Aug 25</span>
+  <button type="button" class="toggle-btn" data-toggle-btn
+    data-id="reminder-test-0a9vs" data-file="reminders.yaml" data-field="done"
+    data-value-true="true" data-value-false="false"
+    data-current="true"
+    data-label="Mark not done">Mark not done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="reminder-test-0a9vs" data-file="reminders.yaml">
+      <label>Title<input type="text" name="title" value="Test" required></label>
+      <label>Date (optional)<input type="date" name="date" value="2026-08-25"></label>
+      <label>Note (optional)<input type="text" name="note" value="Test to delete"></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="reminder-test-0a9vs" data-file="reminders.yaml" data-label="reminder">Delete</button>
+</div>
+
+  
   </div>
-  <p class="empty">Nothing completed yet.</p>
+  
 </section>
 
   </main>

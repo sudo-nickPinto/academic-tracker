@@ -22,7 +22,7 @@
     <a class="site-title" href="/academic-tracker/">My Academic Dashboard</a>
     <nav class="site-nav">
       <a href="/academic-tracker/" >Home</a>
-      <a href="/academic-tracker/deadlines/" >Deadlines</a>
+      <a href="/academic-tracker/deadlines/" >Up Next</a>
       <a href="/academic-tracker/reminders/" >Reminders</a>
       <a href="/academic-tracker/notes/" >Notes</a>
       <a href="/academic-tracker/materials/" >Materials</a>
@@ -43,46 +43,205 @@
 </p>
 
 
+<details class="inline-manage">
+  <summary>Edit Class Info</summary>
+  <form class="manage-form edit-form" data-edit-form data-id="cs440" data-file="classes.yaml">
+    <label>Code<input type="text" name="code" value="CS 440" required></label>
+    <label>Name<input type="text" name="name" value="CS 440" required></label>
+    <label>Term<input type="text" name="term" value="Fall 2026"></label>
+    <label>Instructor<input type="text" name="instructor" value="TBD"></label>
+    <label>Meeting times<input type="text" name="meeting_times" value="TBD"></label>
+    <label>Color<input type="color" name="color" value="#6b46c1"></label>
+    <label>Course site link (optional)<input type="url" name="materials_link" value=""></label>
+    <label>Status
+      <select name="status">
+        <option value="active" selected>active</option>
+        <option value="archived" >archived</option>
+      </select>
+    </label>
+    <button type="submit">Save</button>
+    <p class="form-status"></p>
+  </form>
+</details>
+
 <section>
   <h2>Materials</h2>
   
   <div data-list="materials">
     <ul data-reorder-list data-file="materials.yaml">
     
-      <li draggable="true" data-id="cs440-textbook-1jzp01h">
+      <li draggable="true" data-id="cs440-textbook-1jzp01h" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         textbook
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs440-textbook-1jzp01h" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="textbook" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs440-textbook-1jzp01h" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="cs440-cs-440-a-fall-2026-instructions-for-indi-4rxkev">
+      <li draggable="true" data-id="cs440-cs-440-a-fall-2026-instructions-for-indi-4rxkev" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         CS_440_A_Fall_2026_ Instructions for Individual Reports _ Moodle Home
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs440-cs-440-a-fall-2026-instructions-for-indi-4rxkev" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="CS_440_A_Fall_2026_ Instructions for Individual Reports _ Moodle Home" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs440-cs-440-a-fall-2026-instructions-for-indi-4rxkev" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="cs440-cs-440-a-fall-2026-instructions-for-meet-1f5xui5">
+      <li draggable="true" data-id="cs440-cs-440-a-fall-2026-instructions-for-meet-1f5xui5" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         CS_440_A_Fall_2026_ Instructions for Meeting Minutes _ Moodle Home
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs440-cs-440-a-fall-2026-instructions-for-meet-1f5xui5" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="CS_440_A_Fall_2026_ Instructions for Meeting Minutes _ Moodle Home" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs440-cs-440-a-fall-2026-instructions-for-meet-1f5xui5" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="cs440-srs-rubric-f26-1j09j6n">
+      <li draggable="true" data-id="cs440-srs-rubric-f26-1j09j6n" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         SRS_Rubric_f26
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs440-srs-rubric-f26-1j09j6n" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="SRS_Rubric_f26" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs440-srs-rubric-f26-1j09j6n" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="cs440-srs-example1-yeri3t">
+      <li draggable="true" data-id="cs440-srs-example1-yeri3t" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         srs example1
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs440-srs-example1-yeri3t" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="srs example1" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs440-srs-example1-yeri3t" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="cs440-srs-example2-yfgx62">
+      <li draggable="true" data-id="cs440-srs-example2-yfgx62" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         srs example2
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs440-srs-example2-yfgx62" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="srs example2" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs440-srs-example2-yfgx62" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
     </ul>

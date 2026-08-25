@@ -46,12 +46,10 @@ function escapeRegExp(s) {
 }
 
 /**
- * Replaces one field's value within the entry whose `id:` matches `id`.
- * Used for "mark done" / "mark not done" toggles. Matches the field line
- * whether or not it's quoted (hand-written files use plain `status:
- * upcoming`; on-site-appended ones use quoted strings).
+ * Locates the `- id: ...` block for `id` within a data file's text content.
+ * Shared by setEntryField and deleteEntry below.
  */
-export function setEntryField(fileText, id, field, newValue) {
+function findEntryBlock(fileText, id) {
   const idPattern = new RegExp(`(^|\\n)(- id: )"?${escapeRegExp(id)}"?(\\n|$)`);
   const idMatch = idPattern.exec(fileText);
   if (!idMatch) {
@@ -61,15 +59,33 @@ export function setEntryField(fileText, id, field, newValue) {
   const blockStart = idMatch.index + idMatch[1].length;
   const nextEntryAt = fileText.indexOf("\n- id:", blockStart + 1);
   const blockEnd = nextEntryAt === -1 ? fileText.length : nextEntryAt + 1;
-  const block = fileText.slice(blockStart, blockEnd);
+  return { blockStart, blockEnd, block: fileText.slice(blockStart, blockEnd) };
+}
+
+/**
+ * Replaces one field's value within the entry whose `id:` matches `id`.
+ * Used for "mark done" / "mark not done" toggles and for the on-site edit
+ * forms. Matches the field line whether or not it's quoted (hand-written
+ * files use plain `status: upcoming`; on-site-appended ones use quoted
+ * strings). If the entry has no such field yet (an optional field, e.g. a
+ * reminder with no `date`), it's added rather than erroring, so an edit form
+ * can set an optional field for the first time.
+ */
+export function setEntryField(fileText, id, field, newValue) {
+  const { blockStart, blockEnd, block } = findEntryBlock(fileText, id);
 
   const fieldPattern = new RegExp(`(\\n\\s*${escapeRegExp(field)}: ).*?(\\n|$)`);
-  if (!fieldPattern.test(block)) {
-    throw new Error(`Entry "${id}" has no "${field}" field to update.`);
-  }
-  const newBlock = block.replace(fieldPattern, (_, prefix, suffix) => `${prefix}${dumpValue(newValue)}${suffix}`);
+  const newBlock = fieldPattern.test(block)
+    ? block.replace(fieldPattern, (_, prefix, suffix) => `${prefix}${dumpValue(newValue)}${suffix}`)
+    : `${block.replace(/\n$/, "")}\n  ${field}: ${dumpValue(newValue)}\n`;
 
   return fileText.slice(0, blockStart) + newBlock + fileText.slice(blockEnd);
+}
+
+/** Removes the entry whose `id:` matches `id` entirely. Used by delete buttons. */
+export function deleteEntry(fileText, id) {
+  const { blockStart, blockEnd } = findEntryBlock(fileText, id);
+  return fileText.slice(0, blockStart) + fileText.slice(blockEnd);
 }
 
 /**
