@@ -8,4 +8,11 @@
 #   score: 87
 #   max: 100
 #   date: "YYYY-MM-DD" # optional
-[]
+
+- id: "cs391-grade-participation-class-1-2q8w4"
+  class_id: "cs391"
+  item: "Participation Class 1"
+  category: "Participation"
+  score: 100
+  max: 100
+  date: "2026-08-25"
