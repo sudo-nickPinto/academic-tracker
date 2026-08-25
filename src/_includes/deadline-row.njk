@@ -13,4 +13,9 @@
   {% endif %}
   {% if d.status == "done" %}<span class="badge-done">Done</span>{% endif %}
   {% if d.link %}<a href="{{ d.link }}" class="deadline-link">Link</a>{% endif %}
+  <button type="button" class="toggle-btn" data-toggle-btn
+    data-id="{{ d.id }}" data-file="deadlines.yaml" data-field="status"
+    data-value-true="done" data-value-false="upcoming"
+    data-current="{{ 'true' if d.status == 'done' else 'false' }}"
+    data-label="{{ 'Mark not done' if d.status == 'done' else 'Mark done' }}">{{ 'Mark not done' if d.status == 'done' else 'Mark done' }}</button>
 </div>

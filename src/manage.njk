@@ -1,0 +1,38 @@
+---
+layout: base.njk
+title: "Manage"
+permalink: "/manage/"
+---
+<h1>Manage</h1>
+<p class="subtitle">Add content straight from the browser — each form commits directly to this repo's data files and triggers a rebuild. Needs a GitHub token first: set one up on <a href="{{ '/settings/' | url }}">Settings</a>.</p>
+<p class="hint">Deadlines, notes, grades, materials, and announcements are scoped to a class now — add them from that class's own page instead. This page is only for things that aren't: a new reminder, or a whole new class. Prefer email or the GitHub mobile app instead? The <a href="https://github.com/{{ site.repo }}/issues/new/choose">Issue Forms</a> still work exactly as before — these forms are an additional, faster path, not a replacement.</p>
+
+<section>
+  <h2>Add Reminder</h2>
+  <form id="form-reminder" class="manage-form">
+    <label>Title<input type="text" name="title" required></label>
+    <label>Date (optional — omit for a standing reminder)<input type="date" name="date"></label>
+    <label>Note (optional)<input type="text" name="note"></label>
+    <button type="submit">Add Reminder</button>
+    <p class="form-status"></p>
+  </form>
+</section>
+
+<section>
+  <h2>Add Class</h2>
+  <form id="form-class" class="manage-form">
+    <label>Code<input type="text" name="code" placeholder="CS 420" required></label>
+    <label>ID (slug — optional, derived from the code if left blank)<input type="text" name="id" placeholder="cs420"></label>
+    <label>Name<input type="text" name="name" placeholder="Full course title" required></label>
+    <label>Term<input type="text" name="term" value="{{ site.current_term }}"></label>
+    <label>Instructor<input type="text" name="instructor"></label>
+    <label>Meeting times<input type="text" name="meeting_times" placeholder="Tue/Thu 2:35–3:50pm, Room 213"></label>
+    <label>Color<input type="color" name="color" value="#2b6cb0"></label>
+    <label>Course site link (optional)<input type="url" name="materials_link"></label>
+    <button type="submit">Add Class</button>
+    <p class="form-status"></p>
+  </form>
+  <p class="hint">Once this rebuilds, go to the new class's own page to add its deadlines, notes, grades, materials, and announcements.</p>
+</section>
+
+<script type="module" src="{{ '/js/manage.js' | url }}"></script>

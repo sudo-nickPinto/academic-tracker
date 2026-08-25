@@ -1,0 +1,10 @@
+<li class="reminder-row{{ ' reminder-done' if r.done else '' }}">
+  <span class="reminder-title">{{ r.title }}</span>
+  {% if r.note %}<span class="reminder-note">{{ r.note }}</span>{% endif %}
+  {% if r.date %}<span class="reminder-date">{{ r.date | formatDateShort }}</span>{% endif %}
+  <button type="button" class="toggle-btn" data-toggle-btn
+    data-id="{{ r.id }}" data-file="reminders.yaml" data-field="done"
+    data-value-true="true" data-value-false="false"
+    data-current="{{ 'true' if r.done else 'false' }}"
+    data-label="{{ 'Mark not done' if r.done else 'Mark done' }}">{{ 'Mark not done' if r.done else 'Mark done' }}</button>
+</li>

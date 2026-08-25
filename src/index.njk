@@ -8,27 +8,95 @@ eleventyComputed:
   <p class="subtitle">{{ site.current_term }}</p>
 </section>
 
+{% set active = deadlines | notDone | sortByDate("due_date") %}
+{% set overdueList = active | overdue %}
+{% set weekList = active | dueThisWeek %}
+{% set pendingReminderList = reminders | pendingReminders %}
+{% set streaks = deadlines | deadlineStreaks %}
+{% set overallAvg = classes | overallAverage(grades) %}
+
 <section>
-  <h2>Today's Reminders</h2>
-  {% set todays = reminders | todaysReminders %}
-  <ul class="reminder-list">
-  {% for r in todays %}
-    <li>{{ r.title }}{% if r.note %} &mdash; {{ r.note }}{% endif %}</li>
-  {% endfor %}
-  </ul>
-  {% if todays.length == 0 %}<p class="empty">Nothing due today.</p>{% endif %}
+  <h2>This Term at a Glance</h2>
+  <div class="stat-grid">
+    <div class="stat-box">
+      <span class="stat-value">{{ streaks.current }}</span>
+      <span class="stat-label">Current streak</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">{{ streaks.longest }}</span>
+      <span class="stat-label">Longest streak</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">{{ streaks.onTimeRate if streaks.onTimeRate != null else '—' }}{{ '%' if streaks.onTimeRate != null else '' }}</span>
+      <span class="stat-label">Done rate</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">{{ overallAvg if overallAvg != null else '—' }}{{ '%' if overallAvg != null else '' }}</span>
+      <span class="stat-label">Overall grade</span>
+    </div>
+    <div class="stat-box{{ ' stat-box-danger' if overdueList.length > 0 else '' }}">
+      <span class="stat-value">{{ overdueList.length }}</span>
+      <span class="stat-label">Overdue</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value">{{ weekList.length }}</span>
+      <span class="stat-label">Due this week</span>
+    </div>
+  </div>
+  <p><a href="{{ '/analytics/' | url }}">Full analytics &rarr;</a></p>
 </section>
 
 <section>
-  <h2>Upcoming Deadlines</h2>
-  {% set upcoming = deadlines | notDone | sortByDate("due_date") %}
-  <div class="deadline-list">
-  {% for d in upcoming | limit(8) %}
-    {% include "deadline-row.njk" %}
-  {% endfor %}
-  {% if upcoming.length == 0 %}<p class="empty">No upcoming deadlines.</p>{% endif %}
-  </div>
-  <p><a href="{{ '/deadlines/' | url }}">See all deadlines &rarr;</a></p>
+  <h2>Needs Your Attention</h2>
+  {% if overdueList.length == 0 and weekList.length == 0 and pendingReminderList.length == 0 %}
+    <p class="empty">Nothing urgent — you're caught up.</p>
+  {% else %}
+    {% if overdueList.length > 0 %}
+      <h3 class="subsection">Overdue</h3>
+      <div class="deadline-list">
+      {% for d in overdueList %}{% include "deadline-row.njk" %}{% endfor %}
+      </div>
+    {% endif %}
+    {% if weekList.length > 0 %}
+      <h3 class="subsection">Due This Week</h3>
+      <div class="deadline-list">
+      {% for d in weekList %}{% include "deadline-row.njk" %}{% endfor %}
+      </div>
+    {% endif %}
+    {% if pendingReminderList.length > 0 %}
+      <h3 class="subsection">Reminders</h3>
+      <ul class="reminder-list">
+      {% for r in pendingReminderList | sortByDate("date") %}{% include "reminder-row.njk" %}{% endfor %}
+      </ul>
+    {% endif %}
+  {% endif %}
+</section>
+
+<section>
+  <h2>This Week</h2>
+  {% set agenda = deadlines | agendaByDay(reminders, 7) %}
+  {% if agenda.length == 0 %}
+    <p class="empty">Nothing on the calendar for the next 7 days.</p>
+  {% else %}
+    <div class="agenda-list">
+    {% for day in agenda %}
+      <div class="agenda-day">
+        <p class="agenda-date">{{ day.date | formatDate }}</p>
+        {% if day.deadlines.length > 0 %}
+          <div class="deadline-list">
+          {% for d in day.deadlines %}{% include "deadline-row.njk" %}{% endfor %}
+          </div>
+        {% endif %}
+        {% if day.reminders.length > 0 %}
+          <ul class="reminder-list">
+          {% for r in day.reminders %}{% include "reminder-row.njk" %}{% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endfor %}
+    </div>
+  {% endif %}
+  <p><a href="{{ '/deadlines.ics' | url }}">Subscribe to calendar (.ics) &rarr;</a> &middot; <a href="{{ '/deadlines/' | url }}">See all deadlines &rarr;</a></p>
 </section>
 
 <section>
@@ -51,5 +119,5 @@ eleventyComputed:
       <p>{{ a.body }}</p>
     </div>
   {% endfor %}
-  {% if recentAnn.length == 0 %}<p class="empty">No announcements yet. Add some during a "refresh".</p>{% endif %}
+  {% if recentAnn.length == 0 %}<p class="empty">No announcements yet. Add some on the <a href="{{ '/manage/' | url }}">Manage</a> page.</p>{% endif %}
 </section>
