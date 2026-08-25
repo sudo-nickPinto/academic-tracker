@@ -905,18 +905,48 @@ h3.subsection:first-child {
   overflow: hidden;
 }
 
+.cmdk-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
 .cmdk-input {
+  flex: 1;
+  min-width: 0;
   font: inherit;
   font-size: var(--text-md);
   padding: var(--space-4) var(--space-5);
   border: none;
-  border-bottom: 1px solid var(--border);
   background: transparent;
   color: var(--text);
 }
 
 .cmdk-input:focus-visible {
   outline: none;
+}
+
+.cmdk-close {
+  flex-shrink: 0;
+  margin-right: var(--space-3);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  line-height: 1;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+}
+
+.cmdk-close:hover {
+  background: var(--bg-alt);
+  color: var(--text);
 }
 
 .cmdk-list {

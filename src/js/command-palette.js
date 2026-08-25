@@ -102,10 +102,19 @@ function buildPalette() {
     }
   });
 
+  const closeBtn = createEl("button", {
+    className: "cmdk-close",
+    text: "×",
+    attrs: { type: "button", "aria-label": "Close quick jump" },
+  });
+  closeBtn.addEventListener("click", closePalette);
+
+  const header = createEl("div", { className: "cmdk-header", children: [input, closeBtn] });
+
   const panel = createEl("div", {
     className: "cmdk-panel",
     attrs: { role: "dialog", "aria-modal": "true", "aria-label": "Quick jump" },
-    children: [input, list],
+    children: [header, list],
   });
 
   overlay = createEl("div", { className: "cmdk-overlay", attrs: { hidden: "" }, children: [panel] });
