@@ -893,6 +893,10 @@ h3.subsection:first-child {
   background: color-mix(in srgb, #000 45%, transparent);
 }
 
+.cmdk-overlay[hidden] {
+  display: none;
+}
+
 .cmdk-panel {
   width: min(560px, calc(100vw - var(--space-6)));
   max-height: 60vh;
