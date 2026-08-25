@@ -136,3 +136,174 @@
   status: upcoming
   link: ""
   notes: "Date set by the registrar during finals week — not yet in the syllabus."
+
+- id: cs360-hw0
+  class_id: cs360
+  title: "hw0"
+  type: assignment
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 2 (of Aug-31) on the course schedule. Syllabus says assignments are due by midnight on the date given in the schedule, but the schedule only lists a week, not a specific day — confirm exact due date with instructor."
+
+- id: cs360-hw1
+  class_id: cs360
+  title: "hw1"
+  type: assignment
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 3 (of Sep-07) on the course schedule — exact day within the week not specified."
+
+- id: cs360-project-group-formation
+  class_id: cs360
+  title: "Project Group Formation"
+  type: other
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Noted in the topics for Week 3 (of Sep-07) on the course schedule — exact day within the week not specified."
+
+- id: cs360-hw2
+  class_id: cs360
+  title: "hw2"
+  type: assignment
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 4 (of Sep-14) on the course schedule — exact day within the week not specified."
+
+- id: cs360-exam1
+  class_id: cs360
+  title: "Exam 1"
+  type: exam
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Scheduled during Week 5 (of Sep-21) on the course schedule; whether it falls on the Tuesday or Thursday class isn't specified — confirm with instructor."
+
+- id: cs360-hw3
+  class_id: cs360
+  title: "hw3"
+  type: assignment
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 6 (of Sep-28) on the course schedule — exact day within the week not specified."
+
+- id: cs360-project-erd
+  class_id: cs360
+  title: "Project ERD, table setup w/ sample data"
+  type: project
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 6 (of Sep-28) on the course schedule — exact day within the week not specified."
+
+- id: cs360-hw4
+  class_id: cs360
+  title: "hw4"
+  type: assignment
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 7 (of Oct-05) on the course schedule — exact day within the week not specified."
+
+- id: cs360-project-status1
+  class_id: cs360
+  title: "Project Status Meeting 1"
+  type: other
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 7 (of Oct-05) on the course schedule — exact day within the week not specified."
+
+- id: cs360-hw5
+  class_id: cs360
+  title: "hw5"
+  type: assignment
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 9 (of Oct-19) on the course schedule — exact day within the week not specified. Week 8 (Oct-12) is Fall Break, no class Tuesday."
+
+- id: cs360-project-status2
+  class_id: cs360
+  title: "Project Status Meeting 2"
+  type: other
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 9 (of Oct-19) on the course schedule — exact day within the week not specified."
+
+- id: cs360-exam2
+  class_id: cs360
+  title: "Exam 2"
+  type: exam
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Scheduled during Week 10 (of Oct-26) on the course schedule; whether it falls on the Tuesday or Thursday class isn't specified — confirm with instructor."
+
+- id: cs360-hw6
+  class_id: cs360
+  title: "hw6"
+  type: assignment
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 11 (of Nov-02) on the course schedule — exact day within the week not specified."
+
+- id: cs360-hw7
+  class_id: cs360
+  title: "hw7"
+  type: assignment
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 12 (of Nov-09) on the course schedule — exact day within the week not specified."
+
+- id: cs360-project-status3
+  class_id: cs360
+  title: "Project Status Meeting 3"
+  type: other
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 12 (of Nov-09) on the course schedule — exact day within the week not specified."
+
+- id: cs360-hw8
+  class_id: cs360
+  title: "hw8"
+  type: assignment
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Listed under Week 13 (of Nov-16) on the course schedule — exact day within the week not specified."
+
+- id: cs360-exam3
+  class_id: cs360
+  title: "Exam 3"
+  type: exam
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Scheduled during Week 15 (of Nov-30) on the course schedule; whether it falls on the Tuesday or Thursday class isn't specified — confirm with instructor. Week 14 (Nov-23) is Thanksgiving Break, no class Thursday."
+
+- id: cs360-final-project
+  class_id: cs360
+  title: "Final Project Submission"
+  type: project
+  due_date: "2026-12-07T23:59"
+  status: upcoming
+  link: ""
+  notes: "Web-based database application (HTML/CSS/JS/PHP/MySQL) satisfying the course's fourth credit hour."
+
+- id: cs360-colloquium
+  class_id: cs360
+  title: "Fully Engaged Colloquium Attendance"
+  type: other
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Must attend at least 1 internship talk, 1 capstone talk, and 1 ACM event this semester (3% of final grade). No specific dates given in the syllabus."

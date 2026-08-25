@@ -7,6 +7,13 @@
 #   body: ""
 #   source: manual   # manual | Moodle | Outlook
 
+- id: cs360-welcome
+  class_id: cs360
+  date: "2026-08-25"
+  title: "Welcome to CS360"
+  body: "Welcome to CS360. Please check the course webpage regularly."
+  source: manual
+
 - id: "cs391-ann-hw-1-due-date-2rr32"
   class_id: "cs391"
   date: "2026-08-25"

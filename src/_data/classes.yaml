@@ -41,15 +41,19 @@
     - { name: "Final Exam", weight: 12.5 }
 
 - id: cs360
-  name: "CS 360"
+  name: "Principles of Database Management Systems"
   code: "CS 360"
   term: "Fall 2026"
-  instructor: "TBD"
-  meeting_times: "TBD"
+  instructor: "Sunny Kim"
+  meeting_times: "Tue/Thu 1:10–2:25pm, Glatfelter 112"
   color: "#2f855a"
-  materials_link: ""
+  materials_link: "https://www.cs.gettysburg.edu/~skim/cs360/"
   status: active
-  grade_categories: []
+  grade_categories:
+    - { name: "Colloquium Attendance", weight: 3 }
+    - { name: "Assignments/Labs", weight: 29 }
+    - { name: "Group Project", weight: 14 }
+    - { name: "Exams", weight: 54 }
 
 - id: cs440
   name: "CS 440"
