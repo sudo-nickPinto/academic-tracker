@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: "Reminders"
+permalink: "/reminders/"
+---
+<h1>Reminders</h1>
+
+{% set pending = reminders | pendingReminders | sortByDate("date") %}
+{% set done = reminders | doneReminders | sortByDate("date") %}
+
+<section>
+  <h2>Pending</h2>
+  <ul class="reminder-list">
+  {% for r in pending %}{% include "reminder-row.njk" %}{% endfor %}
+  </ul>
+  {% if pending.length == 0 %}<p class="empty">Nothing pending.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Done</h2>
+  <ul class="reminder-list">
+  {% for r in done %}{% include "reminder-row.njk" %}{% endfor %}
+  </ul>
+  {% if done.length == 0 %}<p class="empty">Nothing marked done yet.</p>{% endif %}
+</section>

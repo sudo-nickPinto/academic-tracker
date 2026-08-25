@@ -2,6 +2,10 @@ node_modules/
 .DS_Store
 .env
 
+# Cached Outlook OAuth refresh token (scripts/sync-outlook.js) — a credential,
+# never committed.
+.outlook-token-cache.json
+
 # Raw source syllabi (may contain personal contact info) — kept local only.
 # Extracted, sanitized data lives in src/_data/*.yaml, which IS committed.
 /cs391/

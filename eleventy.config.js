@@ -11,6 +11,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy("src/uploads");
 
   eleventyConfig.addFilter("formatDate", (dateStr) => {
     const d = parseDate(dateStr);
@@ -73,6 +75,14 @@ module.exports = function (eleventyConfig) {
     (items || []).filter((i) => i.status === "done")
   );
 
+  eleventyConfig.addFilter("pendingReminders", (items) =>
+    (items || []).filter((r) => !r.done)
+  );
+
+  eleventyConfig.addFilter("doneReminders", (items) =>
+    (items || []).filter((r) => r.done)
+  );
+
   eleventyConfig.addFilter("todaysReminders", (items) => {
     const isToday = (dateStr) => {
       const d = parseDate(dateStr);
@@ -117,7 +127,7 @@ module.exports = function (eleventyConfig) {
   // Groups a class's grades by the category weights defined on the class
   // (cls.grade_categories). Entries whose `category` doesn't match a known
   // category land in an "Other" bucket that's shown but not weighted.
-  eleventyConfig.addFilter("gradeBreakdown", (grades, cls) => {
+  function gradeBreakdownOf(grades, cls) {
     const list = grades || [];
     const categories = (cls && cls.grade_categories) || [];
 
@@ -137,9 +147,9 @@ module.exports = function (eleventyConfig) {
     }
 
     return buckets;
-  });
+  }
 
-  eleventyConfig.addFilter("weightedOverall", (breakdown) => {
+  function weightedOverallOf(breakdown) {
     const list = breakdown || [];
     const weighted = list.filter((b) => typeof b.weight === "number" && b.average !== null);
 
@@ -154,6 +164,22 @@ module.exports = function (eleventyConfig) {
     }
 
     return simpleAverage(list.flatMap((b) => b.entries));
+  }
+
+  eleventyConfig.addFilter("gradeBreakdown", gradeBreakdownOf);
+  eleventyConfig.addFilter("weightedOverall", weightedOverallOf);
+
+  // Mean of each class's weighted-overall (classes with no grades yet are
+  // excluded rather than dragging the average toward zero).
+  eleventyConfig.addFilter("overallAverage", (classesList, grades) => {
+    const vals = (classesList || [])
+      .map((c) => {
+        const classGrades = (grades || []).filter((g) => g.class_id === c.id);
+        return weightedOverallOf(gradeBreakdownOf(classGrades, c));
+      })
+      .filter((v) => v !== null);
+    if (vals.length === 0) return null;
+    return Math.round((vals.reduce((a, b) => a + b, 0) / vals.length) * 10) / 10;
   });
 
   // Past deadlines only (real due dates, not "TBD", not in the future).
@@ -239,6 +265,109 @@ module.exports = function (eleventyConfig) {
         return { cls, count: classNotes.length, lastDate };
       })
       .sort((a, b) => b.count - a.count);
+  });
+
+  // Groups not-done deadlines (real due dates) and dated, not-done reminders
+  // that fall within the next `days` days (default 7) into per-day buckets,
+  // for a compact "this week" agenda view. Today counts as day 0.
+  eleventyConfig.addFilter("agendaByDay", (deadlines, reminders, days) => {
+    const horizon = typeof days === "number" ? days : 7;
+    const byDate = new Map();
+    const dayKey = (d) => d.toISOString().slice(0, 10);
+
+    function bucketFor(d) {
+      const key = dayKey(d);
+      if (!byDate.has(key)) byDate.set(key, { date: d, deadlines: [], reminders: [] });
+      return byDate.get(key);
+    }
+
+    (deadlines || []).forEach((dl) => {
+      if (dl.status === "done" || !dl.due_date || dl.due_date === "TBD") return;
+      const n = daysUntilOf(dl.due_date);
+      if (n < 0 || n > horizon) return;
+      bucketFor(parseDate(dl.due_date)).deadlines.push(dl);
+    });
+
+    (reminders || []).forEach((r) => {
+      if (r.done || !r.date) return;
+      const n = daysUntilOf(r.date);
+      if (n < 0 || n > horizon) return;
+      bucketFor(parseDate(r.date)).reminders.push(r);
+    });
+
+    return [...byDate.values()].sort((a, b) => a.date - b.date);
+  });
+
+  function startOfDay(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  // Buckets deadlines with real due dates into a GitHub-contribution-style
+  // week/day grid. Colored by due date (not completion date, since the
+  // schema has no completion timestamp): `count` is done-that-day,
+  // `total` is all deadlines due that day, `level` 0-4 scales `count`
+  // against the busiest single day in range.
+  eleventyConfig.addFilter("deadlineHeatmap", (deadlines) => {
+    const real = (deadlines || []).filter((d) => d.due_date && d.due_date !== "TBD" && parseDate(d.due_date));
+    if (real.length === 0) return { weeks: [], monthLabels: [] };
+
+    const dates = real.map((d) => startOfDay(parseDate(d.due_date)));
+    const minDate = new Date(Math.min(...dates));
+    const maxDate = new Date(Math.max(...dates));
+
+    const rangeStart = new Date(minDate);
+    rangeStart.setDate(rangeStart.getDate() - rangeStart.getDay());
+    const rangeEnd = new Date(maxDate);
+    rangeEnd.setDate(rangeEnd.getDate() + (6 - rangeEnd.getDay()));
+
+    const dayKey = (d) => d.toISOString().slice(0, 10);
+
+    const byDay = new Map();
+    real.forEach((d) => {
+      const key = dayKey(startOfDay(parseDate(d.due_date)));
+      if (!byDay.has(key)) byDay.set(key, { count: 0, total: 0 });
+      const bucket = byDay.get(key);
+      bucket.total += 1;
+      if (d.status === "done") bucket.count += 1;
+    });
+
+    let maxCount = 0;
+    byDay.forEach((b) => {
+      if (b.count > maxCount) maxCount = b.count;
+    });
+
+    const weeks = [];
+    const monthLabels = [];
+    let week = [];
+    let currentMonthLabel = null;
+    const cursor = new Date(rangeStart);
+
+    while (cursor <= rangeEnd) {
+      if (cursor.getDay() === 0) {
+        if (week.length > 0) {
+          weeks.push({ days: week });
+          week = [];
+        }
+        const label = cursor.toLocaleDateString("en-US", { month: "short" });
+        if (label !== currentMonthLabel) {
+          currentMonthLabel = label;
+          monthLabels.push({ label, weekSpan: 1 });
+        } else if (monthLabels.length > 0) {
+          monthLabels[monthLabels.length - 1].weekSpan += 1;
+        }
+      }
+
+      const key = dayKey(cursor);
+      const bucket = byDay.get(key) || { count: 0, total: 0 };
+      const level = bucket.count === 0 ? 0 : Math.min(4, Math.ceil((bucket.count / maxCount) * 4));
+      const inRange = cursor >= minDate && cursor <= maxDate;
+
+      week.push({ date: new Date(cursor), isoDate: key, count: bucket.count, total: bucket.total, level, inRange });
+      cursor.setDate(cursor.getDate() + 1);
+    }
+    if (week.length > 0) weeks.push({ days: week });
+
+    return { weeks, monthLabels };
   });
 
   return {
