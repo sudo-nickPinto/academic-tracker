@@ -10,7 +10,7 @@ permalink: "/settings/"
   <h2>GitHub Token</h2>
   <p>Create a <strong>fine-grained personal access token</strong> at
     <a href="https://github.com/settings/personal-access-tokens/new">github.com/settings/personal-access-tokens/new</a>,
-    scoped to just this one repository (<code>{{ site.repo }}</code>), with these repository permissions:</p>
+    scoped to just this one repository{% if site.repo %} (<code>{{ site.repo }}</code>){% else %} (yours, e.g. <code>yourname/academic-tracker</code> — or run <a href="{{ '/setup/' | url }}">/setup/</a> first, which saves the token for you){% endif %}, with these repository permissions:</p>
   <ul>
     <li><strong>Contents:</strong> Read and write</li>
     <li><strong>Actions:</strong> Read and write <span class="hint">— lets it trigger a rebuild right after a commit</span></li>
