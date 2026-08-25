@@ -1,6 +1,24 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 This repo is a static academic dashboard (Eleventy + YAML data files → GitHub Pages). This file tells a future Claude Code session how the data is shaped and how to run a "refresh."
+
+## Commands
+
+```bash
+npm install
+npm run build     # eleventy — writes the static site to docs/
+npm run serve     # eleventy --serve — local dev server with live reload, respects pathPrefix
+```
+
+There is no lint or test suite in this repo. To preview the exact `docs/` output the way GitHub Pages serves it (i.e. under the `/academic-tracker/` path prefix), copy `docs/` into a parent folder named `academic-tracker/` and serve from one level up:
+
+```bash
+mkdir -p /tmp/preview/academic-tracker && cp -R docs/. /tmp/preview/academic-tracker/
+cd /tmp/preview && python3 -m http.server 8000
+# then visit http://localhost:8000/academic-tracker/
+```
 
 ## Data schema (`src/_data/`)
 
