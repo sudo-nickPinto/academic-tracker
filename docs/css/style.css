@@ -700,6 +700,19 @@ h3.subsection:first-child {
   width: 4.5rem;
 }
 
+.manage-form .setup-confirm {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-2);
+  max-width: 480px;
+}
+
+.manage-form .setup-confirm input {
+  all: revert;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
 .manage-form textarea {
   min-height: 5rem;
   resize: vertical;
