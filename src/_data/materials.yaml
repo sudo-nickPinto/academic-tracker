@@ -118,3 +118,24 @@
   type: reading
   link: ""
   date_added: "2026-08-25"
+
+- id: cs360-syllabus
+  class_id: cs360
+  title: "Syllabus"
+  type: syllabus
+  link: "https://www.cs.gettysburg.edu/~skim/cs360/syllabus.html"
+  date_added: "2026-08-25"
+
+- id: cs360-schedule
+  class_id: cs360
+  title: "Course Schedule"
+  type: other
+  link: "https://www.cs.gettysburg.edu/~skim/cs360/schedule.html"
+  date_added: "2026-08-25"
+
+- id: cs360-textbook
+  class_id: cs360
+  title: "Fundamentals of Database Systems, 7th Edition (Elmasri & Navathe)"
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
