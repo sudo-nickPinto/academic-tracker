@@ -96,9 +96,6 @@ function buildPalette() {
     } else if (e.key === "Enter") {
       e.preventDefault();
       if (filtered[activeIndex]) go(filtered[activeIndex]);
-    } else if (e.key === "Escape") {
-      e.preventDefault();
-      closePalette();
     }
   });
 
@@ -120,6 +117,14 @@ function buildPalette() {
   overlay = createEl("div", { className: "cmdk-overlay", attrs: { hidden: "" }, children: [panel] });
   overlay.addEventListener("mousedown", (e) => {
     if (e.target === overlay) closePalette();
+  });
+  // Escape lives here (not on `input`) so it closes the palette no matter which
+  // focusable element inside currently has focus — the search box or the close button.
+  overlay.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closePalette();
+    }
   });
   document.body.appendChild(overlay);
 }
