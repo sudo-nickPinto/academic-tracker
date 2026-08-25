@@ -4,6 +4,19 @@ A personal static dashboard for classes, deadlines, materials, announcements, re
 
 **Live site:** https://sudo-nickPinto.github.io/academic-tracker/
 
+## Start your own instance
+
+Want your own copy of this dashboard for your own classes? This repo has a `template` branch — same code, but with the owner's classes/deadlines/grades/etc. cleared out to placeholders — meant to be forked instead of `main`:
+
+1. **Fork this repo** on GitHub. On the fork step, make sure "Copy the `main` branch only" is **unchecked** so your fork gets `template` too.
+2. In your fork's **Settings → Branches**, switch the default branch to `template` (or, if you'd rather keep `main` as the name, delete your fork's `main` and rename `template` to `main`).
+3. In **Settings → Pages**, set the source to the (now-default) branch, `/docs` folder.
+4. In **Settings → Actions → General → Workflow permissions**, select "Read and write permissions" — both the nightly rebuild and the self-serve issue-form pipeline need this to push commits back to your repo.
+5. Wait for GitHub Pages to publish (Settings → Pages shows the URL once it's live), then visit `<your-pages-url>/setup/` and fill in the one-time form: your `owner/repo`, a GitHub token scoped to just that repo (the wizard explains exactly what scopes), your site title and current term, and — optionally — your first class. Submitting commits your settings (and first class, if you added one) and kicks off a rebuild.
+6. From there, add the rest of your classes/deadlines/grades from [`/manage/`](#adding-content-yourself), the Issue Forms, or a Claude Code "refresh" session against your fork.
+
+Your fork's `main` (or `template`, if you kept the two-branch setup) stays independent of this repo after that — nothing here writes back to your fork, and nothing in your fork writes back here.
+
 ## How it works
 
 All content lives in plain YAML files under `src/_data/` — classes, deadlines, materials, announcements, reminders, notes, grades, and site settings. Eleventy reads those files and generates a static HTML site into `docs/`, which GitHub Pages serves directly (`main` branch, `/docs` folder).
