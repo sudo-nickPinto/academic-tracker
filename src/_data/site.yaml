@@ -1,6 +1,6 @@
 title: "My Academic Dashboard"
 current_term: "Fall 2026"
-last_refreshed: "2026-08-23T15:00"
+last_refreshed: "2026-08-24T22:30"
 # "owner/repo" on GitHub — used by the on-site Manage/Settings pages (src/js/gh-client.js)
 # to know which repo to commit to via the GitHub REST API. Not a secret.
 repo: "sudo-nickPinto/academic-tracker"
