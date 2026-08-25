@@ -22,7 +22,7 @@
     <a class="site-title" href="/academic-tracker/">My Academic Dashboard</a>
     <nav class="site-nav">
       <a href="/academic-tracker/" >Home</a>
-      <a href="/academic-tracker/deadlines/" >Deadlines</a>
+      <a href="/academic-tracker/deadlines/" >Up Next</a>
       <a href="/academic-tracker/reminders/" >Reminders</a>
       <a href="/academic-tracker/notes/" >Notes</a>
       <a href="/academic-tracker/materials/" >Materials</a>
@@ -43,40 +43,176 @@
 </p>
 
 
+<details class="inline-manage">
+  <summary>Edit Class Info</summary>
+  <form class="manage-form edit-form" data-edit-form data-id="cs391" data-file="classes.yaml">
+    <label>Code<input type="text" name="code" value="CS 391" required></label>
+    <label>Name<input type="text" name="name" value="Selected Topics: Security" required></label>
+    <label>Term<input type="text" name="term" value="Fall 2026"></label>
+    <label>Instructor<input type="text" name="instructor" value="Dr. Clifton Presser"></label>
+    <label>Meeting times<input type="text" name="meeting_times" value="Tue/Thu 2:35–3:50pm"></label>
+    <label>Color<input type="color" name="color" value="#2b6cb0"></label>
+    <label>Course site link (optional)<input type="url" name="materials_link" value=""></label>
+    <label>Status
+      <select name="status">
+        <option value="active" selected>active</option>
+        <option value="archived" >archived</option>
+      </select>
+    </label>
+    <button type="submit">Save</button>
+    <p class="form-status"></p>
+  </form>
+</details>
+
 <section>
   <h2>Materials</h2>
   
   <div data-list="materials">
     <ul data-reorder-list data-file="materials.yaml">
     
-      <li draggable="true" data-id="cs391-syllabus">
+      <li draggable="true" data-id="cs391-syllabus" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         Syllabus
         <span class="tag">syllabus</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs391-syllabus" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="Syllabus" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" selected>syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" >reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs391-syllabus" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="cs391-text-security">
+      <li draggable="true" data-id="cs391-text-security" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         <a href="https://web.njit.edu/~rt494/security/">Computer Systems: Planning for Success (Ryan Tolboom)</a>
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs391-text-security" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="Computer Systems: Planning for Success (Ryan Tolboom)" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value="https://web.njit.edu/~rt494/security/"></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs391-text-security" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="cs391-text-crypto">
+      <li draggable="true" data-id="cs391-text-crypto" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         <a href="https://joyofcryptography.com/">The Joy of Cryptography (Mike Rosulek)</a>
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs391-text-crypto" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="The Joy of Cryptography (Mike Rosulek)" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value="https://joyofcryptography.com/"></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs391-text-crypto" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="cs391-text-networks">
+      <li draggable="true" data-id="cs391-text-networks" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         <a href="https://intronetworks.cs.luc.edu/current2/html/">Introduction to Computer Networks (Peter L. Dordal)</a>
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs391-text-networks" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="Introduction to Computer Networks (Peter L. Dordal)" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value="https://intronetworks.cs.luc.edu/current2/html/"></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs391-text-networks" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="cs391-textbook-1cb9tbx">
+      <li draggable="true" data-id="cs391-textbook-1cb9tbx" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         textbook
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="cs391-textbook-1cb9tbx" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="textbook" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="cs391-textbook-1cb9tbx" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
     </ul>
@@ -117,7 +253,7 @@
   
     
 
-<div class="deadline-row" style="border-left-color: #2b6cb0">
+<div class="deadline-row" data-row style="border-left-color: #2b6cb0">
   <span class="deadline-date">Sep 29</span>
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Test 1</span>
@@ -132,12 +268,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs391-test1" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Test 1" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-09-29T14:35" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs391-test1" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #2b6cb0">
+<div class="deadline-row" data-row style="border-left-color: #2b6cb0">
   <span class="deadline-date">Nov 3</span>
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Test 2</span>
@@ -152,12 +310,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs391-test2" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Test 2" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-03T14:35" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs391-test2" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #2b6cb0">
+<div class="deadline-row" data-row style="border-left-color: #2b6cb0">
   <span class="deadline-date">Dec 8</span>
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Final Exam</span>
@@ -172,12 +352,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs391-final" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Final Exam" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-12-08T08:30" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Cumulative. 8:30–11:30am, proctored in the classroom.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs391-final" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #2b6cb0">
+<div class="deadline-row" data-row style="border-left-color: #2b6cb0">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Attend 2 CS Colloquia</span>
@@ -192,6 +394,28 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="cs391-colloquia" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Attend 2 CS Colloquia" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Each student must attend at least 2 Computer Science Colloquia this semester (talk to the instructor if scheduling is a problem). Specific colloquium dates aren&#39;t in the syllabus.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="cs391-colloquia" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
@@ -246,9 +470,23 @@
         
         <ul class="grade-list">
         
-          <li>
+          <li data-row>
             <span class="grade-item">Participation Class 1</span>
             <span class="grade-score">100/100</span>
+            <details class="inline-manage row-edit">
+              <summary>Edit</summary>
+              <form class="manage-form edit-form" data-edit-form data-id="cs391-grade-participation-class-1-2q8w4" data-file="grades.yaml">
+                <label>Item<input type="text" name="item" value="Participation Class 1" required></label>
+                <label>Category<input type="text" name="category" value="Participation"></label>
+                <label>Score<input type="number" step="any" name="score" value="100" required></label>
+                <label>Max<input type="number" step="any" name="max" value="100" required></label>
+                <label>Date (optional)<input type="date" name="date" value="2026-08-25"></label>
+                <button type="submit">Save</button>
+                <p class="form-status"></p>
+              </form>
+            </details>
+            <button type="button" class="delete-btn" data-delete-btn
+              data-id="cs391-grade-participation-class-1-2q8w4" data-file="grades.yaml" data-label="grade">Delete</button>
           </li>
         
         </ul>
@@ -276,12 +514,26 @@
   
   <div data-list="notes">
   
-    <div class="note">
-      <p class="note-date">Mon, Aug 24, 2026</p>
+    <div class="note" data-row>
+      <p class="note-date">Tue, Aug 25, 2026</p>
       <h3>Note - Class 1</h3>
       <div class="note-body"><p>Test</p>
 </div>
       <p><a href="https://sudo-nickpinto.github.io/academic-tracker/uploads/cs391/92rdqq-notes.md">Attachment &rarr;</a></p>
+      <div class="row-actions">
+        <details class="inline-manage row-edit">
+          <summary>Edit</summary>
+          <form class="manage-form edit-form" data-edit-form data-id="cs391-note-note-class-1-2rdqp" data-file="notes.yaml">
+            <label>Title<input type="text" name="title" value="Note - Class 1" required></label>
+            <label>Date<input type="date" name="date" value="2026-08-25"></label>
+            <label>Body (Markdown supported)<textarea name="body" required>Test</textarea></label>
+            <button type="submit">Save</button>
+            <p class="form-status"></p>
+          </form>
+        </details>
+        <button type="button" class="delete-btn" data-delete-btn
+          data-id="cs391-note-note-class-1-2rdqp" data-file="notes.yaml" data-label="note">Delete</button>
+      </div>
     </div>
   
   
@@ -308,10 +560,24 @@
   
   <div data-list="announcements">
   
-    <div class="announcement">
-      <p class="announcement-date">Mon, Aug 24, 2026</p>
+    <div class="announcement" data-row>
+      <p class="announcement-date">Tue, Aug 25, 2026</p>
       <h3>HW 1 Due Date</h3>
       <p>09/02/2026</p>
+      <div class="row-actions">
+        <details class="inline-manage row-edit">
+          <summary>Edit</summary>
+          <form class="manage-form edit-form" data-edit-form data-id="cs391-ann-hw-1-due-date-2rr32" data-file="announcements.yaml">
+            <label>Title<input type="text" name="title" value="HW 1 Due Date" required></label>
+            <label>Date<input type="date" name="date" value="2026-08-25"></label>
+            <label>Body<textarea name="body" required>09/02/2026</textarea></label>
+            <button type="submit">Save</button>
+            <p class="form-status"></p>
+          </form>
+        </details>
+        <button type="button" class="delete-btn" data-delete-btn
+          data-id="cs391-ann-hw-1-due-date-2rr32" data-file="announcements.yaml" data-label="announcement">Delete</button>
+      </div>
     </div>
   
   

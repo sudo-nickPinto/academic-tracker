@@ -1,5 +1,6 @@
-<li class="reminder-row{{ ' reminder-done' if r.done else '' }}">
+<div class="reminder-row{{ ' reminder-done' if r.done else '' }}" data-row>
   <span class="reminder-title">{{ r.title }}</span>
+  <span class="deadline-type">reminder</span>
   {% if r.note %}<span class="reminder-note">{{ r.note }}</span>{% endif %}
   {% if r.date %}<span class="reminder-date">{{ r.date | formatDateShort }}</span>{% endif %}
   <button type="button" class="toggle-btn" data-toggle-btn
@@ -7,4 +8,16 @@
     data-value-true="true" data-value-false="false"
     data-current="{{ 'true' if r.done else 'false' }}"
     data-label="{{ 'Mark not done' if r.done else 'Mark done' }}">{{ 'Mark not done' if r.done else 'Mark done' }}</button>
-</li>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="{{ r.id }}" data-file="reminders.yaml">
+      <label>Title<input type="text" name="title" value="{{ r.title }}" required></label>
+      <label>Date (optional)<input type="date" name="date" value="{{ r.date }}"></label>
+      <label>Note (optional)<input type="text" name="note" value="{{ r.note }}"></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="{{ r.id }}" data-file="reminders.yaml" data-label="reminder">Delete</button>
+</div>

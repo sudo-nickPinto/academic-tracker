@@ -22,7 +22,7 @@
     <a class="site-title" href="/academic-tracker/">My Academic Dashboard</a>
     <nav class="site-nav">
       <a href="/academic-tracker/" >Home</a>
-      <a href="/academic-tracker/deadlines/" >Deadlines</a>
+      <a href="/academic-tracker/deadlines/" >Up Next</a>
       <a href="/academic-tracker/reminders/" >Reminders</a>
       <a href="/academic-tracker/notes/" >Notes</a>
       <a href="/academic-tracker/materials/" >Materials</a>
@@ -43,46 +43,205 @@
 </p>
 
 
+<details class="inline-manage">
+  <summary>Edit Class Info</summary>
+  <form class="manage-form edit-form" data-edit-form data-id="eng216" data-file="classes.yaml">
+    <label>Code<input type="text" name="code" value="ENG 216" required></label>
+    <label>Name<input type="text" name="name" value="The Thief with a Heart of Gold: The Fact &amp; Fiction of Robin Hood and the Myth of the Outlaw Hero" required></label>
+    <label>Term<input type="text" name="term" value="Fall 2026"></label>
+    <label>Instructor<input type="text" name="instructor" value="C. Fee"></label>
+    <label>Meeting times<input type="text" name="meeting_times" value="Mon/Wed/Fri 11:00–11:50am, Breidenbaugh 312"></label>
+    <label>Color<input type="color" name="color" value="#9c4221"></label>
+    <label>Course site link (optional)<input type="url" name="materials_link" value=""></label>
+    <label>Status
+      <select name="status">
+        <option value="active" selected>active</option>
+        <option value="archived" >archived</option>
+      </select>
+    </label>
+    <button type="submit">Save</button>
+    <p class="form-status"></p>
+  </form>
+</details>
+
 <section>
   <h2>Materials</h2>
   
   <div data-list="materials">
     <ul data-reorder-list data-file="materials.yaml">
     
-      <li draggable="true" data-id="eng216-syllabus">
+      <li draggable="true" data-id="eng216-syllabus" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         Syllabus
         <span class="tag">syllabus</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="eng216-syllabus" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="Syllabus" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" selected>syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" >reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="eng216-syllabus" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="eng216-required-text">
+      <li draggable="true" data-id="eng216-required-text" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         <a href="https://metseditions.org/editions/0pA5QGajC2P8qU3LrhVA5RIRGyYR6aMq">Robin Hood and Other Outlaw Tales (Knight, Ohlgren, Kelly, eds.)</a>
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="eng216-required-text" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="Robin Hood and Other Outlaw Tales (Knight, Ohlgren, Kelly, eds.)" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value="https://metseditions.org/editions/0pA5QGajC2P8qU3LrhVA5RIRGyYR6aMq"></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="eng216-required-text" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="eng216-eng-216-ai-employment-statement-1-pb150r">
+      <li draggable="true" data-id="eng216-eng-216-ai-employment-statement-1-pb150r" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         ENG 216 AI Employment Statement (1)
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="eng216-eng-216-ai-employment-statement-1-pb150r" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="ENG 216 AI Employment Statement (1)" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="eng216-eng-216-ai-employment-statement-1-pb150r" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="eng216-eng-216-ai-employment-statement-16r0gvd">
+      <li draggable="true" data-id="eng216-eng-216-ai-employment-statement-16r0gvd" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         ENG 216 AI Employment Statement
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="eng216-eng-216-ai-employment-statement-16r0gvd" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="ENG 216 AI Employment Statement" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="eng216-eng-216-ai-employment-statement-16r0gvd" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="eng216-robin-hood-outlaw-tales-u65iiu">
+      <li draggable="true" data-id="eng216-robin-hood-outlaw-tales-u65iiu" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         Robin Hood Outlaw Tales
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="eng216-robin-hood-outlaw-tales-u65iiu" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="Robin Hood Outlaw Tales" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="eng216-robin-hood-outlaw-tales-u65iiu" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
-      <li draggable="true" data-id="eng216-1-eng216-robin-hood-po86cm">
+      <li draggable="true" data-id="eng216-1-eng216-robin-hood-po86cm" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         (1) ENG216 Robin Hood
         <span class="tag">reading</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="eng216-1-eng216-robin-hood-po86cm" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="(1) ENG216 Robin Hood" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" >syllabus</option>
+                  <option value="slides" >slides</option>
+                  <option value="reading" selected>reading</option>
+                  <option value="recording" >recording</option>
+                  <option value="link" >link</option>
+                  <option value="other" >other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value=""></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="eng216-1-eng216-robin-hood-po86cm" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     
     </ul>
@@ -123,7 +282,7 @@
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Oct 1</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Deadline to request accommodation for Outlaw Expedition</span>
@@ -138,12 +297,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-accommodation-deadline" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Deadline to request accommodation for Outlaw Expedition" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-10-01T23:59" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Confer privately with the instructor by this date if you need an alternative to the 10/30 field trip.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-accommodation-deadline" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Oct 2</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Merry Band of Outlaws Activity Report 1</span>
@@ -158,12 +339,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-report1" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Merry Band of Outlaws Activity Report 1" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-10-02T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-report1" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Oct 16</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Merry Band of Outlaws Activity Report 2</span>
@@ -178,12 +381,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-report2" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Merry Band of Outlaws Activity Report 2" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-10-16T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-report2" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Oct 30</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Outlaw Expedition &amp; Campfire Saga Sing-a-long (field trip)</span>
@@ -198,12 +423,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-field-trip" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Outlaw Expedition &amp; Campfire Saga Sing-a-long (field trip)" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" selected>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-10-30T15:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Late afternoon field trip, ~20 miles off campus.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-field-trip" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 2</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Midterm Exam</span>
@@ -218,12 +465,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-midterm" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Midterm Exam" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-02T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-midterm" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 13</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Merry Band of Outlaws Activity Report 3</span>
@@ -238,12 +507,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-report3" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Merry Band of Outlaws Activity Report 3" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-13T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-report3" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 20</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Re-envisioning Robin Collage Poster Project</span>
@@ -258,12 +549,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-collage-project" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Re-envisioning Robin Collage Poster Project" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" selected>project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-20T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Due and presented in class during Week 13 — syllabus doesn&#39;t specify the exact day; confirm with instructor.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-collage-project" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 23</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Merry Band of Outlaws Activity Report 4</span>
@@ -278,12 +591,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-report4" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Merry Band of Outlaws Activity Report 4" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-23T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes"></textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-report4" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 23</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Robin Reinterpreted Multimedia Review</span>
@@ -298,12 +633,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-multimedia-review" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Robin Reinterpreted Multimedia Review" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" selected>project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-23T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Due and presented in class during Week 14.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-multimedia-review" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">Nov 23</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Sherwood Chronicles</span>
@@ -318,12 +675,34 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-sherwood-chronicles" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Sherwood Chronicles" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" selected>assignment</option>
+          <option value="exam" >exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-23T11:00" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Syllabus says &#39;due Friday&#39; but that Friday (11/27) is Thanksgiving break — confirm the actual due date with the instructor.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-sherwood-chronicles" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   
     
 
-<div class="deadline-row" style="border-left-color: #9c4221">
+<div class="deadline-row" data-row style="border-left-color: #9c4221">
   <span class="deadline-date">TBD</span>
   <span class="deadline-class" style="color: #9c4221">ENG 216</span>
   <span class="deadline-title">Final Exam</span>
@@ -338,6 +717,28 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="false"
     data-label="Mark done">Mark done</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="eng216-final" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="Final Exam" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" >assignment</option>
+          <option value="exam" selected>exam</option>
+          <option value="reading" >reading</option>
+          <option value="project" >project</option>
+          <option value="other" >other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Link (optional)<input type="url" name="link" value=""></label>
+      <label>Notes (optional)<textarea name="notes">Date set by the registrar during finals week — not yet in the syllabus.</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="eng216-final" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>
 
   

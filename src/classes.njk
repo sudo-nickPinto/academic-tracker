@@ -16,16 +16,60 @@ eleventyComputed:
 </p>
 {% if class.materials_link %}<p><a href="{{ class.materials_link }}">Course site &rarr;</a></p>{% endif %}
 
+<details class="inline-manage">
+  <summary>Edit Class Info</summary>
+  <form class="manage-form edit-form" data-edit-form data-id="{{ class.id }}" data-file="classes.yaml">
+    <label>Code<input type="text" name="code" value="{{ class.code }}" required></label>
+    <label>Name<input type="text" name="name" value="{{ class.name }}" required></label>
+    <label>Term<input type="text" name="term" value="{{ class.term }}"></label>
+    <label>Instructor<input type="text" name="instructor" value="{{ class.instructor }}"></label>
+    <label>Meeting times<input type="text" name="meeting_times" value="{{ class.meeting_times }}"></label>
+    <label>Color<input type="color" name="color" value="{{ class.color or '#2b6cb0' }}"></label>
+    <label>Course site link (optional)<input type="url" name="materials_link" value="{{ class.materials_link }}"></label>
+    <label>Status
+      <select name="status">
+        <option value="active" {{ "selected" if class.status == "active" }}>active</option>
+        <option value="archived" {{ "selected" if class.status == "archived" }}>archived</option>
+      </select>
+    </label>
+    <button type="submit">Save</button>
+    <p class="form-status"></p>
+  </form>
+</details>
+
 <section>
   <h2>Materials</h2>
   {% set classMaterials = materials | byClass(class.id) %}
   <div data-list="materials">
     <ul data-reorder-list data-file="materials.yaml">
     {% for m in classMaterials %}
-      <li draggable="true" data-id="{{ m.id }}">
+      <li draggable="true" data-id="{{ m.id }}" data-row>
         <span class="drag-handle" aria-hidden="true">⠿</span>
         {% if m.link %}<a href="{{ m.link }}">{{ m.title }}</a>{% else %}{{ m.title }}{% endif %}
         <span class="tag">{{ m.type }}</span>
+        <span class="row-actions" draggable="false">
+          <details class="inline-manage row-edit">
+            <summary>Edit</summary>
+            <form class="manage-form edit-form" data-edit-form data-id="{{ m.id }}" data-file="materials.yaml">
+              <label>Title<input type="text" name="title" value="{{ m.title }}" required></label>
+              <label>Type
+                <select name="type">
+                  <option value="syllabus" {{ "selected" if m.type == "syllabus" }}>syllabus</option>
+                  <option value="slides" {{ "selected" if m.type == "slides" }}>slides</option>
+                  <option value="reading" {{ "selected" if m.type == "reading" }}>reading</option>
+                  <option value="recording" {{ "selected" if m.type == "recording" }}>recording</option>
+                  <option value="link" {{ "selected" if m.type == "link" }}>link</option>
+                  <option value="other" {{ "selected" if m.type == "other" }}>other</option>
+                </select>
+              </label>
+              <label>Link<input type="url" name="link" value="{{ m.link }}"></label>
+              <button type="submit">Save</button>
+              <p class="form-status"></p>
+            </form>
+          </details>
+          <button type="button" class="delete-btn" data-delete-btn
+            data-id="{{ m.id }}" data-file="materials.yaml" data-label="material">Delete</button>
+        </span>
       </li>
     {% endfor %}
     </ul>
@@ -107,9 +151,23 @@ eleventyComputed:
         {% endif %}
         <ul class="grade-list">
         {% for g in cat.entries %}
-          <li>
+          <li data-row>
             <span class="grade-item">{{ g.item }}</span>
             {% if g.score != null and g.max != null %}<span class="grade-score">{{ g.score }}/{{ g.max }}</span>{% endif %}
+            <details class="inline-manage row-edit">
+              <summary>Edit</summary>
+              <form class="manage-form edit-form" data-edit-form data-id="{{ g.id }}" data-file="grades.yaml">
+                <label>Item<input type="text" name="item" value="{{ g.item }}" required></label>
+                <label>Category<input type="text" name="category" value="{{ g.category }}"></label>
+                <label>Score<input type="number" step="any" name="score" value="{{ g.score }}" required></label>
+                <label>Max<input type="number" step="any" name="max" value="{{ g.max }}" required></label>
+                <label>Date (optional)<input type="date" name="date" value="{{ g.date }}"></label>
+                <button type="submit">Save</button>
+                <p class="form-status"></p>
+              </form>
+            </details>
+            <button type="button" class="delete-btn" data-delete-btn
+              data-id="{{ g.id }}" data-file="grades.yaml" data-label="grade">Delete</button>
           </li>
         {% endfor %}
         </ul>
@@ -137,11 +195,25 @@ eleventyComputed:
   {% set classNotes = notes | byClass(class.id) | sortByDate("date") | reverse %}
   <div data-list="notes">
   {% for n in classNotes %}
-    <div class="note">
+    <div class="note" data-row>
       <p class="note-date">{{ n.date | formatDate }}</p>
       <h3>{{ n.title }}</h3>
       <div class="note-body">{{ n.body | markdown | safe }}</div>
       {% if n.attachment %}<p><a href="{{ n.attachment }}">Attachment &rarr;</a></p>{% endif %}
+      <div class="row-actions">
+        <details class="inline-manage row-edit">
+          <summary>Edit</summary>
+          <form class="manage-form edit-form" data-edit-form data-id="{{ n.id }}" data-file="notes.yaml">
+            <label>Title<input type="text" name="title" value="{{ n.title }}" required></label>
+            <label>Date<input type="date" name="date" value="{{ n.date }}"></label>
+            <label>Body (Markdown supported)<textarea name="body" required>{{ n.body }}</textarea></label>
+            <button type="submit">Save</button>
+            <p class="form-status"></p>
+          </form>
+        </details>
+        <button type="button" class="delete-btn" data-delete-btn
+          data-id="{{ n.id }}" data-file="notes.yaml" data-label="note">Delete</button>
+      </div>
     </div>
   {% endfor %}
   {% if classNotes.length == 0 %}<p class="empty">No notes yet.</p>{% endif %}
@@ -168,10 +240,24 @@ eleventyComputed:
   {% set classAnn = announcements | byClass(class.id) | sortByDate("date") | reverse %}
   <div data-list="announcements">
   {% for a in classAnn %}
-    <div class="announcement">
+    <div class="announcement" data-row>
       <p class="announcement-date">{{ a.date | formatDate }}</p>
       <h3>{{ a.title }}</h3>
       <p>{{ a.body }}</p>
+      <div class="row-actions">
+        <details class="inline-manage row-edit">
+          <summary>Edit</summary>
+          <form class="manage-form edit-form" data-edit-form data-id="{{ a.id }}" data-file="announcements.yaml">
+            <label>Title<input type="text" name="title" value="{{ a.title }}" required></label>
+            <label>Date<input type="date" name="date" value="{{ a.date }}"></label>
+            <label>Body<textarea name="body" required>{{ a.body }}</textarea></label>
+            <button type="submit">Save</button>
+            <p class="form-status"></p>
+          </form>
+        </details>
+        <button type="button" class="delete-btn" data-delete-btn
+          data-id="{{ a.id }}" data-file="announcements.yaml" data-label="announcement">Delete</button>
+      </div>
     </div>
   {% endfor %}
   {% if classAnn.length == 0 %}<p class="empty">No announcements yet.</p>{% endif %}

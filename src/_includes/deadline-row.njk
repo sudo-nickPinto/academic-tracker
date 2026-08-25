@@ -1,6 +1,6 @@
 {% set cls = classes | classById(d.class_id) %}
 {% set daysLeft = d.due_date | daysUntil %}
-<div class="deadline-row" style="border-left-color: {{ cls.color or '#888' }}">
+<div class="deadline-row" data-row style="border-left-color: {{ cls.color or '#888' }}">
   <span class="deadline-date">{{ d.due_date | formatDateShort }}</span>
   <span class="deadline-class" style="color: {{ cls.color or '#888' }}">{{ cls.code or d.class_id }}</span>
   <span class="deadline-title">{{ d.title }}</span>
@@ -18,4 +18,26 @@
     data-value-true="done" data-value-false="upcoming"
     data-current="{{ 'true' if d.status == 'done' else 'false' }}"
     data-label="{{ 'Mark not done' if d.status == 'done' else 'Mark done' }}">{{ 'Mark not done' if d.status == 'done' else 'Mark done' }}</button>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="{{ d.id }}" data-file="deadlines.yaml">
+      <label>Title<input type="text" name="title" value="{{ d.title }}" required></label>
+      <label>Type
+        <select name="type">
+          <option value="assignment" {{ "selected" if d.type == "assignment" }}>assignment</option>
+          <option value="exam" {{ "selected" if d.type == "exam" }}>exam</option>
+          <option value="reading" {{ "selected" if d.type == "reading" }}>reading</option>
+          <option value="project" {{ "selected" if d.type == "project" }}>project</option>
+          <option value="other" {{ "selected" if d.type == "other" }}>other</option>
+        </select>
+      </label>
+      <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="{{ d.due_date }}" required></label>
+      <label>Link (optional)<input type="url" name="link" value="{{ d.link }}"></label>
+      <label>Notes (optional)<textarea name="notes">{{ d.notes }}</textarea></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="{{ d.id }}" data-file="deadlines.yaml" data-label="deadline">Delete</button>
 </div>

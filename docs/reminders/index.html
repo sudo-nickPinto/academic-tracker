@@ -22,7 +22,7 @@
     <a class="site-title" href="/academic-tracker/">My Academic Dashboard</a>
     <nav class="site-nav">
       <a href="/academic-tracker/" >Home</a>
-      <a href="/academic-tracker/deadlines/" >Deadlines</a>
+      <a href="/academic-tracker/deadlines/" >Up Next</a>
       <a href="/academic-tracker/reminders/" >Reminders</a>
       <a href="/academic-tracker/notes/" >Notes</a>
       <a href="/academic-tracker/materials/" >Materials</a>
@@ -42,37 +42,63 @@
 
 <section>
   <h2>Pending</h2>
-  <ul class="reminder-list">
-  <li class="reminder-row">
+  <div class="reminder-list">
+  <div class="reminder-row" data-row>
   <span class="reminder-title">Last day to withdraw from Fall 2026 courses</span>
+  <span class="deadline-type">reminder</span>
   <span class="reminder-note">University-wide date, noted in the CS 391 syllabus.</span>
-  <span class="reminder-date">Nov 5</span>
+  <span class="reminder-date">Nov 6</span>
   <button type="button" class="toggle-btn" data-toggle-btn
     data-id="withdraw-deadline" data-file="reminders.yaml" data-field="done"
     data-value-true="true" data-value-false="false"
     data-current="false"
     data-label="Mark done">Mark done</button>
-</li>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="withdraw-deadline" data-file="reminders.yaml">
+      <label>Title<input type="text" name="title" value="Last day to withdraw from Fall 2026 courses" required></label>
+      <label>Date (optional)<input type="date" name="date" value="2026-11-06"></label>
+      <label>Note (optional)<input type="text" name="note" value="University-wide date, noted in the CS 391 syllabus."></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="withdraw-deadline" data-file="reminders.yaml" data-label="reminder">Delete</button>
+</div>
 
-  </ul>
+  </div>
   
 </section>
 
 <section>
   <h2>Done</h2>
-  <ul class="reminder-list">
-  <li class="reminder-row reminder-done">
+  <div class="reminder-list">
+  <div class="reminder-row reminder-done" data-row>
   <span class="reminder-title">Test</span>
+  <span class="deadline-type">reminder</span>
   <span class="reminder-note">Test to delete</span>
-  <span class="reminder-date">Aug 24</span>
+  <span class="reminder-date">Aug 25</span>
   <button type="button" class="toggle-btn" data-toggle-btn
     data-id="reminder-test-0a9vs" data-file="reminders.yaml" data-field="done"
     data-value-true="true" data-value-false="false"
     data-current="true"
     data-label="Mark not done">Mark not done</button>
-</li>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="reminder-test-0a9vs" data-file="reminders.yaml">
+      <label>Title<input type="text" name="title" value="Test" required></label>
+      <label>Date (optional)<input type="date" name="date" value="2026-08-25"></label>
+      <label>Note (optional)<input type="text" name="note" value="Test to delete"></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="reminder-test-0a9vs" data-file="reminders.yaml" data-label="reminder">Delete</button>
+</div>
 
-  </ul>
+  </div>
   
 </section>
 

@@ -22,7 +22,7 @@
     <a class="site-title" href="/academic-tracker/">My Academic Dashboard</a>
     <nav class="site-nav">
       <a href="/academic-tracker/" >Home</a>
-      <a href="/academic-tracker/deadlines/" >Deadlines</a>
+      <a href="/academic-tracker/deadlines/" >Up Next</a>
       <a href="/academic-tracker/reminders/" >Reminders</a>
       <a href="/academic-tracker/notes/" >Notes</a>
       <a href="/academic-tracker/materials/" >Materials</a>
@@ -85,19 +85,32 @@
     
     
       <h3 class="subsection">Reminders</h3>
-      <ul class="reminder-list">
-      <li class="reminder-row">
+      <div class="reminder-list">
+      <div class="reminder-row" data-row>
   <span class="reminder-title">Last day to withdraw from Fall 2026 courses</span>
+  <span class="deadline-type">reminder</span>
   <span class="reminder-note">University-wide date, noted in the CS 391 syllabus.</span>
-  <span class="reminder-date">Nov 5</span>
+  <span class="reminder-date">Nov 6</span>
   <button type="button" class="toggle-btn" data-toggle-btn
     data-id="withdraw-deadline" data-file="reminders.yaml" data-field="done"
     data-value-true="true" data-value-false="false"
     data-current="false"
     data-label="Mark done">Mark done</button>
-</li>
+  <details class="inline-manage row-edit">
+    <summary>Edit</summary>
+    <form class="manage-form edit-form" data-edit-form data-id="withdraw-deadline" data-file="reminders.yaml">
+      <label>Title<input type="text" name="title" value="Last day to withdraw from Fall 2026 courses" required></label>
+      <label>Date (optional)<input type="date" name="date" value="2026-11-06"></label>
+      <label>Note (optional)<input type="text" name="note" value="University-wide date, noted in the CS 391 syllabus."></label>
+      <button type="submit">Save</button>
+      <p class="form-status"></p>
+    </form>
+  </details>
+  <button type="button" class="delete-btn" data-delete-btn
+    data-id="withdraw-deadline" data-file="reminders.yaml" data-label="reminder">Delete</button>
+</div>
 
-      </ul>
+      </div>
     
   
 </section>
@@ -108,7 +121,7 @@
   
     <p class="empty">Nothing on the calendar for the next 7 days.</p>
   
-  <p><a href="/academic-tracker/deadlines.ics">Subscribe to calendar (.ics) &rarr;</a> &middot; <a href="/academic-tracker/deadlines/">See all deadlines &rarr;</a></p>
+  <p><a href="/academic-tracker/deadlines.ics">Subscribe to calendar (.ics) &rarr;</a> &middot; <a href="/academic-tracker/deadlines/">See what's up next &rarr;</a></p>
 </section>
 
 <section>
@@ -156,14 +169,14 @@
   
     
     <div class="announcement">
-      <p class="announcement-date">Mon, Aug 24, 2026 &middot; CS 391</p>
+      <p class="announcement-date">Tue, Aug 25, 2026 &middot; CS 391</p>
       <h3>HW 1 Due Date</h3>
       <p>09/02/2026</p>
     </div>
   
     
     <div class="announcement">
-      <p class="announcement-date">Mon, Aug 24, 2026 &middot; CS 360</p>
+      <p class="announcement-date">Tue, Aug 25, 2026 &middot; CS 360</p>
       <h3>Welcome to CS360</h3>
       <p>Welcome to CS360. Please check the course webpage regularly.</p>
     </div>
