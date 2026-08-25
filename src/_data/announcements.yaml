@@ -13,3 +13,10 @@
   title: "Welcome to CS360"
   body: "Welcome to CS360. Please check the course webpage regularly."
   source: manual
+
+- id: "cs391-ann-hw-1-due-date-2rr32"
+  class_id: "cs391"
+  date: "2026-08-25"
+  title: "HW 1 Due Date"
+  body: "09/02/2026"
+  source: "manual"

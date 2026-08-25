@@ -7,4 +7,10 @@
 #   title: ""
 #   body: |
 #     Markdown content here.
-[]
+
+- id: "cs391-note-note-class-1-2rdqp"
+  class_id: "cs391"
+  date: "2026-08-25"
+  title: "Note - Class 1"
+  body: "Test"
+  attachment: "https://sudo-nickpinto.github.io/academic-tracker/uploads/cs391/92rdqq-notes.md"
