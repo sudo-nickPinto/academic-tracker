@@ -29,6 +29,15 @@
   link: ""
   notes: "Cumulative. 8:30–11:30am, proctored in the classroom."
 
+- id: cs391-colloquia
+  class_id: cs391
+  title: "Attend 2 CS Colloquia"
+  type: other
+  due_date: "TBD"
+  status: upcoming
+  link: ""
+  notes: "Each student must attend at least 2 Computer Science Colloquia this semester (talk to the instructor if scheduling is a problem). Specific colloquium dates aren't in the syllabus."
+
 - id: eng216-accommodation-deadline
   class_id: eng216
   title: "Deadline to request accommodation for Outlaw Expedition"
