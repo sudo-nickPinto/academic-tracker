@@ -4,7 +4,8 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "sync:outlook": "node scripts/sync-outlook.js"
+    "sync:outlook": "node scripts/sync-outlook.js",
+    "sync:materials": "node scripts/sync-materials.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",

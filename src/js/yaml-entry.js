@@ -72,6 +72,19 @@ export function setEntryField(fileText, id, field, newValue) {
   return fileText.slice(0, blockStart) + newBlock + fileText.slice(blockEnd);
 }
 
+/**
+ * Replaces one top-level field's value in a singleton (non-list) data file
+ * like site.yaml. Same field-matching regex as setEntryField, minus the
+ * `- id:`-block scoping — there's no list entry to scope to.
+ */
+export function setField(fileText, field, newValue) {
+  const pattern = new RegExp(`(^|\\n)(${escapeRegExp(field)}: ).*?(\\n|$)`);
+  if (!pattern.test(fileText)) {
+    throw new Error(`No "${field}" field found in this file.`);
+  }
+  return fileText.replace(pattern, (_, pre, mid, suffix) => `${pre}${mid}${dumpValue(newValue)}${suffix}`);
+}
+
 export function slugify(s) {
   return String(s || "")
     .toLowerCase()

@@ -11,7 +11,7 @@
       } catch (e) {}
     })();
   </script>
-  <title>Materials</title>
+  <title>Setup</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -35,130 +35,56 @@
     </nav>
   </header>
   <main>
-    <h1>Materials</h1>
+    <h1>Setup</h1>
+<p class="subtitle">One-time setup for a fresh fork of this dashboard. Fill this in once, right after forking — it configures this repo's site settings and adds your first class, straight from the browser.</p>
 
+<form id="form-setup" class="manage-form">
+  <section>
+    <h2>Your repo</h2>
+    <label>Repo (<code>owner/repo</code>)<input type="text" name="repo" placeholder="yourname/academic-tracker" required></label>
+    <p class="hint">The GitHub repo this fork lives in — everything below commits directly to it via the GitHub API.</p>
 
+    <h2>GitHub token</h2>
+    <p>Create a <strong>fine-grained personal access token</strong> at
+      <a href="https://github.com/settings/personal-access-tokens/new">github.com/settings/personal-access-tokens/new</a>,
+      scoped to just the repo you typed above, with these repository permissions:</p>
+    <ul>
+      <li><strong>Contents:</strong> Read and write</li>
+      <li><strong>Actions:</strong> Read and write <span class="hint">— lets it trigger a rebuild right after a commit</span></li>
+      <li><strong>Metadata:</strong> Read-only <span class="hint">— required by GitHub for every fine-grained token</span></li>
+    </ul>
+    <p class="hint">The token is stored only in this browser's local storage — never written to any file in the repo. Once saved here, <a href="/academic-tracker/settings/">Settings</a> and <a href="/academic-tracker/manage/">Manage</a> already have it too.</p>
+    <label>Token<input type="password" name="token" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required></label>
+  </section>
 
-  
-    
-    
-      <section>
-        <h2 style="border-bottom-color: #2b6cb0"><a href="/academic-tracker/classes/cs391/" style="color: #2b6cb0">CS 391</a></h2>
-        <ul class="materials-list">
-        
-          <li>
-            Syllabus
-            <span class="tag">syllabus</span>
-          </li>
-        
-          <li>
-            <a href="https://web.njit.edu/~rt494/security/">Computer Systems: Planning for Success (Ryan Tolboom)</a>
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            <a href="https://joyofcryptography.com/">The Joy of Cryptography (Mike Rosulek)</a>
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            <a href="https://intronetworks.cs.luc.edu/current2/html/">Introduction to Computer Networks (Peter L. Dordal)</a>
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            textbook
-            <span class="tag">reading</span>
-          </li>
-        
-        </ul>
-      </section>
-    
-  
-    
-    
-      <section>
-        <h2 style="border-bottom-color: #9c4221"><a href="/academic-tracker/classes/eng216/" style="color: #9c4221">ENG 216</a></h2>
-        <ul class="materials-list">
-        
-          <li>
-            Syllabus
-            <span class="tag">syllabus</span>
-          </li>
-        
-          <li>
-            <a href="https://metseditions.org/editions/0pA5QGajC2P8qU3LrhVA5RIRGyYR6aMq">Robin Hood and Other Outlaw Tales (Knight, Ohlgren, Kelly, eds.)</a>
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            ENG 216 AI Employment Statement (1)
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            ENG 216 AI Employment Statement
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            Robin Hood Outlaw Tales
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            (1) ENG216 Robin Hood
-            <span class="tag">reading</span>
-          </li>
-        
-        </ul>
-      </section>
-    
-  
-    
-    
-  
-    
-    
-      <section>
-        <h2 style="border-bottom-color: #6b46c1"><a href="/academic-tracker/classes/cs440/" style="color: #6b46c1">CS 440</a></h2>
-        <ul class="materials-list">
-        
-          <li>
-            textbook
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            CS_440_A_Fall_2026_ Instructions for Individual Reports _ Moodle Home
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            CS_440_A_Fall_2026_ Instructions for Meeting Minutes _ Moodle Home
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            SRS_Rubric_f26
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            srs example1
-            <span class="tag">reading</span>
-          </li>
-        
-          <li>
-            srs example2
-            <span class="tag">reading</span>
-          </li>
-        
-        </ul>
-      </section>
-    
-  
+  <section>
+    <h2>Site</h2>
+    <label>Title<input type="text" name="title" placeholder="My Academic Dashboard" required></label>
+    <label>Current term<input type="text" name="current_term" placeholder="Fall 2026" required></label>
+  </section>
 
+  <section>
+    <h2>First class <span class="hint">(optional — skip and add classes from <a href="/academic-tracker/manage/">Manage</a> later if you'd rather)</span></h2>
+    <label>Code<input type="text" name="code" placeholder="CS 420"></label>
+    <label>ID (slug — optional, derived from the code if left blank)<input type="text" name="id" placeholder="cs420"></label>
+    <label>Name<input type="text" name="name" placeholder="Full course title"></label>
+    <label>Term<input type="text" name="term" placeholder="e.g. same as Current Term above"></label>
+    <label>Instructor<input type="text" name="instructor"></label>
+    <label>Meeting times<input type="text" name="meeting_times" placeholder="Tue/Thu 2:35–3:50pm, Room 213"></label>
+    <label>Color<input type="color" name="color" value="#2b6cb0"></label>
+    <label>Course site link (optional)<input type="url" name="materials_link"></label>
+  </section>
+
+  <label class="setup-confirm">
+    <input type="checkbox" name="confirm" required>
+    This will set this repo's site title/term and add this class — only needed once, right after forking. Running it again on an already-configured repo will overwrite its title and term.
+  </label>
+
+  <button type="submit">Set up my instance</button>
+  <p class="form-status"></p>
+</form>
+
+<script type="module" src="/academic-tracker/js/setup.js"></script>
 
   </main>
   <footer class="site-footer">

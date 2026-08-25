@@ -41,3 +41,80 @@
   type: reading
   link: "https://metseditions.org/editions/0pA5QGajC2P8qU3LrhVA5RIRGyYR6aMq"
   date_added: "2026-08-23"
+
+- id: cs440-textbook-1jzp01h
+  class_id: cs440
+  title: textbook
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: cs440-cs-440-a-fall-2026-instructions-for-indi-4rxkev
+  class_id: cs440
+  title: CS_440_A_Fall_2026_ Instructions for Individual Reports _ Moodle Home
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: cs440-cs-440-a-fall-2026-instructions-for-meet-1f5xui5
+  class_id: cs440
+  title: CS_440_A_Fall_2026_ Instructions for Meeting Minutes _ Moodle Home
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: cs440-srs-rubric-f26-1j09j6n
+  class_id: cs440
+  title: SRS_Rubric_f26
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: cs440-srs-example1-yeri3t
+  class_id: cs440
+  title: srs example1
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: cs440-srs-example2-yfgx62
+  class_id: cs440
+  title: srs example2
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: cs391-textbook-1cb9tbx
+  class_id: cs391
+  title: textbook
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: eng216-eng-216-ai-employment-statement-1-pb150r
+  class_id: eng216
+  title: ENG 216 AI Employment Statement (1)
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: eng216-eng-216-ai-employment-statement-16r0gvd
+  class_id: eng216
+  title: ENG 216 AI Employment Statement
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: eng216-robin-hood-outlaw-tales-u65iiu
+  class_id: eng216
+  title: Robin Hood Outlaw Tales
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
+
+- id: eng216-1-eng216-robin-hood-po86cm
+  class_id: eng216
+  title: (1) ENG216 Robin Hood
+  type: reading
+  link: ""
+  date_added: "2026-08-25"
