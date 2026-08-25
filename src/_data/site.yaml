@@ -1,9 +1,10 @@
 title: "My Academic Dashboard"
-current_term: "Fall 2026"
-last_refreshed: "2026-08-23T15:00"
+current_term: ""
+last_refreshed: ""
 # "owner/repo" on GitHub — used by the on-site Manage/Settings pages (src/js/gh-client.js)
 # to know which repo to commit to via the GitHub REST API. Not a secret.
-repo: "sudo-nickPinto/academic-tracker"
+# Blank until you run /setup/ (or set it by hand) — see CLAUDE.md's "refresh" workflow.
+repo: ""
 # Workflow file (in .github/workflows/) that rebuilds and pushes docs/ — dispatched
 # automatically after an on-site edit so the live site picks it up.
 rebuild_workflow: "nightly-rebuild.yml"

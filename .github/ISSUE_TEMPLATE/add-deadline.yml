@@ -8,10 +8,7 @@ body:
     attributes:
       label: Class
       options:
-        - cs391
-        - eng216
-        - cs360
-        - cs440
+        - "no-classes-yet — add a class first (via /setup/ or /manage/), then edit this dropdown"
     validations:
       required: true
   - type: input

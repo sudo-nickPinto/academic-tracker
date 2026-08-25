@@ -1,8 +1,3 @@
 # Personal reminders not tied to a specific class. `date` is optional — omit for a standing reminder.
 
-- id: withdraw-deadline
-  title: "Last day to withdraw from Fall 2026 courses"
-  date: "2026-11-06"
-  note: "University-wide date, noted in the CS 391 syllabus."
-  done: false
-
+[]
