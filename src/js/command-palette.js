@@ -96,21 +96,35 @@ function buildPalette() {
     } else if (e.key === "Enter") {
       e.preventDefault();
       if (filtered[activeIndex]) go(filtered[activeIndex]);
-    } else if (e.key === "Escape") {
-      e.preventDefault();
-      closePalette();
     }
   });
+
+  const closeBtn = createEl("button", {
+    className: "cmdk-close",
+    text: "×",
+    attrs: { type: "button", "aria-label": "Close quick jump" },
+  });
+  closeBtn.addEventListener("click", closePalette);
+
+  const header = createEl("div", { className: "cmdk-header", children: [input, closeBtn] });
 
   const panel = createEl("div", {
     className: "cmdk-panel",
     attrs: { role: "dialog", "aria-modal": "true", "aria-label": "Quick jump" },
-    children: [input, list],
+    children: [header, list],
   });
 
   overlay = createEl("div", { className: "cmdk-overlay", attrs: { hidden: "" }, children: [panel] });
   overlay.addEventListener("mousedown", (e) => {
     if (e.target === overlay) closePalette();
+  });
+  // Escape lives here (not on `input`) so it closes the palette no matter which
+  // focusable element inside currently has focus — the search box or the close button.
+  overlay.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closePalette();
+    }
   });
   document.body.appendChild(overlay);
 }

@@ -3,7 +3,14 @@ const md = require("markdown-it")({ html: false, linkify: true, breaks: true });
 
 function parseDate(str) {
   if (!str) return null;
-  const d = new Date(str);
+  // A date-only string ("YYYY-MM-DD") parses as UTC midnight per spec, but
+  // every caller here reads it back with *local* getters/formatters — in a
+  // negative-UTC-offset zone (e.g. America/New_York) that silently rewinds
+  // the date by one day. Force date-only strings to parse as local midnight
+  // instead, matching how datetime strings (which already include a time)
+  // are parsed.
+  const dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(str);
+  const d = new Date(dateOnly ? `${str}T00:00:00` : str);
   return isNaN(d.getTime()) ? null : d;
 }
 
