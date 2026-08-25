@@ -9,5 +9,5 @@
 - id: "reminder-test-0a9vs"
   title: "Test"
   note: "Test to delete"
-  done: false
+  done: true
   date: "2026-08-25"
