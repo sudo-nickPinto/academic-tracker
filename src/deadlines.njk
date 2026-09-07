@@ -12,7 +12,7 @@ permalink: "/deadlines/"
 
 <section>
   <h2>Overdue</h2>
-  {% set overdueList = active | overdue %}
+  {% set overdueList = active | overdue | sortByEstimate("estimated_minutes") %}
   <div class="deadline-list">
   {% for item in overdueList %}
     {% if item.kind == "deadline" %}{% set d = item.entry %}{% include "deadline-row.njk" %}
@@ -24,7 +24,7 @@ permalink: "/deadlines/"
 
 <section>
   <h2>This Week</h2>
-  {% set weekList = active | dueThisWeek %}
+  {% set weekList = active | dueThisWeek | sortByEstimate("estimated_minutes") %}
   <div class="deadline-list">
   {% for item in weekList %}
     {% if item.kind == "deadline" %}{% set d = item.entry %}{% include "deadline-row.njk" %}
@@ -36,7 +36,7 @@ permalink: "/deadlines/"
 
 <section>
   <h2>Later</h2>
-  {% set laterList = active | dueLater %}
+  {% set laterList = active | dueLater | sortByEstimate("estimated_minutes") %}
   <div class="deadline-list">
   {% for item in laterList %}
     {% if item.kind == "deadline" %}{% set d = item.entry %}{% include "deadline-row.njk" %}

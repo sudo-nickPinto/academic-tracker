@@ -74,6 +74,24 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  // Reorders items by estimated_minutes ascending (small tasks first), items
+  // with no estimate sorting last. Meant to be chained *after* overdue /
+  // dueThisWeek / dueLater — it only reorders within whichever urgency
+  // bucket already ran, it never moves an item between buckets, so an
+  // unestimated-but-overdue task is never buried behind something due weeks
+  // out. Array.sort is stable, so ties (including "no estimate") keep
+  // whatever order the previous sortByDate/filter left them in.
+  eleventyConfig.addFilter("sortByEstimate", (items, field) => {
+    return [...(items || [])].sort((a, b) => {
+      const ea = typeof a[field] === "number" ? a[field] : null;
+      const eb = typeof b[field] === "number" ? b[field] : null;
+      if (ea === null && eb === null) return 0;
+      if (ea === null) return 1;
+      if (eb === null) return -1;
+      return ea - eb;
+    });
+  });
+
   eleventyConfig.addFilter("notDone", (items) =>
     (items || []).filter((i) => i.status !== "done")
   );
@@ -125,9 +143,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("combinedAgenda", (deadlinesList, remindersList) => {
     const items = [];
     (deadlinesList || []).forEach((d) =>
-      items.push({ kind: "deadline", entry: d, due_date: d.due_date, status: d.status })
+      items.push({ kind: "deadline", entry: d, due_date: d.due_date, status: d.status, estimated_minutes: d.estimated_minutes })
     );
     (remindersList || []).forEach((r) =>
+      // A reminder has no "time to do" of its own — leaving estimated_minutes
+      // unset here means sortByEstimate correctly sorts it last, same as an
+      // un-estimated deadline.
       items.push({ kind: "reminder", entry: r, due_date: r.date || "TBD", status: r.done ? "done" : "upcoming" })
     );
     return items;
@@ -192,6 +213,12 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("gradeBreakdown", gradeBreakdownOf);
   eleventyConfig.addFilter("weightedOverall", weightedOverallOf);
+
+  // A class's real category names, for rendering the Add/Edit Grade forms'
+  // category picker as a <select> instead of free text.
+  eleventyConfig.addFilter("categoryNames", (cls) =>
+    ((cls && cls.grade_categories) || []).map((c) => c.name)
+  );
 
   // Mean of each class's weighted-overall (classes with no grades yet are
   // excluded rather than dragging the average toward zero).

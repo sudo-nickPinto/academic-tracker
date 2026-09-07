@@ -47,9 +47,9 @@ function escapeRegExp(s) {
 
 /**
  * Locates the `- id: ...` block for `id` within a data file's text content.
- * Shared by setEntryField and deleteEntry below.
+ * Shared by setEntryField, setArrayField, and deleteEntry below.
  */
-function findEntryBlock(fileText, id) {
+export function findEntryBlock(fileText, id) {
   const idPattern = new RegExp(`(^|\\n)(- id: )"?${escapeRegExp(id)}"?(\\n|$)`);
   const idMatch = idPattern.exec(fileText);
   if (!idMatch) {
@@ -78,6 +78,51 @@ export function setEntryField(fileText, id, field, newValue) {
   const newBlock = fieldPattern.test(block)
     ? block.replace(fieldPattern, (_, prefix, suffix) => `${prefix}${dumpValue(newValue)}${suffix}`)
     : `${block.replace(/\n$/, "")}\n  ${field}: ${dumpValue(newValue)}\n`;
+
+  return fileText.slice(0, blockStart) + newBlock + fileText.slice(blockEnd);
+}
+
+function dumpFlowMapping(obj) {
+  return `{ ${Object.keys(obj)
+    .map((key) => `${key}: ${dumpValue(obj[key])}`)
+    .join(", ")} }`;
+}
+
+function dumpArrayField(field, items) {
+  if (!items || items.length === 0) return `  ${field}: []`;
+  const lines = items.map((item) => `    - ${dumpFlowMapping(item)}`);
+  return `  ${field}:\n${lines.join("\n")}`;
+}
+
+/**
+ * Finds a field's full extent within an entry block, including any
+ * deeper-indented continuation lines (a block sequence written as this
+ * repo's flat-list files do, e.g. `grade_categories`'s `- { ... }` rows).
+ * Returns null if the field isn't present at all.
+ */
+function findFieldExtent(block, field) {
+  const pattern = new RegExp(`(^|\\n)(  ${escapeRegExp(field)}:.*(?:\\n {4,}.*)*)`);
+  const match = pattern.exec(block);
+  if (!match) return null;
+  const start = match.index + match[1].length;
+  return { start, end: start + match[2].length };
+}
+
+/**
+ * Replaces one array-valued field (a list of flat objects, e.g.
+ * `grade_categories: [{ name, weight }]`) within the entry whose `id:`
+ * matches `id`. `setEntryField` can't do this — its field regex only ever
+ * matches one line, so it would stomp the field's header line and leave the
+ * old `- { ... }` rows behind as orphaned text. Renders `field: []` when
+ * `items` is empty, otherwise one `- { ... }` flow-mapping row per item.
+ */
+export function setArrayField(fileText, id, field, items) {
+  const { blockStart, blockEnd, block } = findEntryBlock(fileText, id);
+  const extent = findFieldExtent(block, field);
+  const rendered = dumpArrayField(field, items);
+  const newBlock = extent
+    ? block.slice(0, extent.start) + rendered + block.slice(extent.end)
+    : `${block.replace(/\n$/, "")}\n${rendered}\n`;
 
   return fileText.slice(0, blockStart) + newBlock + fileText.slice(blockEnd);
 }

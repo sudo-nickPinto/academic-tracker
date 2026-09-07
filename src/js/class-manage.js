@@ -82,7 +82,7 @@ wireForm("form-deadline", {
     if (dueDate !== "TBD" && !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(dueDate)) {
       throw new Error('Due date must look like "2026-09-29T14:35", or be "TBD".');
     }
-    return {
+    const entry = {
       id: makeId(`${CLASS_ID}-deadline`, title),
       class_id: CLASS_ID,
       title,
@@ -92,6 +92,15 @@ wireForm("form-deadline", {
       link: fd.get("link") || "",
       notes: fd.get("notes") || "",
     };
+    const estimateRaw = (fd.get("estimated_minutes") || "").trim();
+    if (estimateRaw) {
+      const estimate = Number(estimateRaw);
+      if (!Number.isInteger(estimate) || estimate <= 0) {
+        throw new Error("Estimated minutes must be a positive whole number.");
+      }
+      entry.estimated_minutes = estimate;
+    }
+    return entry;
   },
   describe: (e) => `deadline "${e.title}"`,
   link: () => siteUrl("/deadlines/"),

@@ -1,6 +1,9 @@
 # due_date uses ISO format "YYYY-MM-DDTHH:MM". Use "TBD" if the date isn't known yet — it will
 # sort to the end of lists and display as "TBD" instead of breaking the build.
 # status: upcoming | done
+# estimated_minutes: optional integer. Powers the "Needs Your Attention"/"Up Next"
+# small-tasks-first sort within each urgency bucket. Omit entirely if unknown —
+# never invent a number, same as never inventing a due_date (use "TBD" instead).
 
 - id: cs391-test1
   class_id: cs391
