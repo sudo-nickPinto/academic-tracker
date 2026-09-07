@@ -25,7 +25,7 @@ body:
     id: category
     attributes:
       label: Category
-      description: Should match one of the class's grade_categories names, or it'll show up as "Other" and not count toward the weighted average.
+      description: Must exactly match one of the class's grading-category names (see the class page), or be "Other" if the class has no categories or this item isn't weighted. A mismatch will be rejected.
       placeholder: "Exams"
     validations:
       required: true

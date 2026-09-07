@@ -41,6 +41,14 @@ body:
     validations:
       required: true
   - type: input
+    id: estimated_minutes
+    attributes:
+      label: "Estimated time to complete, in minutes (optional)"
+      description: Leave blank if unknown — never guess a number here.
+      placeholder: "30"
+    validations:
+      required: false
+  - type: input
     id: link
     attributes:
       label: "Link (optional)"

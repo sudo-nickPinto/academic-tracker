@@ -102,12 +102,24 @@ export async function handleAddForm(form, { file, buildEntry, describe, link, pr
   }
 }
 
-/** Reads every named field in a form into a plain object, coercing number inputs. */
+/**
+ * Reads every named field in a form into a plain object, coercing number
+ * inputs. An empty optional number input becomes `null` (renders as `""`,
+ * the same "unset" representation other optional fields like link/notes
+ * use) rather than `Number("") === 0` — a real `0` would otherwise be
+ * indistinguishable from "cleared", and for a field like estimated_minutes
+ * that sorts ascending, a phantom `0` would wrongly sort first instead of
+ * last.
+ */
 export function collectFieldValues(form) {
   const values = {};
   form.querySelectorAll("[name]").forEach((el) => {
     if (!el.name) return;
-    values[el.name] = el.type === "number" ? Number(el.value) : el.value.trim();
+    if (el.type === "number") {
+      values[el.name] = el.value.trim() === "" ? null : Number(el.value);
+    } else {
+      values[el.name] = el.value.trim();
+    }
   });
   return values;
 }

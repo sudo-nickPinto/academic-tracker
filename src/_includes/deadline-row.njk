@@ -5,6 +5,7 @@
   <span class="deadline-class" style="color: {{ cls.color or '#888' }}">{{ cls.code or d.class_id }}</span>
   <span class="deadline-title">{{ d.title }}</span>
   <span class="deadline-type">{{ d.type }}</span>
+  {% if d.estimated_minutes %}<span class="deadline-estimate">~{{ d.estimated_minutes }}m</span>{% endif %}
   {% if d.status != "done" %}
     {% if daysLeft < 0 %}<span class="badge-urgency badge-overdue">Overdue</span>
     {% elif daysLeft == 0 %}<span class="badge-urgency badge-today">Today</span>
@@ -32,6 +33,7 @@
         </select>
       </label>
       <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="{{ d.due_date }}" required></label>
+      <label>Estimated time to complete, in minutes (optional)<input type="number" name="estimated_minutes" value="{{ d.estimated_minutes }}" min="1" step="1"></label>
       <label>Link (optional)<input type="url" name="link" value="{{ d.link }}"></label>
       <label>Notes (optional)<textarea name="notes">{{ d.notes }}</textarea></label>
       <button type="submit">Save</button>

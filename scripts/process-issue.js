@@ -57,6 +57,17 @@ function knownClassIds() {
   return list.map((c) => c.id);
 }
 
+// A class's real grade_categories names, so add-grade can reject a typo'd
+// Category instead of it silently landing in gradeBreakdownOf's "Other"
+// bucket unweighted (matching the on-site form's <select>, which can't be
+// mistyped in the first place).
+function classCategoryNames(classId) {
+  const raw = fs.readFileSync(path.join(DATA_DIR, "classes.yaml"), "utf8");
+  const list = yaml.load(raw) || [];
+  const cls = list.find((c) => c.id === classId);
+  return ((cls && cls.grade_categories) || []).map((c) => c.name);
+}
+
 function appendEntry(fileName, entry) {
   const filePath = path.join(DATA_DIR, fileName);
   const raw = fs.readFileSync(filePath, "utf8");
@@ -105,6 +116,12 @@ const HANDLERS = {
     if (!knownClassIds().includes(classId)) return fail(`Unknown class id "${classId}".`);
     if (!item) return fail("Item is required.");
     if (!category) return fail("Category is required.");
+    const validNames = classCategoryNames(classId);
+    if (validNames.length > 0 && category !== "Other" && !validNames.includes(category)) {
+      return fail(
+        `Category "${category}" doesn't match one of ${classId}'s grading categories (${validNames.join(", ")}). Use one of those, or "Other".`
+      );
+    }
     const score = Number(scoreRaw);
     const max = Number(maxRaw);
     if (!Number.isFinite(score)) return fail(`Score "${scoreRaw}" isn't a number.`);
@@ -147,6 +164,14 @@ const HANDLERS = {
       link: fields["Link (optional)"] || "",
       notes: fields["Notes (optional)"] || "",
     };
+    const estimateRaw = fields["Estimated time to complete, in minutes (optional)"];
+    if (estimateRaw) {
+      const estimate = Number(estimateRaw);
+      if (!Number.isInteger(estimate) || estimate <= 0) {
+        return fail(`Estimated time "${estimateRaw}" must be a positive whole number of minutes.`);
+      }
+      entry.estimated_minutes = estimate;
+    }
     appendEntry("deadlines.yaml", entry);
     return { file: "deadlines.yaml", link: `${SITE_URL}deadlines/`, describe: `deadline "${title}"` };
   },
@@ -240,4 +265,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { parseFields, slugify, appendEntry, knownClassIds, HANDLERS };
+module.exports = { parseFields, slugify, appendEntry, knownClassIds, classCategoryNames, HANDLERS };

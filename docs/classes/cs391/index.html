@@ -259,6 +259,7 @@
   <span class="deadline-title">Test 1</span>
   <span class="deadline-type">exam</span>
   
+  
     
   
   
@@ -282,6 +283,7 @@
         </select>
       </label>
       <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-09-29T14:35" required></label>
+      <label>Estimated time to complete, in minutes (optional)<input type="number" name="estimated_minutes" value="" min="1" step="1"></label>
       <label>Link (optional)<input type="url" name="link" value=""></label>
       <label>Notes (optional)<textarea name="notes"></textarea></label>
       <button type="submit">Save</button>
@@ -300,6 +302,7 @@
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Test 2</span>
   <span class="deadline-type">exam</span>
+  
   
     
   
@@ -324,6 +327,7 @@
         </select>
       </label>
       <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-11-03T14:35" required></label>
+      <label>Estimated time to complete, in minutes (optional)<input type="number" name="estimated_minutes" value="" min="1" step="1"></label>
       <label>Link (optional)<input type="url" name="link" value=""></label>
       <label>Notes (optional)<textarea name="notes"></textarea></label>
       <button type="submit">Save</button>
@@ -342,6 +346,7 @@
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Final Exam</span>
   <span class="deadline-type">exam</span>
+  
   
     
   
@@ -366,6 +371,7 @@
         </select>
       </label>
       <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="2026-12-08T08:30" required></label>
+      <label>Estimated time to complete, in minutes (optional)<input type="number" name="estimated_minutes" value="" min="1" step="1"></label>
       <label>Link (optional)<input type="url" name="link" value=""></label>
       <label>Notes (optional)<textarea name="notes">Cumulative. 8:30–11:30am, proctored in the classroom.</textarea></label>
       <button type="submit">Save</button>
@@ -384,6 +390,7 @@
   <span class="deadline-class" style="color: #2b6cb0">CS 391</span>
   <span class="deadline-title">Attend 2 CS Colloquia</span>
   <span class="deadline-type">other</span>
+  
   
     
   
@@ -408,6 +415,7 @@
         </select>
       </label>
       <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" value="TBD" required></label>
+      <label>Estimated time to complete, in minutes (optional)<input type="number" name="estimated_minutes" value="" min="1" step="1"></label>
       <label>Link (optional)<input type="url" name="link" value=""></label>
       <label>Notes (optional)<textarea name="notes">Each student must attend at least 2 Computer Science Colloquia this semester (talk to the instructor if scheduling is a problem). Specific colloquium dates aren&#39;t in the syllabus.</textarea></label>
       <button type="submit">Save</button>
@@ -436,6 +444,7 @@
         </select>
       </label>
       <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" placeholder="2026-09-29T14:35" required></label>
+      <label>Estimated time to complete, in minutes (optional)<input type="number" name="estimated_minutes" min="1" step="1" placeholder="30"></label>
       <label>Link (optional)<input type="url" name="link"></label>
       <label>Notes (optional)<textarea name="notes" placeholder="Flag anything inferred or guessed here."></textarea></label>
       <button type="submit">Add Deadline</button>
@@ -446,6 +455,64 @@
 
 <section>
   <h2>Grades</h2>
+
+  <details class="inline-manage">
+    <summary>Edit Grading Weights</summary>
+    <form id="form-grading-weights" class="manage-form" data-class-id="cs391">
+      <div data-category-rows>
+      
+        <div class="category-row" data-category-row>
+          <input type="text" name="category-name" value="Assignments" placeholder="Category name" required>
+          <input type="number" name="category-weight" value="18" step="any" min="0" placeholder="Weight %" required>
+          <button type="button" class="remove-btn" data-remove-row aria-label="Remove category">&times;</button>
+        </div>
+      
+        <div class="category-row" data-category-row>
+          <input type="text" name="category-name" value="Fourth Hour" placeholder="Category name" required>
+          <input type="number" name="category-weight" value="15" step="any" min="0" placeholder="Weight %" required>
+          <button type="button" class="remove-btn" data-remove-row aria-label="Remove category">&times;</button>
+        </div>
+      
+        <div class="category-row" data-category-row>
+          <input type="text" name="category-name" value="Classwork" placeholder="Category name" required>
+          <input type="number" name="category-weight" value="15" step="any" min="0" placeholder="Weight %" required>
+          <button type="button" class="remove-btn" data-remove-row aria-label="Remove category">&times;</button>
+        </div>
+      
+        <div class="category-row" data-category-row>
+          <input type="text" name="category-name" value="Colloquia" placeholder="Category name" required>
+          <input type="number" name="category-weight" value="2" step="any" min="0" placeholder="Weight %" required>
+          <button type="button" class="remove-btn" data-remove-row aria-label="Remove category">&times;</button>
+        </div>
+      
+        <div class="category-row" data-category-row>
+          <input type="text" name="category-name" value="Tests" placeholder="Category name" required>
+          <input type="number" name="category-weight" value="30" step="any" min="0" placeholder="Weight %" required>
+          <button type="button" class="remove-btn" data-remove-row aria-label="Remove category">&times;</button>
+        </div>
+      
+        <div class="category-row" data-category-row>
+          <input type="text" name="category-name" value="Final Exam" placeholder="Category name" required>
+          <input type="number" name="category-weight" value="20" step="any" min="0" placeholder="Weight %" required>
+          <button type="button" class="remove-btn" data-remove-row aria-label="Remove category">&times;</button>
+        </div>
+      
+      </div>
+      <button type="button" id="add-category-row">+ Add category</button>
+      <p class="category-total">Total weight: <span data-category-total>0</span>%</p>
+      <button type="submit">Save Grading Weights</button>
+      <p class="form-status"></p>
+    </form>
+    <template id="category-row-template">
+      <div class="category-row" data-category-row>
+        <input type="text" name="category-name" placeholder="Category name" required>
+        <input type="number" name="category-weight" step="any" min="0" placeholder="Weight %" required>
+        <button type="button" class="remove-btn" data-remove-row aria-label="Remove category">&times;</button>
+      </div>
+    </template>
+  </details>
+
+  
   
   
   
@@ -477,7 +544,26 @@
               <summary>Edit</summary>
               <form class="manage-form edit-form" data-edit-form data-id="cs391-grade-participation-class-1-2q8w4" data-file="grades.yaml">
                 <label>Item<input type="text" name="item" value="Participation Class 1" required></label>
-                <label>Category<input type="text" name="category" value="Participation"></label>
+                <label>Category
+                  
+                  <select name="category">
+                    
+                    <option value="Assignments" >Assignments</option>
+                    
+                    <option value="Fourth Hour" >Fourth Hour</option>
+                    
+                    <option value="Classwork" >Classwork</option>
+                    
+                    <option value="Colloquia" >Colloquia</option>
+                    
+                    <option value="Tests" >Tests</option>
+                    
+                    <option value="Final Exam" >Final Exam</option>
+                    
+                    <option value="Other" selected>Other (not weighted)</option>
+                  </select>
+                  
+                </label>
                 <label>Score<input type="number" step="any" name="score" value="100" required></label>
                 <label>Max<input type="number" step="any" name="max" value="100" required></label>
                 <label>Date (optional)<input type="date" name="date" value="2026-08-25"></label>
@@ -499,7 +585,26 @@
     <summary>Add Grade</summary>
     <form id="form-grade" class="manage-form">
       <label>Item<input type="text" name="item" placeholder="Test 1" required></label>
-      <label>Category<input type="text" name="category" placeholder="Matches a grade_categories name, if the class has one"></label>
+      <label>Category
+        
+        <select name="category">
+          
+          <option value="Assignments">Assignments</option>
+          
+          <option value="Fourth Hour">Fourth Hour</option>
+          
+          <option value="Classwork">Classwork</option>
+          
+          <option value="Colloquia">Colloquia</option>
+          
+          <option value="Tests">Tests</option>
+          
+          <option value="Final Exam">Final Exam</option>
+          
+          <option value="Other">Other (not weighted)</option>
+        </select>
+        
+      </label>
       <label>Score<input type="number" step="any" name="score" required></label>
       <label>Max<input type="number" step="any" name="max" required></label>
       <label>Date (optional)<input type="date" name="date"></label>
@@ -599,6 +704,7 @@
 
 <script>window.CLASS_ID = "cs391";</script>
 <script type="module" src="/academic-tracker/js/class-manage.js"></script>
+<script type="module" src="/academic-tracker/js/grading-weights.js"></script>
 <script type="module" src="/academic-tracker/js/reorder.js"></script>
 
   </main>

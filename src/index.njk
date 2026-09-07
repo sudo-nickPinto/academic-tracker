@@ -9,8 +9,8 @@ eleventyComputed:
 </section>
 
 {% set active = deadlines | notDone | sortByDate("due_date") %}
-{% set overdueList = active | overdue %}
-{% set weekList = active | dueThisWeek %}
+{% set overdueList = active | overdue | sortByEstimate("estimated_minutes") %}
+{% set weekList = active | dueThisWeek | sortByEstimate("estimated_minutes") %}
 {% set pendingReminderList = reminders | pendingReminders %}
 {% set streaks = deadlines | deadlineStreaks %}
 {% set overallAvg = classes | overallAverage(grades) %}

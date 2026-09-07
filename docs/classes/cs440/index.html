@@ -297,6 +297,7 @@
         </select>
       </label>
       <label>Due date (YYYY-MM-DDTHH:MM, or "TBD")<input type="text" name="due_date" placeholder="2026-09-29T14:35" required></label>
+      <label>Estimated time to complete, in minutes (optional)<input type="number" name="estimated_minutes" min="1" step="1" placeholder="30"></label>
       <label>Link (optional)<input type="url" name="link"></label>
       <label>Notes (optional)<textarea name="notes" placeholder="Flag anything inferred or guessed here."></textarea></label>
       <button type="submit">Add Deadline</button>
@@ -307,6 +308,28 @@
 
 <section>
   <h2>Grades</h2>
+
+  <details class="inline-manage">
+    <summary>Edit Grading Weights</summary>
+    <form id="form-grading-weights" class="manage-form" data-class-id="cs440">
+      <div data-category-rows>
+      
+      </div>
+      <button type="button" id="add-category-row">+ Add category</button>
+      <p class="category-total">Total weight: <span data-category-total>0</span>%</p>
+      <button type="submit">Save Grading Weights</button>
+      <p class="form-status"></p>
+    </form>
+    <template id="category-row-template">
+      <div class="category-row" data-category-row>
+        <input type="text" name="category-name" placeholder="Category name" required>
+        <input type="number" name="category-weight" step="any" min="0" placeholder="Weight %" required>
+        <button type="button" class="remove-btn" data-remove-row aria-label="Remove category">&times;</button>
+      </div>
+    </template>
+  </details>
+
+  
   
   
   
@@ -320,7 +343,11 @@
     <summary>Add Grade</summary>
     <form id="form-grade" class="manage-form">
       <label>Item<input type="text" name="item" placeholder="Test 1" required></label>
-      <label>Category<input type="text" name="category" placeholder="Matches a grade_categories name, if the class has one"></label>
+      <label>Category
+        
+        <input type="text" name="category" placeholder="Optional">
+        
+      </label>
       <label>Score<input type="number" step="any" name="score" required></label>
       <label>Max<input type="number" step="any" name="max" required></label>
       <label>Date (optional)<input type="date" name="date"></label>
@@ -378,6 +405,7 @@
 
 <script>window.CLASS_ID = "cs440";</script>
 <script type="module" src="/academic-tracker/js/class-manage.js"></script>
+<script type="module" src="/academic-tracker/js/grading-weights.js"></script>
 <script type="module" src="/academic-tracker/js/reorder.js"></script>
 
   </main>
